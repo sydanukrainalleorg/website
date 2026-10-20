@@ -38,6 +38,8 @@ async function handleCallback(request, env) {
   const name = clean(data.name, 100);
   const phone = clean(data.phone, 40);
   const topic = clean(data.topic, 60) || "—";
+  const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
+  const lang = LANGS[clean(data.lang, 5)] || "—";
 
   if (!name || phone.replace(/\D/g, "").length < 7 || data.consent !== true) {
     return json({ ok: false, error: "invalid" }, 400);
@@ -53,6 +55,7 @@ async function handleCallback(request, env) {
     `Имя: ${name}\n` +
     `Телефон: ${phone}\n` +
     `Тема: ${topic}\n` +
+    `Язык сайта: ${lang}\n` +
     `Страна посетителя: ${country}\n` +
     `Время (Хельсинки): ${time}`;
 

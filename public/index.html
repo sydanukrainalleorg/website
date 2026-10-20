@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Global Mine Action Hub — Sydän Ukrainalle ry</title>
 <meta name="description" content="Global Mine Action Hub develops an integrated explosive detection system for Ukraine: bees, trained dogs, drones and machines working together.">
+<link rel="canonical" href="https://sydanukrainalle.org/">
+<link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/">
+<link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/">
+<link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/">
+<link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -35,7 +40,7 @@
 }
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body{overflow-x:clip;margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
 img,svg{max-width:100%}
 a{color:var(--green-text)}
@@ -60,15 +65,29 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .brand small{color:var(--muted);font-size:.78rem}
 nav.main{display:flex;gap:20px;margin-left:auto}
 nav.main a{color:var(--ink);text-decoration:none;font-size:.95rem}
+nav.main a,.top .btn{white-space:nowrap}
+@media (min-width:601px){.brand b{white-space:nowrap}}
 nav.main a:hover{color:var(--orange)}
 .top .btn{padding:11px 16px;font-size:.92rem}
 .menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:8px 12px;font:inherit}
-@media (max-width:920px){
+@media (max-width:1180px){
   nav.main{display:none;position:absolute;left:0;right:0;top:68px;background:var(--bg);flex-direction:column;padding:16px 24px 24px;border-bottom:1px solid var(--line)}
   nav.main.open{display:flex}
   .menu-toggle{display:block}
   .top .btn{display:none}
 }
+
+/* language switcher and offer */
+.langs{display:flex;gap:2px;margin-left:12px}
+.langs a{font:500 .85rem/1 "IBM Plex Sans",sans-serif;padding:8px 9px;border-radius:5px;text-decoration:none;color:var(--muted)}
+.langs a:hover{color:var(--ink)}
+.langs a[aria-current="true"]{color:var(--ink);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.lang-offer{background:var(--green);color:var(--on-green);font-size:.95rem}
+.lang-offer .wrap{display:flex;align-items:center;gap:16px;min-height:48px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.lang-offer a{color:var(--on-green);font-weight:600}
+.lang-offer button{margin-left:auto;background:none;border:0;color:var(--on-green);font-size:1.3rem;cursor:pointer;line-height:1}
+@media (max-width:1180px){.langs{margin-left:auto}.menu-toggle{margin-left:8px}}
+@media (max-width:600px){.top .wrap{gap:10px}.brand b{font-size:1.05rem}.brand small{display:none}.langs a{padding:7px 6px}.menu-toggle{padding:7px 10px}}
 
 /* hero */
 .hero{padding:56px 0 72px;border-top:0}
@@ -194,11 +213,11 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 </style>
 </head>
 <body>
+<div class="lang-offer" id="lang-offer" hidden><div class="wrap"><span id="lang-offer-text"></span><a id="lang-offer-link" href="/"></a><button type="button" id="lang-offer-close" aria-label="Close">×</button></div></div>
 
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#home"><b>Global Mine Action Hub</b><small>A program of Sydän Ukrainalle ry</small></a>
-    <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <nav class="main" id="nav">
       <a href="#mission">Mission</a>
       <a href="#technology">Technology</a>
@@ -207,6 +226,8 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <a href="#involved">Get involved</a>
       <a href="#contact">Contact</a>
     </nav>
+    <nav class="langs" aria-label="Language"><a href="/" hreflang="en" lang="en" data-lang="en" aria-current="true">EN</a><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk">УКР</a><a href="/fi/" hreflang="fi" lang="fi" data-lang="fi">FI</a></nav>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
     <a class="btn" href="#contact">Request a call</a>
   </div>
 </header>
@@ -418,7 +439,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <div><label for="cb-phone">Phone number</label><input id="cb-phone" name="phone" type="tel" autocomplete="tel" placeholder="+358 or +380" required></div>
         <div><label for="cb-topic">Topic</label>
           <select id="cb-topic" name="topic">
-            <option>Partnership</option><option>Support and donations</option><option>Volunteering</option><option>Media</option><option>Other</option>
+            <option value="Partnership">Partnership</option><option value="Support">Support and donations</option><option value="Volunteering">Volunteering</option><option value="Media">Media</option><option value="Other">Other</option>
           </select></div>
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="cb-website">Website</label><input id="cb-website" name="website" tabindex="-1" autocomplete="off"></div>
         <label class="check"><input type="checkbox" id="cb-consent" required> I agree that Sydän Ukrainalle ry may store my name and number to call me back.</label>
@@ -551,13 +572,31 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     if(!ok){note.textContent='Tick the consent box so we can call you back.';return}
     btn.disabled=true;note.className='form-note';note.textContent='Sending…';
     fetch('/api/callback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      name:name,phone:phone,topic:document.getElementById('cb-topic').value,consent:true,website:document.getElementById('cb-website').value
+      name:name,phone:phone,topic:document.getElementById('cb-topic').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('cb-website').value
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
       if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you. We will call you back within one working day.';f.reset()}
       else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org or message us on WhatsApp.'}
     }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
   });
+})();
+
+// language offer: suggest Ukrainian or Finnish to visitors whose browser uses it
+(function(){
+  var cur=document.documentElement.lang, key='gmah-lang';
+  var store={get:function(){try{return localStorage.getItem(key)}catch(e){return null}},set:function(v){try{localStorage.setItem(key,v)}catch(e){}}};
+  document.querySelectorAll('.langs a').forEach(function(a){a.addEventListener('click',function(){store.set(a.dataset.lang)})});
+  if(store.get())return;
+  var OFFER={uk:{t:'Цей сайт доступний українською.',l:'Перейти',h:'/uk/'},fi:{t:'Sivusto on saatavilla suomeksi.',l:'Siirry',h:'/fi/'}};
+  var want=(navigator.languages||[navigator.language||'']).map(function(x){return String(x).slice(0,2).toLowerCase()});
+  var pick=want.filter(function(x){return OFFER[x]})[0];
+  if(!pick||pick===cur)return;
+  var bar=document.getElementById('lang-offer');
+  document.getElementById('lang-offer-text').textContent=OFFER[pick].t;
+  var link=document.getElementById('lang-offer-link');link.textContent=OFFER[pick].l;link.href=OFFER[pick].h;
+  link.addEventListener('click',function(){store.set(pick)});
+  document.getElementById('lang-offer-close').onclick=function(){bar.hidden=true;store.set(cur)};
+  bar.hidden=false;
 })();
 
 // chat assistant: answers come from the AI at /api/chat; simple built-in answers are used if it is unavailable
