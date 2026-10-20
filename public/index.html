@@ -560,36 +560,39 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   });
 })();
 
-// chat assistant (prototype: answers from site content; live version uses AI and hands over to the team in Telegram)
+// chat assistant: answers come from the AI at /api/chat; simple built-in answers are used if it is unavailable
 (function(){
-  var open=document.getElementById('chat-open'), chat=document.getElementById('chat'), log=document.getElementById('log'), form=document.getElementById('chat-form'), input=document.getElementById('chat-input'), chips=document.getElementById('chips');
+  var open=document.getElementById('chat-open'), chat=document.getElementById('chat'), log=document.getElementById('log'), form=document.getElementById('chat-form'), input=document.getElementById('chat-input'), chips=document.getElementById('chips'), send=form.querySelector('button');
+  var history=[], busy=false;
   var KB=[
-    {k:['bee','bees','honey'],a:'Our bee pilot trains bees to link the scent of explosives with food. Released over an area, they gather where that scent is present, and drones record the clusters. This shows survey teams where to look first.'},
-    {k:['dog','dogs','handler','k9'],a:'We train mine detection dogs and their instructors. Dog teams check the priority zones that bees and drones have flagged.'},
-    {k:['rat','rats','apopo'],a:'African giant pouched rats are light enough not to set off mines and have an excellent sense of smell. We are researching how the method could work in Ukraine and with which partners.'},
-    {k:['robot','machine','mechan','drone'],a:'We develop remote-controlled and mechanised tools, in-house and with partners. Drones connect the system into one map.'},
-    {k:['licen','clear','demin','operator'],a:'Today we develop technology and train specialists. Clearance is carried out by accredited operators. We are preparing to apply for our own demining licence in Ukraine.'},
-    {k:['partner','cooperat','company','foundation'],a:'We welcome partnerships with operators, research teams, companies and foundations. Leave your number in the form below and we will call you back.'},
-    {k:['donat','support','fund','money','help'],a:'Thank you for wanting to help. Leave your number in the contact form and we will explain how you can support the project.'},
-    {k:['volunt','job','work with'],a:'We look for translators, engineers, drone pilots, developers and educators. Leave your contact in the form and tell us about your skills.'},
-    {k:['found','object','suspicious','safety','mine near'],a:'Do not touch it and do not move closer. Remember the place, leave by the same route and call 101 or 112 in Ukraine.'},
-    {k:['email','mail','phone','whatsapp','contact','call'],a:'Write to info@sydanukrainalle.org or message us on WhatsApp: +358 46 629 8934. You can also leave your number in the form and we will call you back.'},
-    {k:['who','organi','about','finland'],a:'Global Mine Action Hub is a program of Sydän Ukrainalle ry, a registered Finnish non-profit association (Y-tunnus 3543515-1).'}
+    {k:['bee','bees','бджол','пчел'],a:'Our bee pilot trains bees to link the scent of explosives with food. Released over an area, they gather where that scent is present, and drones record the clusters. This shows survey teams where to look first.'},
+    {k:['dog','собак'],a:'We train mine detection dogs and their instructors. Dog teams check the priority zones that bees and drones have flagged.'},
+    {k:['licen','clear','demin','ліценз','розмін','лиценз','размин'],a:'Today we develop technology and train specialists. Clearance is carried out by accredited operators. We are preparing to apply for our own demining licence in Ukraine.'},
+    {k:['found','object','suspicious','знайш','нашел','нашёл','предмет'],a:'Do not touch it and do not move closer. Remember the place, leave by the same route and call 101 or 112 in Ukraine.'}
   ];
-  function add(t,who){var d=document.createElement('div');d.className='msg '+who;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight}
-  function answer(q){
+  function fallback(q){
     var s=q.toLowerCase();
     for(var i=0;i<KB.length;i++){for(var j=0;j<KB[i].k.length;j++){if(s.indexOf(KB[i].k[j])>-1)return KB[i].a}}
-    return 'I can’t answer that yet. Leave your number in the contact form and our team will call you back.';
+    return 'The assistant is not available right now. Please write to info@sydanukrainalle.org, message us on WhatsApp +358 46 629 8934, or leave your number in the form below.';
   }
-  function ask(q){add(q,'me');setTimeout(function(){add(answer(q),'bot')},350)}
+  function add(t,who){var d=document.createElement('div');d.className='msg '+who;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
+  function ask(q){
+    if(busy)return;busy=true;send.disabled=true;
+    add(q,'me');history.push({role:'user',content:q});
+    var typing=add('…','bot');
+    fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history.slice(-10)})})
+      .then(function(r){return r.json().catch(function(){return {ok:false}})})
+      .then(function(d){var a=(d&&d.ok&&d.answer)?d.answer:fallback(q);typing.textContent=a;history.push({role:'assistant',content:a})})
+      .catch(function(){var a=fallback(q);typing.textContent=a;history.push({role:'assistant',content:a})})
+      .finally(function(){busy=false;send.disabled=false;log.scrollTop=log.scrollHeight;input.focus()});
+  }
   ['How do the bees work?','Do you clear mines?','How can I partner?','I found a suspicious object'].forEach(function(t){
     var b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=function(){ask(t)};chips.appendChild(b);
   });
-  function toggle(v){chat.hidden=!v;open.setAttribute('aria-expanded',v);if(v){if(!log.children.length)add('Hello. Ask me about our technology, partnerships or mine safety.','bot');input.focus()}}
+  function toggle(v){chat.hidden=!v;open.setAttribute('aria-expanded',v);if(v){if(!log.children.length)add('Hello. Ask me about our technology, partnerships or mine safety, in any language.','bot');input.focus()}}
   open.onclick=function(){toggle(chat.hidden)};
   document.getElementById('chat-close').onclick=function(){toggle(false);open.focus()};
-  form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim();if(!v)return;input.value='';ask(v)});
+  form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim().slice(0,1000);if(!v)return;input.value='';ask(v)});
 })();
 </script>
 </body>
