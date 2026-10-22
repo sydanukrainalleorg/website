@@ -178,14 +178,151 @@ async function handleChat(request, env) {
   }
 }
 
+/* ---------- Telegram bot: answers visitors with the same AI as the site ---------- */
+
+const TG_TEXT = {
+  uk: {
+    start: "Вітаю! Це помічник Global Mine Action Hub — програми Sydän Ukrainalle ry.\n\nМи готуємо службових собак для пошуку мін та їхніх інструкторів і розробляємо сучасні системи виявлення вибухонебезпечних предметів.\n\nНапишіть своє запитання — про нашу роботу, партнерство чи мінну безпеку.",
+    safety: "Якщо ви побачили підозрілий предмет:\n\n◉ Не торкайтеся його і не підходьте ближче.\n◉ Запам’ятайте місце.\n◉ Виходьте тим самим шляхом, яким прийшли.\n◉ Телефонуйте 101 або 112.",
+    textOnly: "Поки що я розумію лише текстові повідомлення. Напишіть, будь ласка, своє запитання текстом.",
+    site: "Сайт", call: "Замовити дзвінок", busy: "Вибачте, зараз я не можу відповісти. Напишіть на info@sydanukrainalle.org або залиште номер на сайті, і ми вам передзвонимо.",
+  },
+  fi: {
+    start: "Hei! Tämä on Global Mine Action Hubin avustaja. Global Mine Action Hub on Sydän Ukrainalle ry:n ohjelma.\n\nKoulutamme miinakoiria ja niiden kouluttajia sekä kehitämme nykyaikaisia räjähteiden havaitsemisjärjestelmiä.\n\nKirjoita kysymyksesi työstämme, kumppanuudesta tai miinaturvallisuudesta.",
+    safety: "Jos näet epäilyttävän esineen:\n\n◉ Älä koske siihen äläkä mene lähemmäs.\n◉ Paina paikka mieleesi.\n◉ Poistu samaa reittiä kuin tulit.\n◉ Soita Ukrainassa 101 tai 112.",
+    textOnly: "Ymmärrän toistaiseksi vain tekstiviestejä. Kirjoita kysymyksesi, kiitos.",
+    site: "Verkkosivusto", call: "Pyydä soittoa", busy: "Valitettavasti en pysty vastaamaan juuri nyt. Kirjoita osoitteeseen info@sydanukrainalle.org tai jätä numerosi sivustolla, niin soitamme sinulle.",
+  },
+  en: {
+    start: "Hello! This is the assistant of Global Mine Action Hub, a programme of Sydän Ukrainalle ry.\n\nWe train mine detection dogs and their instructors, and develop modern systems for detecting explosive ordnance.\n\nWrite your question about our work, partnerships or mine safety.",
+    safety: "If you see a suspicious object:\n\n◉ Do not touch it and do not move closer.\n◉ Remember the place.\n◉ Leave by the same route you came.\n◉ Call 101 or 112 in Ukraine.",
+    textOnly: "For now I can only read text messages. Please type your question.",
+    site: "Website", call: "Request a call", busy: "Sorry, I can’t answer right now. Please write to info@sydanukrainalle.org or leave your number on our website and we will call you back.",
+  },
+};
+const tgLang = (code) => {
+  const c = String(code || "").slice(0, 2);
+  return c === "uk" || c === "ru" ? "uk" : c === "fi" ? "fi" : "en";
+};
+const COMMAND_QUESTIONS = {
+  "/about": "What is Global Mine Action Hub and what do you do?",
+  "/technology": "Tell me about your detection methods: dogs, drones and bees.",
+  "/partner": "How can an organisation become a partner or support you?",
+  "/contact": "How can I contact your team?",
+};
+
+async function tgSend(env, chatId, text, lang, withButtons) {
+  const t = TG_TEXT[lang];
+  const site = lang === "en" ? "https://sydanukrainalle.org/" : `https://sydanukrainalle.org/${lang}/`;
+  const body = { chat_id: chatId, text };
+  if (withButtons) {
+    body.reply_markup = { inline_keyboard: [[{ text: t.site, url: site }, { text: t.call, url: site + "#contact" }]] };
+  }
+  return fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(body),
+  });
+}
+
+async function answerTelegram(env, msg) {
+  const chatId = msg.chat.id;
+  const lang = tgLang(msg.from?.language_code);
+  const raw = String(msg.text || "").trim();
+  const cmd = raw.split(/[\s@]/)[0].toLowerCase();
+
+  if (cmd === "/start") return tgSend(env, chatId, TG_TEXT[lang].start, lang, true);
+  if (cmd === "/safety") return tgSend(env, chatId, TG_TEXT[lang].safety, lang, false);
+
+  let question = COMMAND_QUESTIONS[cmd] || raw;
+  if (!question) return; // stickers, photos etc.
+  if (COMMAND_QUESTIONS[cmd] && lang !== "en") {
+    question += lang === "uk" ? " Відповідай українською." : " Vastaa suomeksi.";
+  }
+  question = question.slice(0, MAX_MESSAGE);
+
+  try {
+    await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendChatAction`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, action: "typing" }),
+    });
+    const messages = [{ role: "user", content: question }];
+    let answer = env.ANTHROPIC_API_KEY ? await askClaude(env, messages) : await askWorkersAI(env, messages);
+    answer = String(answer || "").replace(/\*\*/g, "").trim();
+    if (!answer) throw new Error("empty_answer");
+    return tgSend(env, chatId, answer.slice(0, 4000), lang, false);
+  } catch (err) {
+    console.error("telegram_ai_error", err?.message || err);
+    return tgSend(env, chatId, TG_TEXT[lang].busy, lang, true);
+  }
+}
+
+async function handleTelegram(request, env, ctx) {
+  if (request.method !== "POST") return new Response("ok");
+  if (!env.TELEGRAM_WEBHOOK_SECRET || request.headers.get("X-Telegram-Bot-Api-Secret-Token") !== env.TELEGRAM_WEBHOOK_SECRET) {
+    return new Response("forbidden", { status: 403 });
+  }
+  let update;
+  try {
+    update = await request.json();
+  } catch {
+    return new Response("ok");
+  }
+  const msg = update.message;
+  if (msg && msg.chat?.type === "private") {
+    if (typeof msg.text === "string") {
+      ctx.waitUntil(answerTelegram(env, msg));
+    } else if (msg.voice || msg.audio || msg.video_note || msg.photo || msg.video || msg.document) {
+      // voice, photos and files: politely ask for text instead of staying silent
+      const lang = tgLang(msg.from?.language_code);
+      ctx.waitUntil(tgSend(env, msg.chat.id, TG_TEXT[lang].textOnly, lang, false));
+    }
+  }
+  return new Response("ok"); // answer Telegram immediately; the reply is sent in the background
+}
+
+// One-time setup: open https://sydanukrainalle.org/api/telegram/setup?key=YOUR_WEBHOOK_SECRET
+async function handleTelegramSetup(request, env) {
+  const key = new URL(request.url).searchParams.get("key");
+  if (!env.TELEGRAM_WEBHOOK_SECRET || key !== env.TELEGRAM_WEBHOOK_SECRET) return new Response("forbidden", { status: 403 });
+  const api = (method, body) =>
+    fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/${method}`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(body),
+    }).then((r) => r.json());
+  const hook = await api("setWebhook", {
+    url: new URL("/api/telegram", request.url).toString(),
+    secret_token: env.TELEGRAM_WEBHOOK_SECRET,
+    allowed_updates: ["message"],
+  });
+  const cmds = await api("setMyCommands", {
+    commands: [
+      { command: "start", description: "Start / Почати" },
+      { command: "about", description: "About Global Mine Action Hub" },
+      { command: "technology", description: "Dogs, drones and bees" },
+      { command: "safety", description: "Found a suspicious object? / Знайшли предмет?" },
+      { command: "partner", description: "Partnership and support" },
+      { command: "contact", description: "Contact the team" },
+    ],
+  });
+  const ok = hook.ok && cmds.ok;
+  return new Response(ok ? "Telegram bot connected ✔" : "Setup failed: " + JSON.stringify({ hook, cmds }), {
+    headers: { "content-type": "text/plain; charset=utf-8" },
+  });
+}
+
 /* ---------- router ---------- */
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === "/api/callback") return handleCallback(request, env);
     if (url.pathname === "/api/chat") return handleChat(request, env);
     if (url.pathname === "/api/notify") return handleNotify(request, env);
+    if (url.pathname === "/api/telegram") return handleTelegram(request, env, ctx);
+    if (url.pathname === "/api/telegram/setup") return handleTelegramSetup(request, env);
     return env.ASSETS.fetch(request);
   },
 };
