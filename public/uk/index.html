@@ -191,7 +191,7 @@ nav.main a:hover{color:var(--orange)}
 .contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
 form.callback{display:grid;gap:14px;margin-top:20px}
 label{font-size:.92rem;font-weight:500}
-input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:6px}
+input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:6px}
 .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted)}
 .check input{width:auto;margin-top:4px}
 .form-note{font-size:.9rem;color:var(--muted);min-height:1.4em}
@@ -216,6 +216,9 @@ input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14
 .socials .soon svg{fill:var(--muted)}
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
+.join-text h3{font-size:1.25rem;margin-top:1.4em}
+.ground{margin-top:24px;padding:16px 18px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:.97rem}
+textarea{resize:vertical;min-height:96px}
 .news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
 .news-card time{display:block;color:var(--muted);font-size:.9rem;margin-bottom:6px}
 .news-card h3{margin-bottom:.4em}
@@ -353,7 +356,8 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <span class="badge">Основна програма · навчання триває</span>
         <h3>Службові собаки та кінологи</h3>
         <p>Ми готуємо собак для пошуку мін та інструкторів, які з ними працюють. Команда «собака + кінолог» може швидко й точно перевірити підозрілу ділянку.</p>
-        <p>Навчання відповідає міжнародним стандартам застосування тварин для виявлення, кожна команда регулярно проходить перевірку.</p>
+        <p>Навчання відповідає міжнародним стандартам застосування тварин для виявлення, кожна команда регулярно проходить перевірку. Воно проходить на нашому полігоні поблизу Ісалмі, Північне Саво, Фінляндія.</p>
+        <p><a href="#join">Долучитися до кінологічної програми</a></p>
       </div>
       <aside>
         <h4>Роль у системі</h4>
@@ -465,8 +469,36 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <div class="three">
       <div><h3>Організації</h3><p>Оператори протимінної діяльності, дослідницькі команди, компанії та фонди: давайте разом випробовувати, фінансувати й застосовувати ці технології.</p><a href="#contact">Обговорити партнерство</a></div>
       <div><h3>Донори</h3><p>Ваша підтримка фінансує пілотний проєкт із бджолами, підготовку собак і навчання з безпеки для родин у постраждалих районах.</p><a href="#support">Дізнатися, як підтримати</a></div>
-      <div><h3>Волонтери</h3><p>Перекладачі, інженери, оператори дронів, розробники й освітяни: ваші навички можуть допомогти зберегти людей у безпеці.</p><a href="#contact">Запропонувати допомогу</a></div>
+      <div><h3>Волонтери</h3><p>Перекладачі, інженери, оператори дронів, розробники й освітяни: ваші навички можуть допомогти зберегти людей у безпеці.</p><a href="#join">Запропонувати допомогу</a></div>
     </div>
+  </div>
+</section>
+
+<section id="join" class="support">
+  <div class="wrap">
+    <div class="join-text">
+      <h2>Долучайтеся до кінологічної програми</h2>
+      <p class="lead">Ми готуємо собак для пошуку мін та кінологів на власному тренувальному полігоні. Щоб розвивати програму, ми шукаємо собак і людей.</p>
+      <h3>Розплідники та заводчики</h3>
+      <p>Ми не займаємося розведенням собак. Шукаємо розплідники та власників, готових подарувати цуценят або молодих собак із гострим нюхом і бажанням шукати: наприклад бельгійських і голландських вівчарок, німецьких вівчарок, лабрадорів і золотистих ретриверів, англійських спрингер- і кокер-спанієлів, біглів і джек-рассел-тер’єрів. Безпородні собаки теж підходять, бо характер важливіший за родовід. Кожну собаку ми оцінюємо разом із заводчиком чи власником і розповідаємо вам про її навчання.</p>
+      <h3>Майбутні кінологи</h3>
+      <p>Хочете стати кінологом? Попередній досвід не обов’язковий: ми вас навчимо. Шукаємо вмотивованих волонтерів, готових регулярно працювати із собакою на нашому полігоні.</p>
+      <p class="ground"><strong>Наш тренувальний полігон</strong> розташований поблизу Ісалмі, регіон Північне Саво, Фінляндія.</p>
+    </div>
+    <form class="callback" id="join-form" novalidate>
+      <div><label for="jn-type">Я</label>
+        <select id="jn-type">
+          <option value="Kennel">розплідник чи заводчик і пропоную собаку</option><option value="Handler">майбутній кінолог чи волонтер</option><option value="Other">інше</option>
+        </select></div>
+      <div><label for="jn-name">Ім’я</label><input id="jn-name" autocomplete="name" required></div>
+      <div><label for="jn-email">Електронна пошта</label><input id="jn-email" type="email" autocomplete="email" required></div>
+      <div><label for="jn-phone">Телефон (необов’язково)</label><input id="jn-phone" type="tel" autocomplete="tel"></div>
+      <div><label for="jn-msg">Коротко розкажіть про себе або своїх собак</label><textarea id="jn-msg" maxlength="600"></textarea></div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="jn-website">Website</label><input id="jn-website" tabindex="-1" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" id="jn-consent" required> <span>Я погоджуюся, що Sydän Ukrainalle ry може зберігати мої дані, щоб зв’язатися зі мною щодо кінологічної програми. <a href="/uk/privacy/">Політика конфіденційності</a></span></label>
+      <button class="btn" type="submit">Надіслати</button>
+      <p class="form-note" id="jn-note" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -643,6 +675,27 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
       if(d&&d.ok){note.className='form-note ok';note.textContent='Дякуємо! Ми передзвонимо протягом одного робочого дня.';f.reset()}
       else{note.className='form-note err';note.textContent='Щось пішло не так. Напишіть на info@sydanukrainalle.org або в WhatsApp.'}
+    }).catch(function(){note.className='form-note err';note.textContent='Немає з’єднання. Спробуйте ще раз або напишіть на info@sydanukrainalle.org.'})
+    .finally(function(){btn.disabled=false});
+  });
+})();
+
+// dog programme form: kennels offering dogs and future handlers (sent to the team's Telegram)
+(function(){
+  var f=document.getElementById('join-form'); if(!f)return;
+  var note=document.getElementById('jn-note'), btn=f.querySelector('button[type="submit"]'), v=function(id){return document.getElementById(id).value.trim()};
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    note.className='form-note err';
+    if(!v('jn-name')){note.textContent='Введіть ім’я.';return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('jn-email'))){note.textContent='Введіть правильну адресу електронної пошти.';return}
+    if(!document.getElementById('jn-consent').checked){note.textContent='Поставте позначку згоди, щоб ми могли з вами зв’язатися.';return}
+    btn.disabled=true;note.className='form-note';note.textContent='Надсилаємо…';
+    fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      type:v('jn-type'),name:v('jn-name'),email:v('jn-email'),phone:v('jn-phone'),message:v('jn-msg'),consent:true,lang:document.documentElement.lang,website:v('jn-website')
+    })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
+      if(d&&d.ok){note.className='form-note ok';note.textContent='Дякуємо! Ми скоро з вами зв’яжемося.';f.reset()}
+      else{note.className='form-note err';note.textContent='Щось пішло не так. Напишіть на info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='Немає з’єднання. Спробуйте ще раз або напишіть на info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
   });

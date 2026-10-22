@@ -191,7 +191,7 @@ nav.main a:hover{color:var(--orange)}
 .contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
 form.callback{display:grid;gap:14px;margin-top:20px}
 label{font-size:.92rem;font-weight:500}
-input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:6px}
+input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:6px}
 .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted)}
 .check input{width:auto;margin-top:4px}
 .form-note{font-size:.9rem;color:var(--muted);min-height:1.4em}
@@ -216,6 +216,9 @@ input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14
 .socials .soon svg{fill:var(--muted)}
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
+.join-text h3{font-size:1.25rem;margin-top:1.4em}
+.ground{margin-top:24px;padding:16px 18px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:.97rem}
+textarea{resize:vertical;min-height:96px}
 .news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
 .news-card time{display:block;color:var(--muted);font-size:.9rem;margin-bottom:6px}
 .news-card h3{margin-bottom:.4em}
@@ -353,7 +356,8 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <span class="badge">Core programme · training active</span>
         <h3>Detection dogs and their handlers</h3>
         <p>We train mine detection dogs and the instructors who work with them. A dog and handler team can check suspected ground quickly and precisely.</p>
-        <p>Training follows international standards for animal detection, with regular testing of every team.</p>
+        <p>Training follows international standards for animal detection, with regular testing of every team. It takes place at our training ground near Iisalmi, North Savo, Finland.</p>
+        <p><a href="#join">Join the dog programme</a></p>
       </div>
       <aside>
         <h4>Role in the system</h4>
@@ -465,8 +469,36 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <div class="three">
       <div><h3>Organisations</h3><p>Mine action operators, research teams, companies and foundations: let’s test, fund and use this technology together.</p><a href="#contact">Discuss a partnership</a></div>
       <div><h3>Donors</h3><p>Your support funds the bee pilot, dog training and risk education for families in affected areas.</p><a href="#support">Ask how to support</a></div>
-      <div><h3>Volunteers</h3><p>Translators, engineers, drone pilots, developers and educators: your skills can help keep people safe.</p><a href="#contact">Offer your help</a></div>
+      <div><h3>Volunteers</h3><p>Translators, engineers, drone pilots, developers and educators: your skills can help keep people safe.</p><a href="#join">Offer your help</a></div>
     </div>
+  </div>
+</section>
+
+<section id="join" class="support">
+  <div class="wrap">
+    <div class="join-text">
+      <h2>Join our dog programme</h2>
+      <p class="lead">We train mine detection dogs and their handlers at our own training ground. To grow the programme, we are looking for dogs and people.</p>
+      <h3>Kennels and breeders</h3>
+      <p>We are not a breeding kennel. We are looking for kennels and owners ready to donate puppies or young dogs with a strong nose and a drive to search: for example Belgian and Dutch Shepherds, German Shepherds, Labrador and Golden Retrievers, English Springer and Cocker Spaniels, beagles and Jack Russell terriers. Mixed breeds are welcome too, because character matters more than pedigree. We assess each dog together with the breeder or owner and keep you informed about its training.</p>
+      <h3>Future dog handlers</h3>
+      <p>Would you like to become a dog handler? Previous experience is not required: we will train you. We are looking for motivated volunteers who are ready to work with a dog regularly at our training ground.</p>
+      <p class="ground"><strong>Our training ground</strong> is near Iisalmi, North Savo, Finland.</p>
+    </div>
+    <form class="callback" id="join-form" novalidate>
+      <div><label for="jn-type">I am</label>
+        <select id="jn-type">
+          <option value="Kennel">a kennel or breeder offering a dog</option><option value="Handler">a future dog handler or volunteer</option><option value="Other">other</option>
+        </select></div>
+      <div><label for="jn-name">Name</label><input id="jn-name" autocomplete="name" required></div>
+      <div><label for="jn-email">Email</label><input id="jn-email" type="email" autocomplete="email" required></div>
+      <div><label for="jn-phone">Phone (optional)</label><input id="jn-phone" type="tel" autocomplete="tel"></div>
+      <div><label for="jn-msg">Tell us briefly about yourself or your dogs</label><textarea id="jn-msg" maxlength="600"></textarea></div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="jn-website">Website</label><input id="jn-website" tabindex="-1" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" id="jn-consent" required> <span>I agree that Sydän Ukrainalle ry may store my details to contact me about the dog programme. <a href="/privacy/">Privacy policy</a></span></label>
+      <button class="btn" type="submit">Send</button>
+      <p class="form-note" id="jn-note" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -643,6 +675,27 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
       if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you. We will call you back within one working day.';f.reset()}
       else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org or message us on WhatsApp.'}
+    }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
+    .finally(function(){btn.disabled=false});
+  });
+})();
+
+// dog programme form: kennels offering dogs and future handlers (sent to the team's Telegram)
+(function(){
+  var f=document.getElementById('join-form'); if(!f)return;
+  var note=document.getElementById('jn-note'), btn=f.querySelector('button[type="submit"]'), v=function(id){return document.getElementById(id).value.trim()};
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    note.className='form-note err';
+    if(!v('jn-name')){note.textContent='Enter your name.';return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('jn-email'))){note.textContent='Enter a valid email address.';return}
+    if(!document.getElementById('jn-consent').checked){note.textContent='Tick the consent box so we can contact you.';return}
+    btn.disabled=true;note.className='form-note';note.textContent='Sending…';
+    fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      type:v('jn-type'),name:v('jn-name'),email:v('jn-email'),phone:v('jn-phone'),message:v('jn-msg'),consent:true,lang:document.documentElement.lang,website:v('jn-website')
+    })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
+      if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you! We will contact you soon.';f.reset()}
+      else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
   });

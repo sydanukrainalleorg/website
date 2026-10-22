@@ -69,6 +69,45 @@ async function handleCallback(request, env) {
   return json({ ok: true });
 }
 
+/* ---------- dog programme applications → Telegram ---------- */
+
+async function handleJoin(request, env) {
+  if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return json({ ok: false, error: "bad_request" }, 400);
+  }
+  if (clean(data.website, 200)) return json({ ok: true }); // spam trap
+  const name = clean(data.name, 100);
+  const email = clean(data.email, 120);
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) return json({ ok: false, error: "invalid" }, 400);
+  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return json({ ok: false, error: "not_configured" }, 500);
+
+  const TYPES = { Kennel: "Питомник / заводчик предлагает собаку", Handler: "Будущий кинолог / волонтёр", Other: "Другое" };
+  const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
+  const message = String(data.message ?? "").trim().slice(0, 600) || "—";
+  const text =
+    `🐕 Заявка в программу собак — sydanukrainalle.org\n\n` +
+    `Кто: ${TYPES[clean(data.type, 20)] || "—"}\n` +
+    `Имя: ${name}\n` +
+    `Email: ${email}\n` +
+    `Телефон: ${clean(data.phone, 40) || "—"}\n` +
+    `Сообщение: ${message}\n` +
+    `Язык сайта: ${LANGS[clean(data.lang, 5)] || "—"}\n` +
+    `Страна посетителя: ${request.cf?.country || "—"}\n` +
+    `Время (Хельсинки): ${new Date().toLocaleString("ru-RU", { timeZone: "Europe/Helsinki" })}`;
+
+  const tg = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
+  });
+  if (!tg.ok) return json({ ok: false, error: "send_failed" }, 502);
+  return json({ ok: true });
+}
+
 /* ---------- donation interest list → Telegram ---------- */
 
 async function handleNotify(request, env) {
@@ -321,6 +360,7 @@ export default {
     if (url.pathname === "/api/callback") return handleCallback(request, env);
     if (url.pathname === "/api/chat") return handleChat(request, env);
     if (url.pathname === "/api/notify") return handleNotify(request, env);
+    if (url.pathname === "/api/join") return handleJoin(request, env);
     if (url.pathname === "/api/telegram") return handleTelegram(request, env, ctx);
     if (url.pathname === "/api/telegram/setup") return handleTelegramSetup(request, env);
     return env.ASSETS.fetch(request);

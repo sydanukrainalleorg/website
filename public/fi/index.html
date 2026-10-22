@@ -191,7 +191,7 @@ nav.main a:hover{color:var(--orange)}
 .contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px}
 form.callback{display:grid;gap:14px;margin-top:20px}
 label{font-size:.92rem;font-weight:500}
-input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:6px}
+input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14px;border-radius:6px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);margin-top:6px}
 .check{display:flex;gap:10px;align-items:flex-start;font-weight:400;color:var(--muted)}
 .check input{width:auto;margin-top:4px}
 .form-note{font-size:.9rem;color:var(--muted);min-height:1.4em}
@@ -216,6 +216,9 @@ input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14
 .socials .soon svg{fill:var(--muted)}
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
+.join-text h3{font-size:1.25rem;margin-top:1.4em}
+.ground{margin-top:24px;padding:16px 18px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:.97rem}
+textarea{resize:vertical;min-height:96px}
 .news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
 .news-card time{display:block;color:var(--muted);font-size:.9rem;margin-bottom:6px}
 .news-card h3{margin-bottom:.4em}
@@ -353,7 +356,8 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <span class="badge">Ydinohjelma · koulutus käynnissä</span>
         <h3>Miinakoirat ja niiden ohjaajat</h3>
         <p>Koulutamme miinakoiria ja niiden kanssa työskenteleviä kouluttajia. Koira ja ohjaaja voivat tarkistaa epäillyn alueen nopeasti ja tarkasti.</p>
-        <p>Koulutus noudattaa eläinten käyttöä havaitsemisessa koskevia kansainvälisiä standardeja, ja jokainen ryhmä testataan säännöllisesti.</p>
+        <p>Koulutus noudattaa eläinten käyttöä havaitsemisessa koskevia kansainvälisiä standardeja, ja jokainen ryhmä testataan säännöllisesti. Koulutus tapahtuu harjoitusalueellamme Iisalmen lähellä Pohjois-Savossa.</p>
+        <p><a href="#join">Liity koiraohjelmaan</a></p>
       </div>
       <aside>
         <h4>Rooli järjestelmässä</h4>
@@ -465,8 +469,36 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <div class="three">
       <div><h3>Organisaatiot</h3><p>Miinatoimijat, tutkimusryhmät, yritykset ja säätiöt: testataan, rahoitetaan ja otetaan tämä teknologia käyttöön yhdessä.</p><a href="#contact">Keskustele kumppanuudesta</a></div>
       <div><h3>Lahjoittajat</h3><p>Tukesi rahoittaa mehiläispilottia, koirien koulutusta ja turvallisuuskoulutusta kärsineiden alueiden perheille.</p><a href="#support">Kysy, miten voit tukea</a></div>
-      <div><h3>Vapaaehtoiset</h3><p>Kääntäjät, insinöörit, drooni-lentäjät, kehittäjät ja kouluttajat: osaamisesi voi auttaa pitämään ihmiset turvassa.</p><a href="#contact">Tarjoa apuasi</a></div>
+      <div><h3>Vapaaehtoiset</h3><p>Kääntäjät, insinöörit, drooni-lentäjät, kehittäjät ja kouluttajat: osaamisesi voi auttaa pitämään ihmiset turvassa.</p><a href="#join">Tarjoa apuasi</a></div>
     </div>
+  </div>
+</section>
+
+<section id="join" class="support">
+  <div class="wrap">
+    <div class="join-text">
+      <h2>Liity koiraohjelmaamme</h2>
+      <p class="lead">Koulutamme miinakoiria ja niiden ohjaajia omalla harjoitusalueellamme. Ohjelman kasvattamiseksi etsimme koiria ja ihmisiä.</p>
+      <h3>Kennelit ja kasvattajat</h3>
+      <p>Emme ole kasvattajakennel. Etsimme kenneleitä ja omistajia, jotka ovat valmiita lahjoittamaan pentuja tai nuoria koiria, joilla on hyvä hajuaisti ja halu etsiä: esimerkiksi belgian- ja hollanninpaimenkoiria, saksanpaimenkoiria, labradorin- ja kultaisianoutajia, englanninspringer- ja cockerspanieleita, beagleja ja jackrussellinterriereitä. Myös sekarotuiset koirat ovat tervetulleita, sillä luonne on tärkeämpi kuin sukutaulu. Arvioimme jokaisen koiran yhdessä kasvattajan tai omistajan kanssa ja kerromme sinulle sen koulutuksen etenemisestä.</p>
+      <h3>Tulevat koiranohjaajat</h3>
+      <p>Haluaisitko koiranohjaajaksi? Aiempaa kokemusta ei tarvita: koulutamme sinut. Etsimme motivoituneita vapaaehtoisia, jotka ovat valmiita työskentelemään koiran kanssa säännöllisesti harjoitusalueellamme.</p>
+      <p class="ground"><strong>Harjoitusalueemme</strong> sijaitsee Iisalmen lähellä Pohjois-Savossa.</p>
+    </div>
+    <form class="callback" id="join-form" novalidate>
+      <div><label for="jn-type">Olen</label>
+        <select id="jn-type">
+          <option value="Kennel">kennel tai kasvattaja ja tarjoan koiraa</option><option value="Handler">tuleva koiranohjaaja tai vapaaehtoinen</option><option value="Other">muu</option>
+        </select></div>
+      <div><label for="jn-name">Nimi</label><input id="jn-name" autocomplete="name" required></div>
+      <div><label for="jn-email">Sähköposti</label><input id="jn-email" type="email" autocomplete="email" required></div>
+      <div><label for="jn-phone">Puhelin (vapaaehtoinen)</label><input id="jn-phone" type="tel" autocomplete="tel"></div>
+      <div><label for="jn-msg">Kerro lyhyesti itsestäsi tai koiristasi</label><textarea id="jn-msg" maxlength="600"></textarea></div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="jn-website">Website</label><input id="jn-website" tabindex="-1" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" id="jn-consent" required> <span>Hyväksyn, että Sydän Ukrainalle ry tallentaa tietoni ottaakseen minuun yhteyttä koiraohjelmaa koskien. <a href="/fi/privacy/">Tietosuojaseloste</a></span></label>
+      <button class="btn" type="submit">Lähetä</button>
+      <p class="form-note" id="jn-note" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -643,6 +675,27 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
       if(d&&d.ok){note.className='form-note ok';note.textContent='Kiitos! Soitamme sinulle takaisin yhden työpäivän kuluessa.';f.reset()}
       else{note.className='form-note err';note.textContent='Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org tai WhatsAppiin.'}
+    }).catch(function(){note.className='form-note err';note.textContent='Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.'})
+    .finally(function(){btn.disabled=false});
+  });
+})();
+
+// dog programme form: kennels offering dogs and future handlers (sent to the team's Telegram)
+(function(){
+  var f=document.getElementById('join-form'); if(!f)return;
+  var note=document.getElementById('jn-note'), btn=f.querySelector('button[type="submit"]'), v=function(id){return document.getElementById(id).value.trim()};
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    note.className='form-note err';
+    if(!v('jn-name')){note.textContent='Kirjoita nimesi.';return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('jn-email'))){note.textContent='Kirjoita kelvollinen sähköpostiosoite.';return}
+    if(!document.getElementById('jn-consent').checked){note.textContent='Merkitse suostumus, jotta voimme ottaa sinuun yhteyttä.';return}
+    btn.disabled=true;note.className='form-note';note.textContent='Lähetetään…';
+    fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      type:v('jn-type'),name:v('jn-name'),email:v('jn-email'),phone:v('jn-phone'),message:v('jn-msg'),consent:true,lang:document.documentElement.lang,website:v('jn-website')
+    })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
+      if(d&&d.ok){note.className='form-note ok';note.textContent='Kiitos! Otamme sinuun pian yhteyttä.';f.reset()}
+      else{note.className='form-note err';note.textContent='Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
   });

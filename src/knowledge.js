@@ -21,6 +21,12 @@ MAIN FOCUS (lead with this when people ask what GMAH does)
 - The core, proven part of the work is mine detection dogs: GMAH trains mine detection dogs and the instructors (handlers) who work with them. This is well understood and already used in demining around the world.
 - In addition, GMAH develops modern systems for detecting and neutralising explosive ordnance, including innovative methods such as drones and bee-based detection. Present bees as an innovative pilot, not as a proven method.
 
+DOG PROGRAMME AND WHAT WE ARE LOOKING FOR
+- GMAH has its own training ground near Iisalmi, North Savo, Finland, where dogs and handlers are trained.
+- GMAH is not a breeding kennel. It is looking for kennels, breeders and owners ready to donate puppies or young dogs with a strong nose and a drive to search, for example Belgian and Dutch Shepherds, German Shepherds, Labrador and Golden Retrievers, English Springer and Cocker Spaniels, beagles and Jack Russell terriers. Mixed breeds are welcome: character and drive matter more than pedigree. Each dog is assessed together with the breeder or owner.
+- GMAH is looking for people who want to become dog handlers. Previous experience is not required; GMAH trains them. Volunteers should be ready to work with a dog regularly at the training ground near Iisalmi.
+- Kennels and future handlers can apply through the "Join our dog programme" form on the website (section #join), or write to info@sydanukrainalle.org.
+
 CURRENT STATUS (be precise about this)
 - GMAH does NOT carry out mine clearance itself today. Clearance in Ukraine is carried out by accredited operators.
 - Today GMAH develops its own detection tools and methods, studies new technologies, trains people, and trains mine detection dogs and dog instructors.
