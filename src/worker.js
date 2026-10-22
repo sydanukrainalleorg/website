@@ -69,6 +69,46 @@ async function handleCallback(request, env) {
   return json({ ok: true });
 }
 
+/* ---------- donation interest list → Telegram ---------- */
+
+async function handleNotify(request, env) {
+  if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return json({ ok: false, error: "bad_request" }, 400);
+  }
+  if (clean(data.website, 200)) return json({ ok: true }); // spam trap
+
+  const email = clean(data.email, 120);
+  const name = clean(data.name, 100) || "—";
+  const type = clean(data.type, 60) || "—";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) {
+    return json({ ok: false, error: "invalid" }, 400);
+  }
+  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return json({ ok: false, error: "not_configured" }, 500);
+
+  const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
+  const time = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Helsinki" });
+  const text =
+    `💛 Хочет поддержать проект — sydanukrainalle.org\n\n` +
+    `Email: ${email}\n` +
+    `Имя: ${name}\n` +
+    `Вариант: ${type}\n` +
+    `Язык сайта: ${LANGS[clean(data.lang, 5)] || "—"}\n` +
+    `Страна посетителя: ${request.cf?.country || "—"}\n` +
+    `Время (Хельсинки): ${time}`;
+
+  const tg = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
+  });
+  if (!tg.ok) return json({ ok: false, error: "send_failed" }, 502);
+  return json({ ok: true });
+}
+
 /* ---------- site chat ---------- */
 
 const MAX_MESSAGE = 1000;   // characters per message
@@ -145,6 +185,7 @@ export default {
     const url = new URL(request.url);
     if (url.pathname === "/api/callback") return handleCallback(request, env);
     if (url.pathname === "/api/chat") return handleChat(request, env);
+    if (url.pathname === "/api/notify") return handleNotify(request, env);
     return env.ASSETS.fetch(request);
   },
 };

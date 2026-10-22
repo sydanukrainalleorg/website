@@ -4,7 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Global Mine Action Hub — Sydän Ukrainalle ry</title>
-<meta name="description" content="Global Mine Action Hub develops an integrated explosive detection system for Ukraine: bees, trained dogs, drones and machines working together.">
+<meta name="description" content="Global Mine Action Hub trains mine detection dogs and their instructors and develops modern systems for detecting and neutralising explosive ordnance in Ukraine, including drones and bees.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#35503A">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Global Mine Action Hub">
+<meta property="og:title" content="Global Mine Action Hub — Safe land. Safe return.">
+<meta property="og:description" content="Global Mine Action Hub trains mine detection dogs and their instructors and develops modern systems for detecting and neutralising explosive ordnance in Ukraine, including drones and bees.">
+<meta property="og:url" content="https://sydanukrainalle.org/">
+<meta property="og:image" content="https://sydanukrainalle.org/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://sydanukrainalle.org/">
 <link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/">
 <link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/">
@@ -60,7 +74,10 @@ section{padding:88px 0;border-top:1px solid var(--line)}
 /* header */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:24px;height:68px}
-.brand{text-decoration:none;color:var(--ink);line-height:1.15}
+.brand{text-decoration:none;color:var(--ink);line-height:1.15;display:flex;align-items:center;gap:10px}
+.brand-mark{width:38px;height:38px;flex:none;color:var(--green-text)}
+.brand-text{display:block}
+html[lang="uk"] .hero h1,html[lang="fi"] .hero h1{font-size:clamp(2.3rem,4.4vw,3.6rem)}
 .brand b{font-family:Spectral,serif;font-size:1.2rem;display:block}
 .brand small{color:var(--muted);font-size:.78rem}
 nav.main{display:flex;gap:20px;margin-left:auto}
@@ -87,7 +104,7 @@ nav.main a:hover{color:var(--orange)}
 .lang-offer a{color:var(--on-green);font-weight:600}
 .lang-offer button{margin-left:auto;background:none;border:0;color:var(--on-green);font-size:1.3rem;cursor:pointer;line-height:1}
 @media (max-width:1180px){.langs{margin-left:auto}.menu-toggle{margin-left:8px}}
-@media (max-width:600px){.top .wrap{gap:10px}.brand b{font-size:1.05rem}.brand small{display:none}.langs a{padding:7px 6px}.menu-toggle{padding:7px 10px}}
+@media (max-width:600px){.brand-mark{width:30px;height:30px}.brand{gap:8px}.top .wrap{gap:10px}.brand b{font-size:1.05rem}.brand small{display:none}.langs a{padding:7px 6px}.menu-toggle{padding:7px 10px}}
 
 /* hero */
 .hero{padding:56px 0 72px;border-top:0}
@@ -185,6 +202,23 @@ input,select{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;padding:13px 14
 .socials a:hover{border-color:var(--green-text)}
 .socials svg{width:20px;height:20px;fill:var(--green-text);flex:none}
 .legal{font-size:.93rem;color:var(--muted)}
+.calls{display:grid;gap:10px;margin:20px 0 8px}
+.calls a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;border-radius:8px;text-decoration:none;font-weight:500}
+.calls a.primary{background:var(--green);color:var(--on-green)}
+.calls a.secondary{border:1.5px solid var(--green-text);color:var(--green-text)}
+.calls a span{font-variant-numeric:tabular-nums;white-space:nowrap}
+.support .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.amounts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0}
+.amounts span{padding:12px 18px;border:1.5px dashed var(--line);border-radius:8px;font-weight:600;color:var(--muted)}
+.amounts em{font-style:normal;font-size:.9rem;font-weight:600;color:var(--orange)}
+.support .note{font-size:.97rem;color:var(--muted)}
+.socials .soon{display:flex;align-items:center;gap:10px;padding:13px 14px;border:1.5px dashed var(--line);border-radius:8px;color:var(--muted);font-weight:500;opacity:.75}
+.socials .soon svg{fill:var(--muted)}
+.socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
+@media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
+.news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
+.news-card time{display:block;color:var(--muted);font-size:.9rem;margin-bottom:6px}
+.news-card h3{margin-bottom:.4em}
 @media (max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:32px}}
 
 footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:.9rem}
@@ -217,7 +251,9 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#home"><b>Global Mine Action Hub</b><small>A program of Sydän Ukrainalle ry</small></a>
+    <a class="brand" href="#home"><svg class="brand-mark" viewBox="0 0 1600 1600" aria-hidden="true"><path d="M1435.7,799.0 L1437.8,820.9 L1438.2,843.0 L1437.1,865.0 L1434.4,886.8 L1430.2,908.5 L1424.6,929.8 L1417.5,950.6 L1409.2,971.0 L1399.7,990.8 L1389.1,1010.0 L1377.6,1028.6 L1365.4,1046.5 L1352.4,1063.8 L1338.9,1080.6 L1325.0,1096.7 L1310.8,1112.3 L1296.3,1127.4 L1281.6,1142.1 L1266.8,1156.4 L1252.0,1170.4 L1237.0,1184.0 L1222.0,1197.4 L1206.8,1210.5 L1191.6,1223.5 L1176.2,1236.1 L1160.6,1248.5 L1144.8,1260.6 L1128.7,1272.4 L1112.3,1283.7 L1095.6,1294.7 L1078.5,1305.1 L1061.0,1314.9 L1043.2,1324.0 L1024.9,1332.5 L1006.3,1340.1 L987.4,1346.9 L968.2,1352.9 L948.8,1358.0 L929.1,1362.2 L909.3,1365.6 L889.4,1368.0 L869.4,1369.7 L849.4,1370.6 L829.4,1370.7 L809.4,1370.2 L789.5,1369.1 L769.6,1367.5 L749.9,1365.5 L730.1,1363.1 L710.4,1360.3 L690.7,1357.3 L671.0,1354.0 L651.3,1350.4 L631.5,1346.6 L611.6,1342.5 L591.6,1338.1 L571.5,1333.4 L551.3,1328.2 L531.0,1322.5 L510.8,1316.3 L490.5,1309.3 L470.4,1301.6 L450.4,1293.1 L430.8,1283.6 L411.6,1273.1 L392.8,1261.6 L374.8,1249.0 L357.5,1235.4 L341.2,1220.6 L325.8,1204.7 L311.7,1187.9 L298.7,1170.0 L287.1,1151.3 L276.8,1131.8 L267.9,1111.6 L260.4,1090.9 L254.3,1069.7 L249.6,1048.2 L246.1,1026.6 L243.9,1004.8 L242.7,983.1 L242.5,961.6 L243.1,940.2 L244.5,919.1 L246.4,898.3 L248.7,877.8 L251.3,857.7 L254.1,837.8 L256.9,818.3 L259.7,799.0 L262.5,779.9 L265.1,760.9 L267.6,742.0 L269.9,723.2 L272.1,704.3 L274.3,685.3 L276.5,666.1 L278.7,646.8 L281.2,627.4 L284.0,607.8 L287.3,588.0 L291.0,568.2 L295.4,548.3 L300.6,528.5 L306.6,508.7 L313.5,489.1 L321.3,469.8 L330.2,450.9 L340.1,432.4 L351.1,414.4 L363.1,397.1 L376.0,380.5 L389.9,364.6 L404.7,349.5 L420.3,335.2 L436.6,321.8 L453.5,309.2 L471.1,297.4 L489.1,286.4 L507.6,276.2 L526.4,266.7 L545.5,257.9 L564.8,249.7 L584.4,242.1 L604.1,235.0 L624.0,228.5 L644.1,222.5 L664.3,217.0 L684.6,211.9 L705.1,207.4 L725.7,203.5 L746.5,200.1 L767.3,197.4 L788.3,195.4 L809.4,194.2 L830.5,193.8 L851.7,194.4 L872.8,195.9 L893.8,198.5 L914.6,202.2 L935.2,207.0 L955.5,212.9 L975.4,220.0 L994.9,228.2 L1013.8,237.4 L1032.1,247.8 L1049.8,259.0 L1066.8,271.2 L1083.1,284.2 L1098.8,297.8 L1113.7,312.0 L1128.0,326.7 L1141.7,341.7 L1154.8,356.9 L1167.5,372.3 L1179.7,387.7 L1191.7,403.1 L1203.5,418.4 L1215.1,433.7 L1226.7,448.8 L1238.4,463.9 L1250.1,478.8 L1262.0,493.7 L1274.1,508.6 L1286.3,523.6 L1298.8,538.8 L1311.3,554.2 L1323.9,569.9 L1336.5,586.0 L1348.9,602.6 L1361.1,619.7 L1372.9,637.4 L1384.2,655.7 L1394.8,674.6 L1404.5,694.1 L1413.2,714.1 L1420.9,734.7 L1427.2,755.8 L1432.2,777.3 Z" fill="none" stroke="currentColor" stroke-width="67.8" stroke-linejoin="round"/>
+<path d="M1126.9,820.0 L1125.6,832.1 L1123.4,844.0 L1120.4,855.8 L1116.6,867.3 L1112.0,878.5 L1106.8,889.5 L1101.1,900.1 L1095.0,910.3 L1088.5,920.2 L1081.7,929.8 L1074.8,939.1 L1067.8,948.1 L1060.7,956.9 L1053.6,965.5 L1046.5,973.9 L1039.5,982.1 L1032.5,990.3 L1025.5,998.3 L1018.5,1006.3 L1011.5,1014.3 L1004.5,1022.1 L997.3,1029.9 L990.0,1037.5 L982.6,1045.0 L975.0,1052.4 L967.1,1059.5 L959.0,1066.4 L950.6,1072.9 L941.9,1079.1 L932.9,1084.9 L923.7,1090.3 L914.2,1095.2 L904.5,1099.6 L894.6,1103.6 L884.5,1107.1 L874.2,1110.0 L863.9,1112.6 L853.5,1114.7 L843.0,1116.4 L832.5,1117.7 L822.0,1118.8 L811.5,1119.6 L801.0,1120.3 L790.5,1120.8 L780.0,1121.2 L769.5,1121.6 L758.9,1121.9 L748.2,1122.1 L737.5,1122.4 L726.6,1122.6 L715.6,1122.8 L704.5,1122.9 L693.2,1122.8 L681.7,1122.5 L670.1,1122.0 L658.4,1121.1 L646.5,1119.8 L634.7,1117.9 L622.9,1115.6 L611.1,1112.5 L599.5,1108.8 L588.2,1104.3 L577.3,1099.0 L566.7,1093.0 L556.7,1086.1 L547.3,1078.5 L538.5,1070.0 L530.5,1060.9 L523.3,1051.1 L516.9,1040.7 L511.4,1029.9 L506.7,1018.5 L502.9,1006.9 L499.8,995.1 L497.5,983.1 L496.0,971.0 L495.0,959.0 L494.5,947.1 L494.5,935.4 L494.8,923.8 L495.3,912.5 L495.9,901.5 L496.6,890.7 L497.2,880.1 L497.7,869.8 L498.0,859.6 L498.1,849.6 L497.9,839.7 L497.5,829.9 L496.9,820.0 L496.0,810.1 L495.0,800.1 L493.9,789.9 L492.7,779.6 L491.6,769.1 L490.6,758.5 L489.8,747.7 L489.4,736.7 L489.3,725.6 L489.7,714.4 L490.7,703.1 L492.3,691.9 L494.5,680.7 L497.4,669.7 L500.9,658.9 L505.2,648.3 L510.2,638.0 L515.8,628.0 L522.1,618.5 L528.9,609.3 L536.3,600.5 L544.1,592.2 L552.4,584.3 L561.1,576.8 L570.0,569.8 L579.2,563.0 L588.7,556.7 L598.3,550.6 L608.1,544.8 L617.9,539.3 L627.9,534.0 L638.1,529.0 L648.3,524.1 L658.6,519.5 L669.0,515.0 L679.6,510.9 L690.2,507.0 L701.1,503.4 L712.0,500.1 L723.1,497.3 L734.3,494.9 L745.6,493.1 L757.1,491.8 L768.5,491.2 L780.0,491.2 L791.5,491.9 L802.8,493.4 L814.1,495.6 L825.2,498.5 L836.0,502.2 L846.6,506.6 L856.9,511.6 L866.8,517.2 L876.4,523.4 L885.6,530.0 L894.4,537.0 L902.8,544.2 L910.9,551.7 L918.6,559.3 L926.1,566.9 L933.4,574.5 L940.5,582.0 L947.6,589.4 L954.6,596.5 L961.7,603.5 L968.8,610.3 L976.2,616.9 L983.7,623.3 L991.5,629.6 L999.5,635.8 L1007.8,642.0 L1016.4,648.2 L1025.2,654.6 L1034.1,661.2 L1043.1,668.1 L1052.2,675.3 L1061.2,682.8 L1070.0,690.9 L1078.6,699.4 L1086.8,708.3 L1094.4,717.8 L1101.5,727.8 L1107.9,738.3 L1113.4,749.1 L1118.1,760.4 L1121.9,772.0 L1124.6,783.8 L1126.4,795.8 L1127.1,807.9 Z" fill="none" stroke="currentColor" stroke-width="67.8" stroke-linejoin="round"/>
+<circle cx="801.0" cy="805.3" r="97.7" fill="var(--orange)"/></svg><span class="brand-text"><b>Global Mine Action Hub</b><small>A program of Sydän Ukrainalle ry</small></span></a>
     <nav class="main" id="nav">
       <a href="#mission">Mission</a>
       <a href="#technology">Technology</a>
@@ -237,12 +273,12 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   <div class="wrap">
     <div>
       <h1>Safe land. Safe&nbsp;return.</h1>
-      <p class="lead">We are building an integrated detection system in which bees, trained dogs, drones and machines work together, so that large areas of Ukraine can be cleared faster and with fewer losses.</p>
+      <p class="lead">We train mine detection dogs and their instructors, and develop modern systems for detecting and neutralising explosive ordnance, from drones to bee-based detection, so that Ukraine’s land can be made safe faster and with fewer losses.</p>
       <div class="actions">
         <a class="btn" href="#technology">See how it works</a>
         <a class="btn ghost" href="#involved">Partner with us</a>
       </div>
-      <p class="status-line">Today we develop detection technology and train dogs, handlers and specialists. Clearance is carried out by accredited operators. We are preparing to apply for our own demining licence in Ukraine.</p>
+      <p class="status-line">Today we train mine detection dogs, their handlers and specialists, and develop detection technology. Clearance is carried out by accredited operators. We are preparing to apply for our own demining licence in Ukraine.</p>
     </div>
 
     <div class="map-card" aria-label="How the integrated detection system works">
@@ -306,28 +342,15 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <h2>Detection technology</h2>
     <p class="lead">No single method finds every hazard. We combine biological detection, aerial data and machines, so that each one covers the weaknesses of the others.</p>
     <div class="tech-tabs" role="tablist" aria-label="Detection methods">
-      <button role="tab" aria-selected="true" aria-controls="t-bees" id="tb-bees">Bees</button>
-      <button role="tab" aria-selected="false" aria-controls="t-dogs" id="tb-dogs">Detection dogs</button>
+      <button role="tab" aria-selected="true" aria-controls="t-dogs" id="tb-dogs">Detection dogs</button>
+      <button role="tab" aria-selected="false" aria-controls="t-bees" id="tb-bees">Bees</button>
       <button role="tab" aria-selected="false" aria-controls="t-robots" id="tb-robots">Robotics and machines</button>
       <button role="tab" aria-selected="false" aria-controls="t-rats" id="tb-rats">African giant rats</button>
     </div>
 
-    <div class="tech-panel" id="t-bees" role="tabpanel" aria-labelledby="tb-bees">
+    <div class="tech-panel" id="t-dogs" role="tabpanel" aria-labelledby="tb-dogs">
       <div>
-        <span class="badge">Pilot project</span>
-        <h3>Bees that lead us to explosives</h3>
-        <p>Honey bees have an exceptional sense of smell. During training, we place sugar feeders next to the scent of explosives, so bees learn to link that scent with food.</p>
-        <p>When released over an area, trained bees gather where explosive scent is present. Drones record where they cluster, and the clusters show us where to look first.</p>
-      </div>
-      <aside>
-        <h4>Role in the system</h4>
-        <p>Fast first look at large areas. Bees cover ground that would take people weeks, and they are too light to set off a mine.</p>
-      </aside>
-    </div>
-
-    <div class="tech-panel" id="t-dogs" role="tabpanel" aria-labelledby="tb-dogs" hidden>
-      <div>
-        <span class="badge">Training programme active</span>
+        <span class="badge">Core programme · training active</span>
         <h3>Detection dogs and their handlers</h3>
         <p>We train mine detection dogs and the instructors who work with them. A dog and handler team can check suspected ground quickly and precisely.</p>
         <p>Training follows international standards for animal detection, with regular testing of every team.</p>
@@ -335,6 +358,19 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <aside>
         <h4>Role in the system</h4>
         <p>Precise check of the zones that bees and drones have flagged, before clearance begins.</p>
+      </aside>
+    </div>
+
+    <div class="tech-panel" id="t-bees" role="tabpanel" aria-labelledby="tb-bees" hidden>
+      <div>
+        <span class="badge">Innovation · pilot project</span>
+        <h3>Bees that lead us to explosives</h3>
+        <p>Honey bees have an exceptional sense of smell. During training, we place sugar feeders next to the scent of explosives, so bees learn to link that scent with food.</p>
+        <p>When released over an area, trained bees gather where explosive scent is present. Drones record where they cluster, and the clusters show us where to look first.</p>
+      </div>
+      <aside>
+        <h4>Role in the system</h4>
+        <p>Fast first look at large areas. Bees cover ground that would take people weeks, and they are too light to set off a mine.</p>
       </aside>
     </div>
 
@@ -377,9 +413,9 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <h2>What we do</h2>
     <p class="lead">Our work covers the five pillars of humanitarian mine action defined by the International Mine Action Standards.</p>
     <ul class="pillars">
+      <li><h3>Training</h3><p>We train detection dogs, their instructors and specialists who will work in the field.</p></li>
       <li><h3>Detection technology and survey</h3><p>We develop tools and methods that show faster where explosive hazards are, and help partners plan their work.</p></li>
       <li><h3>Risk education</h3><p>We teach children and adults how to recognise danger and act safely, with digital and AI-assisted materials.</p></li>
-      <li><h3>Training</h3><p>We train detection dogs, their instructors and specialists who will work in the field.</p></li>
       <li><h3>Victim assistance</h3><p>We help survivors and their families find medical, rehabilitation and psychological support through trusted partners.</p></li>
       <li><h3>Advocacy</h3><p>We raise awareness in Finland, Europe, the UK and the US of the long-term cost of explosive contamination.</p></li>
     </ul>
@@ -390,9 +426,14 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   <div class="wrap">
     <h2>Field updates</h2>
     <p class="lead">Videos and news from training, tests and our team.</p>
+    <article class="news-card">
+      <time datetime="2026-10">October 2026</time>
+      <h3>Global Mine Action Hub is launched</h3>
+      <p>Our website is now live in English, Ukrainian and Finnish, together with our LinkedIn page. We have started building partnerships with researchers in bee-based explosive detection and are preparing the next phase of our pilot.</p>
+    </article>
     <div class="feed-empty">
       <p>New videos appear here as soon as they are published on our channels.</p>
-      <a class="btn ghost" href="#contact">Follow us</a>
+      <a class="btn ghost" href="https://www.linkedin.com/company/gmah-ukraine" target="_blank" rel="noopener">Follow us on LinkedIn</a>
     </div>
   </div>
 </section>
@@ -423,9 +464,33 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <h2>Get involved</h2>
     <div class="three">
       <div><h3>Organisations</h3><p>Mine action operators, research teams, companies and foundations: let’s test, fund and use this technology together.</p><a href="#contact">Discuss a partnership</a></div>
-      <div><h3>Donors</h3><p>Your support funds the bee pilot, dog training and risk education for families in affected areas.</p><a href="#contact">Ask how to support</a></div>
+      <div><h3>Donors</h3><p>Your support funds the bee pilot, dog training and risk education for families in affected areas.</p><a href="#support">Ask how to support</a></div>
       <div><h3>Volunteers</h3><p>Translators, engineers, drone pilots, developers and educators: your skills can help keep people safe.</p><a href="#contact">Offer your help</a></div>
     </div>
+  </div>
+</section>
+
+<section id="support" class="support">
+  <div class="wrap">
+    <div>
+      <h2>Support our work</h2>
+      <p class="lead">Online donations will open soon.</p>
+      <p>We are completing the legal steps required for fundraising in Finland, so that every donation is received transparently and lawfully. Leave your email and we will let you know as soon as you can support the project.</p>
+      <div class="amounts" aria-label="Donation amounts"><span>€10</span><span>€25</span><span>€50</span><span>€100</span><em>Coming soon</em></div>
+      <p class="note">Companies and foundations: we welcome partnerships and sponsorship already now. <a href="#contact">Contact us</a></p>
+    </div>
+    <form class="callback" id="notify" novalidate>
+      <div><label for="nt-name">Name (optional)</label><input id="nt-name" autocomplete="name"></div>
+      <div><label for="nt-email">Email</label><input id="nt-email" type="email" autocomplete="email" required></div>
+      <div><label for="nt-type">I would like to</label>
+        <select id="nt-type">
+          <option value="One-time donation">make a one-time donation</option><option value="Monthly donation">donate monthly</option><option value="Company or foundation">support as a company or foundation</option><option value="Equipment or services">help with equipment or services</option>
+        </select></div>
+      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="nt-website">Website</label><input id="nt-website" tabindex="-1" autocomplete="off"></div>
+      <label class="check"><input type="checkbox" id="nt-consent" required> <span>I agree that Sydän Ukrainalle ry may store my email to tell me when donations open. <a href="/privacy/">Privacy policy</a></span></label>
+      <button class="btn" type="submit">Notify me</button>
+      <p class="form-note" id="nt-note" aria-live="polite"></p>
+    </form>
   </div>
 </section>
 
@@ -442,20 +507,22 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
             <option value="Partnership">Partnership</option><option value="Support">Support and donations</option><option value="Volunteering">Volunteering</option><option value="Media">Media</option><option value="Other">Other</option>
           </select></div>
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="cb-website">Website</label><input id="cb-website" name="website" tabindex="-1" autocomplete="off"></div>
-        <label class="check"><input type="checkbox" id="cb-consent" required> I agree that Sydän Ukrainalle ry may store my name and number to call me back.</label>
+        <label class="check"><input type="checkbox" id="cb-consent" required> <span>I agree that Sydän Ukrainalle ry may store my name and number to call me back. <a href="/privacy/">Privacy policy</a></span></label>
         <button class="btn" type="submit">Request a call</button>
         <p class="form-note" id="cb-note" aria-live="polite"></p>
       </form>
     </div>
     <div>
       <h2>Contact us</h2>
+      <div class="calls"><a class="primary" href="tel:+358452046288">Call · Finland<span>+358 45 204 6288</span></a><a class="secondary" href="tel:+380731728228">Call · Ukraine<span>+380 73 172 8228</span></a></div>
       <div class="socials">
-        <a href="#" data-social="telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1l-4.8-1.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.6.2 1.4 1.5z"/></svg>Telegram</a>
-        <a href="#" data-social="facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg>Facebook</a>
-        <a href="#" data-social="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 7c-.1-1.6-.4-3-1.6-4.2S17.6 1.2 16 1.1C14.4 1 9.6 1 8 1.1 6.4 1.2 5 1.5 3.8 2.7S2.2 5.4 2.1 7C2 8.6 2 13.4 2.1 15c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.4.2-8zm-2.1 9.8a3.3 3.3 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.7.4s-4.4.1-5.7-.4a3.3 3.3 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.7s-.1-4.4.4-5.7A3.3 3.3 0 0 1 6.6 3.6C7.9 3.1 10.9 3.2 12.3 3.2s4.4-.1 5.7.4a3.3 3.3 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.7s.1 4.4-.4 5.7z"/></svg>Instagram</a>
-        <a href="#" data-social="youtube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>YouTube</a>
-        <a href="#" data-social="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zM7.1 20.5H3.5V9h3.6v11.5z"/></svg>LinkedIn</a>
+        <a href="https://www.linkedin.com/company/gmah-ukraine" target="_blank" rel="noopener" data-social="linkedin"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zM7.1 20.5H3.5V9h3.6v11.5z"/></svg>LinkedIn</a>
         <a href="https://wa.me/358466298934" target="_blank" rel="noopener" data-social="whatsapp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-1 1.2-.4.2-.7.1a8.2 8.2 0 0 1-4.1-3.6c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.5 6.5 0 0 0 1.3 3.4 14.8 14.8 0 0 0 5.7 5c2.1.9 2.9 1 4 .8.6-.1 1.8-.8 2.1-1.5s.3-1.4.2-1.5c-.1-.2-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 0 1-5-1.4l-3.6.9 1-3.5A9.8 9.8 0 1 1 12 21.8zM12 .2A11.8 11.8 0 0 0 1.9 17.9L.2 23.8l6.1-1.6A11.8 11.8 0 1 0 12 .2z"/></svg>WhatsApp</a>
+        <span class="soon" data-social="telegram" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1l-4.8-1.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.6.2 1.4 1.5z"/></svg>Telegram<small>soon</small></span>
+        <span class="soon" data-social="facebook" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2v-2c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg>Facebook<small>soon</small></span>
+        <a href="https://www.instagram.com/gmahukraine/" target="_blank" rel="noopener" data-social="instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7.3A4.7 4.7 0 1 0 12 16.7 4.7 4.7 0 0 0 12 7.3zm0 7.7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm6-7.9a1.1 1.1 0 1 1-2.2 0 1.1 1.1 0 0 1 2.2 0zM21.9 7c-.1-1.6-.4-3-1.6-4.2S17.6 1.2 16 1.1C14.4 1 9.6 1 8 1.1 6.4 1.2 5 1.5 3.8 2.7S2.2 5.4 2.1 7C2 8.6 2 13.4 2.1 15c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-6.4.2-8zm-2.1 9.8a3.3 3.3 0 0 1-1.8 1.8c-1.3.5-4.3.4-5.7.4s-4.4.1-5.7-.4a3.3 3.3 0 0 1-1.8-1.8c-.5-1.3-.4-4.3-.4-5.7s-.1-4.4.4-5.7A3.3 3.3 0 0 1 6.6 3.6C7.9 3.1 10.9 3.2 12.3 3.2s4.4-.1 5.7.4a3.3 3.3 0 0 1 1.8 1.8c.5 1.3.4 4.3.4 5.7s.1 4.4-.4 5.7z"/></svg>Instagram</a>
+        <span class="soon" data-social="youtube" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-4.8.5-4.8s0-3.2-.5-4.8zM9.7 15V9l5.8 3-5.8 3z"/></svg>YouTube<small>soon</small></span>
+        <span class="soon" data-social="tiktok" aria-disabled="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3c.4 2.2 1.9 3.8 4 4.1v3.1c-1.5 0-2.9-.4-4-1.2v6.3a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v3.2a2.6 2.6 0 1 0 1.8 2.4V3h3z"/></svg>TikTok<small>soon</small></span>
       </div>
       <div class="legal">
         <p><strong>Sydän Ukrainalle ry</strong><br>Längelmäentie 6 A 2, 35400 Längelmäki, Finland<br>Y-tunnus 3543515-1</p>
@@ -469,7 +536,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 <footer>
   <div class="wrap">
     <p>Global Mine Action Hub is a program operated under Sydän Ukrainalle ry, a registered Finnish non-profit association (Y-tunnus 3543515-1).</p>
-    <p><a href="mailto:info@sydanukrainalle.org">info@sydanukrainalle.org</a> &nbsp; <a href="https://github.com/sydanukrainalleorg" target="_blank" rel="noopener">GitHub</a></p>
+    <p><a href="mailto:info@sydanukrainalle.org">info@sydanukrainalle.org</a> &nbsp; <a href="https://www.linkedin.com/company/gmah-ukraine" target="_blank" rel="noopener">LinkedIn</a> &nbsp; <a href="/privacy/">Privacy policy</a></p>
   </div>
 </footer>
 
@@ -576,6 +643,27 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
       if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you. We will call you back within one working day.';f.reset()}
       else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org or message us on WhatsApp.'}
+    }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
+    .finally(function(){btn.disabled=false});
+  });
+})();
+
+// donation interest form: until online donations open, visitors leave their email (sent to the team's Telegram)
+(function(){
+  var f=document.getElementById('notify'); if(!f)return;
+  var note=document.getElementById('nt-note'), btn=f.querySelector('button[type="submit"]');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=document.getElementById('nt-email').value.trim();
+    note.className='form-note err';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){note.textContent='Enter a valid email address.';return}
+    if(!document.getElementById('nt-consent').checked){note.textContent='Tick the consent box so we can email you.';return}
+    btn.disabled=true;note.className='form-note';note.textContent='Sending…';
+    fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      name:document.getElementById('nt-name').value,email:email,type:document.getElementById('nt-type').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('nt-website').value
+    })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
+      if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you! We will email you as soon as donations open.';f.reset()}
+      else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
   });
