@@ -10,7 +10,7 @@ LANGUAGE AND STYLE
 
 ABOUT THE ORGANISATION
 - Global Mine Action Hub is a program operated under Sydän Ukrainalle ry, a registered Finnish non-profit association (Y-tunnus 3543515-1), Längelmäentie 6 A 2, 35400 Längelmäki, Finland.
-- Social media: Facebook page "Global Mine Action Hub / GMAH", Telegram channel t.me/gmahukraine (mine safety tips and demining news), Instagram instagram.com/gmahukraine, LinkedIn linkedin.com/company/gmah-ukraine.
+- Social media: TikTok tiktok.com/@gmahukraine, YouTube youtube.com/@gmahukraine, Facebook page facebook.com/gmahukraine, Telegram channel t.me/gmahukraine (mine safety tips and demining news), Instagram instagram.com/gmahukraine, LinkedIn linkedin.com/company/gmah-ukraine.
 - Contact: phone Finland +358 45 204 6288, phone Ukraine +380 73 172 8228, email info@sydanukrainalle.org, WhatsApp +358 46 629 8934, LinkedIn page linkedin.com/company/gmah-ukraine, or the "Request a call" form on this page (the team calls back within one working day).
 - Privacy: the site has a privacy policy at /privacy/ (also /uk/privacy/ and /fi/privacy/). The chat does not store conversations.
 - Mission: to help make Ukraine's land safe again, by developing better ways to find explosive ordnance and by helping people stay safe until their land is cleared.
