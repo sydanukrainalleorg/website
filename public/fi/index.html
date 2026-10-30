@@ -268,17 +268,35 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .support .wrap{display:block}
 .support-head{max-width:760px}
 .needs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin:28px 0 12px}
-.need{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.need{font:inherit;text-align:left;cursor:pointer;color:inherit;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px;transition:border-color .15s,transform .15s,box-shadow .15s}
+.need:hover,.need:focus-visible{border-color:var(--orange);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+.need.is-selected{border-color:var(--orange);box-shadow:0 0 0 2px var(--orange) inset}
 .need h3{margin:0;font-size:1.02rem;line-height:1.3}
 .need .price{font-weight:700;color:var(--orange);font-size:1.15rem}
 .need p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.45}
+.need .pick{margin-top:auto;padding-top:8px;font-weight:600;font-size:.9rem;color:var(--green-text)}
 .support .note{font-size:.95rem;color:var(--muted)}
 .support-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:28px}
 .partner-box{border-left:4px solid var(--orange);padding:4px 0 4px 16px;margin:0 0 22px}
 .steps{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:10px}
 .steps li{line-height:1.5}
 .legal{font-size:.88rem;color:var(--muted);margin-top:18px}
+.invoice{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+.invoice h3{margin:0 0 4px}
+.invoice .inv-no{color:var(--muted);font-size:.92rem;margin:0 0 16px}
+.invoice dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0 0 14px}
+.invoice dt{color:var(--muted)}
+.invoice dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+.invoice .amount{font-size:1.3rem;color:var(--orange)}
+.invoice .payline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.invoice .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600;overflow-wrap:anywhere}
+.invoice .copy{font:inherit;font-size:.82rem;padding:4px 10px;border-radius:6px;border:1px solid var(--line);background:transparent;color:inherit;cursor:pointer}
+.invoice .small{font-size:.88rem;color:var(--muted);margin:10px 0 0}
+.inv-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.inv-actions a,.inv-actions button{font:inherit;font-size:.92rem;font-weight:600;padding:10px 14px;border-radius:8px;border:1px solid var(--line);background:transparent;color:inherit;text-decoration:none;cursor:pointer}
+.inv-actions .primary{background:var(--green);color:var(--on-green);border-color:var(--green)}
 @media (max-width:860px){.support-grid{grid-template-columns:1fr;gap:28px}}
+@media print{body *{visibility:hidden}#invoice,#invoice *{visibility:visible}#invoice{position:absolute;left:0;top:0;width:100%;border:0}.inv-actions,.invoice .copy{display:none}}
 </style>
 </head>
 <body>
@@ -540,25 +558,30 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <h2>Tue työtämme</h2>
       <p class="lead">Valitse tietty tarve ja ryhdy sen tukijaksi. Tiedät tarkalleen, mihin tukesi käytetään, ja kerromme tuloksista.</p>
     </div>
-    <div class="needs"><div class="need"><h3>Malinois-pentu</h3><div class="price">1 800 €</div><p>Nimesi koiran valjaissa ja säännölliset kuulumiset sen koulutuksesta.</p></div><div class="need"><h3>Hajukoulutussarja</h3><div class="price">650 €</div><p>Aidon hajun koulutusnäytteet (TNT, RDX, PETN) koko ryhmälle.</p></div><div class="need"><h3>Yhden koiran ruoka, 6 kk</h3><div class="price">420 €</div><p>Laadukas ruoka kasvavalle työkoiralle.</p></div><div class="need"><h3>Eläinlääkärikulut, 6 kk</h3><div class="price">400 €</div><p>Rokotukset, tarkastukset ja loishoidot yhdelle koiralle.</p></div><div class="need"><h3>Yhden koiran varusteet</h3><div class="price">300 €</div><p>Valjaat, liinat, kuljetushäkki ja palkkalelut.</p></div><div class="need"><h3>Ohjaajan työasu</h3><div class="price">400 €</div><p>Liivi, takki, housut ja lippis GMAH:n väreissä.</p></div><div class="need"><h3>Ohjaajan koulutus ja sertifiointi</h3><div class="price">3 000 €</div><p>Ohjaajaa kohden, valmistautuminen kansainväliseen sertifiointiin.</p></div><div class="need"><h3>Koiran ensiavun koulutussimulaattori</h3><div class="price">alk. 25 000 €</div><p>Tai 2 500 € vuokraan koulutuksen ajaksi.</p></div></div>
+    <div class="needs"><button type="button" class="need" data-key="puppy"><h3>Malinois-pentu</h3><span class="price">1 800 €</span><p>Nimesi koiran valjaissa ja säännölliset kuulumiset sen koulutuksesta.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="scent"><h3>Hajukoulutussarja</h3><span class="price">650 €</span><p>Aidon hajun koulutusnäytteet (TNT, RDX, PETN) koko ryhmälle.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="food"><h3>Yhden koiran ruoka, 6 kk</h3><span class="price">420 €</span><p>Laadukas ruoka kasvavalle työkoiralle.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="vet"><h3>Eläinlääkärikulut, 6 kk</h3><span class="price">400 €</span><p>Rokotukset, tarkastukset ja loishoidot yhdelle koiralle.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="equip"><h3>Yhden koiran varusteet</h3><span class="price">300 €</span><p>Valjaat, liinat, kuljetushäkki ja palkkalelut.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="uniform"><h3>Ohjaajan työasu</h3><span class="price">400 €</span><p>Liivi, takki, housut ja lippis GMAH:n väreissä.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="training"><h3>Ohjaajan koulutus ja sertifiointi</h3><span class="price">3 000 €</span><p>Ohjaajaa kohden, valmistautuminen kansainväliseen sertifiointiin.</p><span class="pick">Valitse →</span></button><button type="button" class="need" data-key="sim"><h3>Koiran ensiavun koulutussimulaattori</h3><span class="price">alk. 25 000 €</span><p>Tai 2 500 € vuokraan koulutuksen ajaksi.</p><span class="pick">Valitse →</span></button></div>
     <p class="note">Mainitsemme tukijat verkkosivuillamme ja raporteissamme.</p>
     <div class="support-grid">
       <div>
         <p class="partner-box"><strong>Yrityksille:</strong> kumppanuuspaketit, joissa logonne näkyy ohjaajien työasuissa ja koirien valjaissa, verkkosivuillamme ja somessa. Myös tuotteet ja palvelut (ruoka, eläinlääkäri, varusteet) ovat lämpimästi tervetulleita.</p>
         <h3>Näin se toimii</h3>
-        <ol class="steps"><li>Valitse tarve ja lähetä lomake.</li><li>Lähetämme kahden arkipäivän kuluessa laskun ja maksutiedot: tilisiirto yhdistyksen tilille tai kryptovaluutta (Bitcoin, USDT, USDC, ETH).</li><li>Saat näkyvyyttä sivuillamme ja tietoa siitä, mitä tukesi sai aikaan.</li></ol>
+        <ol class="steps"><li>Napsauta tarvetta, jota haluat tukea.</li><li>Valitse tilisiirto tai kryptovaluutta ja saat laskun heti: näytölle ja sähköpostiin.</li><li>Maksa lasku. Mainitsemme sinut sivuillamme ja kerromme, mitä tukesi sai aikaan.</li></ol>
         <p class="legal">Sydän Ukrainalle ry on Suomessa rekisteröity voittoa tavoittelematon yhdistys (Y-tunnus 3543515-1).</p>
       </div>
+      <div>
       <form class="callback" id="notify" novalidate>
-        <div><label for="nt-name">Nimi (vapaaehtoinen)</label><input id="nt-name" autocomplete="name"></div>
+        <div><label for="nt-type">Haluan tukea</label><select id="nt-type"><option value="puppy">Malinois-pentu (1 800 €)</option><option value="scent">Hajukoulutussarja (650 €)</option><option value="food">Koiran ruoka (420 €)</option><option value="vet">Eläinlääkärikulut (400 €)</option><option value="equip">Koiran varusteet (300 €)</option><option value="uniform">Ohjaajan työasu (400 €)</option><option value="training">Ohjaajan koulutus (3 000 €)</option><option value="sim">Ensiapusimulaattori</option><option value="partner">Yrityskumppanuus</option><option value="inkind">Tuotteet tai palvelut</option></select></div>
+        <div id="nt-pay-row"><label for="nt-pay">Maksutapa</label><select id="nt-pay"><option value="bank">Tilisiirto (EUR)</option><option value="btc">Bitcoin (BTC)</option><option value="evm">USDT / USDC / ETH / BNB</option></select></div>
+        <div><label for="nt-name">Nimi</label><input id="nt-name" autocomplete="name" required></div>
         <div><label for="nt-email">Sähköposti</label><input id="nt-email" type="email" autocomplete="email" required></div>
-        <div><label for="nt-type">Haluan tukea</label>
-          <select id="nt-type"><option value="Щенок (€1 800)">Malinois-pentu (1 800 €)</option><option value="Набор образцов запахов (€650)">Hajukoulutussarja (650 €)</option><option value="Корм для собаки (€420)">Koiran ruoka (420 €)</option><option value="Ветеринария для собаки (€400)">Eläinlääkärikulut (400 €)</option><option value="Снаряжение для собаки (€300)">Koiran varusteet (300 €)</option><option value="Форма кинолога (€400)">Ohjaajan työasu (400 €)</option><option value="Обучение кинолога (€3 000)">Ohjaajan koulutus (3 000 €)</option><option value="Тренажёр первой помощи K9">Ensiapusimulaattori</option><option value="Партнёрство компании">Yrityskumppanuus</option><option value="Помощь продукцией или услугами">Tuotteet tai palvelut</option></select></div>
+        <div><label for="nt-phone">Puhelin tai WhatsApp (vapaaehtoinen)</label><input id="nt-phone" type="tel" autocomplete="tel"></div>
         <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="nt-website">Website</label><input id="nt-website" tabindex="-1" autocomplete="off"></div>
-        <label class="check"><input type="checkbox" id="nt-consent" required> <span>Hyväksyn, että Sydän Ukrainalle ry tallentaa yhteystietoni vastatakseen pyyntööni. <a href="/fi/privacy/">Tietosuojaseloste</a></span></label>
-        <button class="btn" type="submit">Pyydä tiedot</button>
+        <label class="check"><input type="checkbox" id="nt-consent" required> <span>Hyväksyn, että Sydän Ukrainalle ry tallentaa yhteystietoni laskun lähettämistä ja pyyntöön vastaamista varten. <a href="/fi/privacy/">Tietosuojaseloste</a></span></label>
+        <button class="btn" type="submit">Hae lasku</button>
         <p class="form-note" id="nt-note" aria-live="polite"></p>
       </form>
+      <div class="invoice" id="invoice" hidden aria-live="polite"></div>
+      <script type="application/json" id="inv-i18n">{"title": "Lasku", "no": "Laskun numero", "date": "Päivä", "due": "Eräpäivä", "payee": "Saaja", "to": "Tukija", "item": "Kohde", "amount": "Summa", "vat": "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä.", "ref": "Viitenumero (käytä maksaessa)", "bank": "Pankki", "addr": "Lähetä tähän osoitteeseen", "btcNet": "Vain Bitcoin-verkko. Lähetä summaa vastaava määrä BTC:nä.", "evmNet": "Verkot: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Lähetä summaa vastaava määrä USDT:nä, USDC:nä, ETH:na tai BNB:nä.", "after": "Lähetä kryptomaksun jälkeen tapahtuman linkki osoitteeseen info@sydanukrainalle.org.", "copy": "Kopioi", "copied": "Kopioitu", "print": "Tallenna PDF / tulosta", "wa": "Lähetä WhatsAppiin", "tg": "Lähetä Telegramiin", "mailed": "Kopio laskusta on lähetetty sähköpostiisi.", "notmailed": "Tallenna lasku: käytä alla olevia painikkeita.", "again": "Uusi pyyntö", "noinv": "Kiitos! Tästä sovitaan erikseen: otamme yhteyttä kahden arkipäivän kuluessa.", "e_email": "Anna toimiva sähköpostiosoite.", "e_name": "Anna nimesi.", "e_consent": "Rastita suostumus, jotta voimme lähettää laskun.", "sending": "Laskua valmistellaan…", "e_gen": "Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org.", "e_net": "Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.", "share": "Lasku"}</script>
+      </div>
     </div>
   </div>
 </section>
@@ -764,20 +787,74 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 // donation interest form: until online donations open, visitors leave their email (sent to the team's Telegram)
 (function(){
   var f=document.getElementById('notify'); if(!f)return;
+  var T=JSON.parse(document.getElementById('inv-i18n').textContent);
   var note=document.getElementById('nt-note'), btn=f.querySelector('button[type="submit"]');
+  var sel=document.getElementById('nt-type'), payRow=document.getElementById('nt-pay-row');
+  var PRICED={puppy:1,scent:1,food:1,vet:1,equip:1,uniform:1,training:1};
+  function syncPay(){payRow.style.display=PRICED[sel.value]?'':'none'}
+  sel.addEventListener('change',function(){syncPay();markCard()});
+  function markCard(){document.querySelectorAll('.need').forEach(function(c){c.classList.toggle('is-selected',c.dataset.key===sel.value)})}
+  document.querySelectorAll('.need').forEach(function(c){c.addEventListener('click',function(){
+    sel.value=c.dataset.key;syncPay();markCard();
+    f.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){document.getElementById('nt-name').focus({preventScroll:true})},450);
+  })});
+  syncPay();
+  var box=document.getElementById('invoice');
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function row(dl,k,v,cls){dl.appendChild(el('dt',null,k));var d=el('dd',cls||null,v);dl.appendChild(d);return d}
+  function copyBtn(text){var b=el('button','copy',T.copy);b.type='button';b.onclick=function(){
+    (navigator.clipboard?navigator.clipboard.writeText(text):Promise.reject()).then(function(){b.textContent=T.copied;setTimeout(function(){b.textContent=T.copy},1500)}).catch(function(){})};return b}
+  function payLine(parent,label,value){var w=el('div');w.appendChild(el('div','small',label));var l=el('div','payline');l.appendChild(el('span','mono',value));l.appendChild(copyBtn(value));w.appendChild(l);parent.appendChild(w)}
+  function render(inv,pay,mailed,name,email){
+    box.innerHTML='';
+    box.appendChild(el('h3',null,T.title));
+    box.appendChild(el('p','inv-no',T.no+' '+inv.no));
+    var dl=el('dl');
+    row(dl,T.date,inv.date);row(dl,T.due,inv.due);
+    row(dl,T.to,name+', '+email);
+    row(dl,T.item,inv.item);
+    row(dl,T.amount,'€'+inv.eur,'amount');
+    row(dl,T.payee,pay.payee+' (Y-tunnus '+pay.businessId+')');
+    box.appendChild(dl);
+    var p=el('div');
+    var summary;
+    if(inv.method==='bank'){
+      payLine(p,'IBAN',pay.iban);payLine(p,'BIC ('+T.bank+': '+pay.bank+')',pay.bic);payLine(p,T.ref,inv.ref);
+      summary=T.share+' '+inv.no+'\n'+inv.item+': €'+inv.eur+'\n'+T.payee+': '+pay.payee+'\nIBAN: '+pay.iban+'\nBIC: '+pay.bic+'\n'+T.ref+': '+inv.ref+'\n'+T.due+': '+inv.due;
+    }else{
+      var a=inv.method==='btc'?pay.btc:pay.evm;
+      payLine(p,T.addr,a);
+      p.appendChild(el('p','small',inv.method==='btc'?T.btcNet:T.evmNet));
+      p.appendChild(el('p','small',T.after));
+      summary=T.share+' '+inv.no+'\n'+inv.item+': €'+inv.eur+'\n'+T.addr+': '+a+'\n'+(inv.method==='btc'?T.btcNet:T.evmNet)+'\n'+T.due+': '+inv.due;
+    }
+    box.appendChild(p);
+    box.appendChild(el('p','small',T.vat+' '+pay.payee+', '+pay.address+', '+pay.email));
+    box.appendChild(el('p','small',mailed?T.mailed:T.notmailed));
+    var act=el('div','inv-actions');
+    var pr=el('button','primary',T.print);pr.type='button';pr.onclick=function(){window.print()};act.appendChild(pr);
+    var wa=el('a',null,T.wa);wa.href='https://wa.me/?text='+encodeURIComponent(summary);wa.target='_blank';wa.rel='noopener';act.appendChild(wa);
+    var tg=el('a',null,T.tg);tg.href='https://t.me/share/url?url='+encodeURIComponent('https://sydanukrainalle.org')+'&text='+encodeURIComponent(summary);tg.target='_blank';tg.rel='noopener';act.appendChild(tg);
+    var again=el('button',null,T.again);again.type='button';again.onclick=function(){box.hidden=true;f.hidden=false;f.reset();syncPay();markCard();note.textContent=''};act.appendChild(again);
+    box.appendChild(act);
+    f.hidden=true;box.hidden=false;box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    var email=document.getElementById('nt-email').value.trim();
+    var email=document.getElementById('nt-email').value.trim(), name=document.getElementById('nt-name').value.trim();
     note.className='form-note err';
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){note.textContent='Kirjoita kelvollinen sähköpostiosoite.';return}
-    if(!document.getElementById('nt-consent').checked){note.textContent='Merkitse suostumus, jotta voimme lähettää sinulle sähköpostia.';return}
-    btn.disabled=true;note.className='form-note';note.textContent='Lähetetään…';
+    if(!name){note.textContent=T.e_name;return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){note.textContent=T.e_email;return}
+    if(!document.getElementById('nt-consent').checked){note.textContent=T.e_consent;return}
+    btn.disabled=true;note.className='form-note';note.textContent=T.sending;
     fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      name:document.getElementById('nt-name').value,email:email,type:document.getElementById('nt-type').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('nt-website').value
+      name:name,email:email,type:sel.value,method:document.getElementById('nt-pay').value,phone:document.getElementById('nt-phone').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('nt-website').value
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok){note.className='form-note ok';note.textContent='Kiitos! Vastaamme kahden arkipäivän kuluessa.';f.reset()}
-      else{note.className='form-note err';note.textContent='Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org.'}
-    }).catch(function(){note.className='form-note err';note.textContent='Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.'})
+      if(d&&d.ok&&d.invoice){note.textContent='';render(d.invoice,d.pay,d.mailed,name,email)}
+      else if(d&&d.ok){note.className='form-note ok';note.textContent=T.noinv;f.reset();syncPay();markCard()}
+      else{note.className='form-note err';note.textContent=T.e_gen}
+    }).catch(function(){note.className='form-note err';note.textContent=T.e_net})
     .finally(function(){btn.disabled=false});
   });
 })();

@@ -110,6 +110,66 @@ async function handleJoin(request, env) {
 
 /* ---------- donation interest list → Telegram ---------- */
 
+/* ---------- support form → invoice + Telegram (+ email if RESEND_API_KEY is set) ---------- */
+
+const NEEDS = {
+  puppy:    { ru: "Щенок малинуа", en: "Malinois puppy", uk: "Цуценя малінуа", fi: "Malinois-pentu", eur: 1800 },
+  scent:    { ru: "Набор образцов запахов", en: "Scent training kit", uk: "Набір для навчання на запах", fi: "Hajukoulutussarja", eur: 650 },
+  food:     { ru: "Корм для собаки, 6 мес.", en: "Food for one dog, 6 months", uk: "Корм для однієї собаки, 6 міс.", fi: "Yhden koiran ruoka, 6 kk", eur: 420 },
+  vet:      { ru: "Ветеринария для собаки, 6 мес.", en: "Vet care for one dog, 6 months", uk: "Ветеринарний догляд, 6 міс.", fi: "Eläinlääkärikulut, 6 kk", eur: 400 },
+  equip:    { ru: "Снаряжение для собаки", en: "Equipment for one dog", uk: "Спорядження для однієї собаки", fi: "Yhden koiran varusteet", eur: 300 },
+  uniform:  { ru: "Форма кинолога", en: "Handler uniform", uk: "Форма для кінолога", fi: "Ohjaajan työasu", eur: 400 },
+  training: { ru: "Обучение кинолога", en: "Handler training and certification", uk: "Навчання та сертифікація кінолога", fi: "Ohjaajan koulutus ja sertifiointi", eur: 3000 },
+  sim:      { ru: "Тренажёр первой помощи K9", en: "K9 first-aid training simulator", uk: "Тренажер першої допомоги собакам", fi: "Koiran ensiavun koulutussimulaattori", eur: null },
+  partner:  { ru: "Партнёрство компании", en: "Company partnership", uk: "Партнерство компанії", fi: "Yrityskumppanuus", eur: null },
+  inkind:   { ru: "Помощь продукцией или услугами", en: "Products or services", uk: "Продукція або послуги", fi: "Tuotteet tai palvelut", eur: null },
+};
+const METHODS = { bank: "Банковский перевод", btc: "Bitcoin", evm: "USDT / USDC / ETH / BNB" };
+const PAY = {
+  payee: "Sydän Ukrainalle ry", businessId: "3543515-1",
+  address: "Längelmäentie 10 B 7, 35400 Längelmäki, Finland", email: "info@sydanukrainalle.org",
+  iban: "FI24 7997 7995 0475 81", bic: "HOLVFIHH", bank: "Holvi",
+  btc: "bc1q8646rjay90nd4sfejt5qavmc6td9sawyqau8lm",
+  evm: "0x7814916cc6A4FeA5AB130f4400D9C5cD02940A15",
+};
+
+// Finnish reference number (viitenumero): base digits + check digit with weights 7-3-1
+function finnishRef(base) {
+  const w = [7, 3, 1];
+  let sum = 0;
+  base.split("").reverse().forEach((d, i) => { sum += Number(d) * w[i % 3]; });
+  return base + String((10 - (sum % 10)) % 10);
+}
+
+const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+const MAIL_T = {
+  en: { subj: "Invoice", hi: "Thank you for supporting Global Mine Action Hub!", item: "Item", amount: "Amount", due: "Due date", ref: "Reference", vat: "No VAT: the association is not VAT-registered.", addr: "Send to this address", evmNet: "Networks: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Send the equivalent of the amount in USDT, USDC, ETH or BNB.", btcNet: "Bitcoin network only. Send the equivalent of the amount in BTC.", after: "After a crypto payment, please reply to this email with the transaction link." },
+  uk: { subj: "Рахунок", hi: "Дякуємо за підтримку Global Mine Action Hub!", item: "Призначення", amount: "Сума", due: "Сплатити до", ref: "Референс", vat: "Без ПДВ: асоціація не є платником ПДВ.", addr: "Надішліть на цю адресу", evmNet: "Мережі: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Надішліть еквівалент суми в USDT, USDC, ETH або BNB.", btcNet: "Лише мережа Bitcoin. Надішліть еквівалент суми в BTC.", after: "Після криптоплатежу дайте відповідь на цей лист із посиланням на транзакцію." },
+  fi: { subj: "Lasku", hi: "Kiitos, että tuet Global Mine Action Hubia!", item: "Kohde", amount: "Summa", due: "Eräpäivä", ref: "Viitenumero", vat: "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä.", addr: "Lähetä tähän osoitteeseen", evmNet: "Verkot: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Lähetä summaa vastaava määrä USDT:nä, USDC:nä, ETH:na tai BNB:nä.", btcNet: "Vain Bitcoin-verkko. Lähetä summaa vastaava määrä BTC:nä.", after: "Vastaa kryptomaksun jälkeen tähän viestiin ja liitä tapahtuman linkki." },
+};
+
+async function emailInvoice(env, to, name, lang, inv) {
+  if (!env.RESEND_API_KEY) return false;
+  const t = MAIL_T[lang] || MAIL_T.en;
+  const pay = inv.method === "bank"
+    ? `IBAN: <b>${PAY.iban}</b><br>BIC: ${PAY.bic} (${PAY.bank})<br>${t.ref}: <b>${inv.ref}</b>`
+    : `${t.addr}:<br><b style="font-family:monospace">${inv.method === "btc" ? PAY.btc : PAY.evm}</b><br>${inv.method === "btc" ? t.btcNet : t.evmNet}<br>${t.after}`;
+  const html = `<div style="font-family:Arial,sans-serif;max-width:560px;color:#24302A">
+<p>${t.hi}</p>
+<h2 style="margin:0 0 8px">${t.subj} ${inv.no}</h2>
+<p>${esc(name)}<br>${esc(to)}</p>
+<p>${t.item}: <b>${inv.item}</b><br>${t.amount}: <b>€${inv.eur}</b><br>${t.due}: ${inv.due}</p>
+<p>${PAY.payee} (Y-tunnus ${PAY.businessId})<br>${pay}</p>
+<p style="color:#666;font-size:13px">${t.vat}<br>${PAY.payee}, ${PAY.address}, ${PAY.email}</p></div>`;
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, "content-type": "application/json" },
+    body: JSON.stringify({ from: `Sydän Ukrainalle ry <${PAY.email}>`, to: [to], bcc: [PAY.email], reply_to: PAY.email, subject: `${t.subj} ${inv.no} — Global Mine Action Hub`, html }),
+  });
+  return r.ok;
+}
+
 async function handleNotify(request, env) {
   if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
   let data;
@@ -122,20 +182,45 @@ async function handleNotify(request, env) {
 
   const email = clean(data.email, 120);
   const name = clean(data.name, 100) || "—";
-  const type = clean(data.type, 60) || "—";
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) {
+  const phone = clean(data.phone, 40) || "—";
+  const lang = ["en", "uk", "fi"].includes(clean(data.lang, 5)) ? clean(data.lang, 5) : "en";
+  const need = NEEDS[clean(data.type, 20)];
+  const method = METHODS[clean(data.method, 10)] ? clean(data.method, 10) : "bank";
+  if (!need || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) {
     return json({ ok: false, error: "invalid" }, 400);
   }
   if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return json({ ok: false, error: "not_configured" }, 500);
 
+  const now = new Date();
+  const hel = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Helsinki" }));
+  const pad = (n) => String(n).padStart(2, "0");
+  const stamp = `${String(hel.getFullYear()).slice(2)}${pad(hel.getMonth() + 1)}${pad(hel.getDate())}`;
+  const rnd = String(Math.floor(1000 + Math.random() * 9000));
+  let inv = null;
+  if (need.eur) {
+    const dueD = new Date(hel.getTime() + 14 * 86400000);
+    inv = {
+      no: `GMAH-${stamp}-${rnd}`,
+      ref: finnishRef(`${stamp}${pad(hel.getHours())}${pad(hel.getMinutes())}${rnd}`),
+      date: `${pad(hel.getDate())}.${pad(hel.getMonth() + 1)}.${hel.getFullYear()}`,
+      due: `${pad(dueD.getDate())}.${pad(dueD.getMonth() + 1)}.${dueD.getFullYear()}`,
+      eur: need.eur, item: need[lang] || need.en, method,
+    };
+  }
+
+  let mailed = false;
+  if (inv) {
+    try { mailed = await emailInvoice(env, email, name, lang, inv); } catch { mailed = false; }
+  }
+
   const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
-  const time = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Helsinki" });
+  const time = now.toLocaleString("ru-RU", { timeZone: "Europe/Helsinki" });
   const text =
     `💛 Хочет поддержать проект — sydanukrainalle.org\n\n` +
-    `Email: ${email}\n` +
-    `Имя: ${name}\n` +
-    `Вариант: ${type}\n` +
-    `Язык сайта: ${LANGS[clean(data.lang, 5)] || "—"}\n` +
+    `Вариант: ${need.ru}${need.eur ? ` (€${need.eur})` : ""}\n` +
+    (inv ? `Счёт: ${inv.no}, оплата до ${inv.due}\nСпособ оплаты: ${METHODS[method]}\nРеференс: ${inv.ref}\nСчёт на почту: ${mailed ? "отправлен" : "не отправлен (почтовый сервис не подключён)"}\n` : `Без счёта: нужно связаться лично\n`) +
+    `\nEmail: ${email}\nИмя: ${name}\nТелефон / WhatsApp: ${phone}\n` +
+    `Язык сайта: ${LANGS[lang]}\n` +
     `Страна посетителя: ${request.cf?.country || "—"}\n` +
     `Время (Хельсинки): ${time}`;
 
@@ -145,7 +230,7 @@ async function handleNotify(request, env) {
     body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
   });
   if (!tg.ok) return json({ ok: false, error: "send_failed" }, 502);
-  return json({ ok: true });
+  return json({ ok: true, invoice: inv, mailed, pay: inv ? PAY : null });
 }
 
 /* ---------- site chat ---------- */
