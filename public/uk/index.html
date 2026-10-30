@@ -263,6 +263,22 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .partner img{max-width:100%;max-height:100%;object-fit:contain;border-radius:50%}
 .partner.has-logo{border-style:solid;background:#fff;padding:14px}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.marquee{-webkit-mask-image:none;mask-image:none}.partner[aria-hidden="true"]{display:none}}
+
+/* Support: sponsor a need */
+.support .wrap{display:block}
+.support-head{max-width:760px}
+.needs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin:28px 0 12px}
+.need{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.need h3{margin:0;font-size:1.02rem;line-height:1.3}
+.need .price{font-weight:700;color:var(--orange);font-size:1.15rem}
+.need p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.45}
+.support .note{font-size:.95rem;color:var(--muted)}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:28px}
+.partner-box{border-left:4px solid var(--orange);padding:4px 0 4px 16px;margin:0 0 22px}
+.steps{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:10px}
+.steps li{line-height:1.5}
+.legal{font-size:.88rem;color:var(--muted);margin-top:18px}
+@media (max-width:860px){.support-grid{grid-template-columns:1fr;gap:28px}}
 </style>
 </head>
 <body>
@@ -520,25 +536,30 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 
 <section id="support" class="support">
   <div class="wrap">
-    <div>
+    <div class="support-head">
       <h2>Підтримайте нашу роботу</h2>
-      <p class="lead">Онлайн-пожертви незабаром стануть доступні.</p>
-      <p>Ми завершуємо юридичні процедури, необхідні для збору коштів у Фінляндії, щоб кожна пожертва надходила прозоро й законно. Залиште свою електронну пошту, і ми повідомимо вас, щойно ви зможете підтримати проєкт.</p>
-      <div class="amounts" aria-label="Суми пожертв"><span>€10</span><span>€25</span><span>€50</span><span>€100</span><em>Незабаром</em></div>
-      <p class="note">Компанії та фонди: ми вже зараз відкриті до партнерства та спонсорства. <a href="#contact">Зв’яжіться з нами</a></p>
+      <p class="lead">Оберіть конкретну потребу і станьте її спонсором. Ви точно знаєте, на що йде ваша підтримка, а ми звітуємо про результат.</p>
     </div>
-    <form class="callback" id="notify" novalidate>
-      <div><label for="nt-name">Ім’я (необов’язково)</label><input id="nt-name" autocomplete="name"></div>
-      <div><label for="nt-email">Електронна пошта</label><input id="nt-email" type="email" autocomplete="email" required></div>
-      <div><label for="nt-type">Я хочу</label>
-        <select id="nt-type">
-          <option value="One-time donation">зробити разову пожертву</option><option value="Monthly donation">жертвувати щомісяця</option><option value="Company or foundation">підтримати як компанія чи фонд</option><option value="Equipment or services">допомогти обладнанням чи послугами</option>
-        </select></div>
-      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="nt-website">Website</label><input id="nt-website" tabindex="-1" autocomplete="off"></div>
-      <label class="check"><input type="checkbox" id="nt-consent" required> <span>Я погоджуюся, що Sydän Ukrainalle ry може зберігати мою електронну пошту, щоб повідомити мені про відкриття пожертв. <a href="/uk/privacy/">Політика конфіденційності</a></span></label>
-      <button class="btn" type="submit">Повідомити мене</button>
-      <p class="form-note" id="nt-note" aria-live="polite"></p>
-    </form>
+    <div class="needs"><div class="need"><h3>Цуценя малінуа</h3><div class="price">€1 800</div><p>Ваше ім’я на шлейці собаки та регулярні новини про її навчання.</p></div><div class="need"><h3>Набір для навчання на запах</h3><div class="price">€650</div><p>Навчальні зразки з реальним запахом (TNT, RDX, PETN) для всієї групи.</p></div><div class="need"><h3>Корм для однієї собаки, 6 міс.</h3><div class="price">€420</div><p>Якісний корм для робочої собаки, що росте.</p></div><div class="need"><h3>Ветеринарний догляд, 6 міс.</h3><div class="price">€400</div><p>Щеплення, огляди та захист від паразитів для однієї собаки.</p></div><div class="need"><h3>Спорядження для однієї собаки</h3><div class="price">€300</div><p>Шлейка, повідці, переноска та іграшки-нагороди.</p></div><div class="need"><h3>Форма для кінолога</h3><div class="price">€400</div><p>Жилет, куртка, штани та кепка в кольорах GMAH.</p></div><div class="need"><h3>Навчання та сертифікація кінолога</h3><div class="price">€3 000</div><p>За одного кінолога, підготовка до міжнародної сертифікації.</p></div><div class="need"><h3>Тренажер першої допомоги собакам</h3><div class="price">від €25 000</div><p>Або €2 500 за оренду на час навчального курсу.</p></div></div>
+    <p class="note">Спонсорів ми вказуємо на сайті та у звітах.</p>
+    <div class="support-grid">
+      <div>
+        <p class="partner-box"><strong>Компаніям:</strong> партнерські пакети з вашим логотипом на формі кінологів і шлейках собак, на сайті та в соцмережах. Також дуже вітаємо допомогу продукцією та послугами (корм, ветеринарія, спорядження).</p>
+        <h3>Як це працює</h3>
+        <ol class="steps"><li>Оберіть потребу й надішліть форму.</li><li>Протягом 2 робочих днів ми надішлемо рахунок і реквізити: банківський переказ на рахунок асоціації або криптовалюта (Bitcoin, USDT, USDC, ETH).</li><li>Ви отримаєте згадку на сайті та новини про те, чого досягла ваша підтримка.</li></ol>
+        <p class="legal">Sydän Ukrainalle ry — зареєстрована неприбуткова асоціація у Фінляндії (Y-tunnus 3543515-1).</p>
+      </div>
+      <form class="callback" id="notify" novalidate>
+        <div><label for="nt-name">Ім’я (необов’язково)</label><input id="nt-name" autocomplete="name"></div>
+        <div><label for="nt-email">Email</label><input id="nt-email" type="email" autocomplete="email" required></div>
+        <div><label for="nt-type">Хочу підтримати</label>
+          <select id="nt-type"><option value="Щенок (€1 800)">Цуценя малінуа (€1 800)</option><option value="Набор образцов запахов (€650)">Набір для навчання на запах (€650)</option><option value="Корм для собаки (€420)">Корм для собаки (€420)</option><option value="Ветеринария для собаки (€400)">Ветеринарний догляд (€400)</option><option value="Снаряжение для собаки (€300)">Спорядження для собаки (€300)</option><option value="Форма кинолога (€400)">Форма для кінолога (€400)</option><option value="Обучение кинолога (€3 000)">Навчання кінолога (€3 000)</option><option value="Тренажёр первой помощи K9">Тренажер першої допомоги</option><option value="Партнёрство компании">Партнерство компанії</option><option value="Помощь продукцией или услугами">Продукція або послуги</option></select></div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="nt-website">Website</label><input id="nt-website" tabindex="-1" autocomplete="off"></div>
+        <label class="check"><input type="checkbox" id="nt-consent" required> <span>Я погоджуюся, що Sydän Ukrainalle ry збереже мої контакти, щоб відповісти на запит. <a href="/uk/privacy/">Політика конфіденційності</a></span></label>
+        <button class="btn" type="submit">Отримати деталі</button>
+        <p class="form-note" id="nt-note" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -754,7 +775,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       name:document.getElementById('nt-name').value,email:email,type:document.getElementById('nt-type').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('nt-website').value
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok){note.className='form-note ok';note.textContent='Дякуємо! Ми напишемо вам, щойно відкриються пожертви.';f.reset()}
+      if(d&&d.ok){note.className='form-note ok';note.textContent='Дякуємо! Ми відповімо протягом 2 робочих днів.';f.reset()}
       else{note.className='form-note err';note.textContent='Щось пішло не так. Напишіть на info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='Немає з’єднання. Спробуйте ще раз або напишіть на info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});

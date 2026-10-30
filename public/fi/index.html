@@ -263,6 +263,22 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .partner img{max-width:100%;max-height:100%;object-fit:contain;border-radius:50%}
 .partner.has-logo{border-style:solid;background:#fff;padding:14px}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center}.marquee{-webkit-mask-image:none;mask-image:none}.partner[aria-hidden="true"]{display:none}}
+
+/* Support: sponsor a need */
+.support .wrap{display:block}
+.support-head{max-width:760px}
+.needs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin:28px 0 12px}
+.need{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:6px}
+.need h3{margin:0;font-size:1.02rem;line-height:1.3}
+.need .price{font-weight:700;color:var(--orange);font-size:1.15rem}
+.need p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.45}
+.support .note{font-size:.95rem;color:var(--muted)}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:28px}
+.partner-box{border-left:4px solid var(--orange);padding:4px 0 4px 16px;margin:0 0 22px}
+.steps{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:10px}
+.steps li{line-height:1.5}
+.legal{font-size:.88rem;color:var(--muted);margin-top:18px}
+@media (max-width:860px){.support-grid{grid-template-columns:1fr;gap:28px}}
 </style>
 </head>
 <body>
@@ -520,25 +536,30 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 
 <section id="support" class="support">
   <div class="wrap">
-    <div>
+    <div class="support-head">
       <h2>Tue työtämme</h2>
-      <p class="lead">Verkkolahjoitukset avautuvat pian.</p>
-      <p>Viimeistelemme rahankeräyksen edellyttämiä lakisääteisiä vaiheita Suomessa, jotta jokainen lahjoitus vastaanotetaan läpinäkyvästi ja laillisesti. Jätä sähköpostiosoitteesi, niin kerromme heti, kun voit tukea hanketta.</p>
-      <div class="amounts" aria-label="Lahjoitussummat"><span>€10</span><span>€25</span><span>€50</span><span>€100</span><em>Tulossa pian</em></div>
-      <p class="note">Yritykset ja säätiöt: toivotamme kumppanuudet ja sponsoroinnin tervetulleiksi jo nyt. <a href="#contact">Ota yhteyttä</a></p>
+      <p class="lead">Valitse tietty tarve ja ryhdy sen tukijaksi. Tiedät tarkalleen, mihin tukesi käytetään, ja kerromme tuloksista.</p>
     </div>
-    <form class="callback" id="notify" novalidate>
-      <div><label for="nt-name">Nimi (vapaaehtoinen)</label><input id="nt-name" autocomplete="name"></div>
-      <div><label for="nt-email">Sähköposti</label><input id="nt-email" type="email" autocomplete="email" required></div>
-      <div><label for="nt-type">Haluaisin</label>
-        <select id="nt-type">
-          <option value="One-time donation">tehdä kertalahjoituksen</option><option value="Monthly donation">lahjoittaa kuukausittain</option><option value="Company or foundation">tukea yrityksenä tai säätiönä</option><option value="Equipment or services">auttaa laitteilla tai palveluilla</option>
-        </select></div>
-      <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="nt-website">Website</label><input id="nt-website" tabindex="-1" autocomplete="off"></div>
-      <label class="check"><input type="checkbox" id="nt-consent" required> <span>Hyväksyn, että Sydän Ukrainalle ry tallentaa sähköpostiosoitteeni ilmoittaakseen lahjoitusten avautumisesta. <a href="/fi/privacy/">Tietosuojaseloste</a></span></label>
-      <button class="btn" type="submit">Ilmoita minulle</button>
-      <p class="form-note" id="nt-note" aria-live="polite"></p>
-    </form>
+    <div class="needs"><div class="need"><h3>Malinois-pentu</h3><div class="price">1 800 €</div><p>Nimesi koiran valjaissa ja säännölliset kuulumiset sen koulutuksesta.</p></div><div class="need"><h3>Hajukoulutussarja</h3><div class="price">650 €</div><p>Aidon hajun koulutusnäytteet (TNT, RDX, PETN) koko ryhmälle.</p></div><div class="need"><h3>Yhden koiran ruoka, 6 kk</h3><div class="price">420 €</div><p>Laadukas ruoka kasvavalle työkoiralle.</p></div><div class="need"><h3>Eläinlääkärikulut, 6 kk</h3><div class="price">400 €</div><p>Rokotukset, tarkastukset ja loishoidot yhdelle koiralle.</p></div><div class="need"><h3>Yhden koiran varusteet</h3><div class="price">300 €</div><p>Valjaat, liinat, kuljetushäkki ja palkkalelut.</p></div><div class="need"><h3>Ohjaajan työasu</h3><div class="price">400 €</div><p>Liivi, takki, housut ja lippis GMAH:n väreissä.</p></div><div class="need"><h3>Ohjaajan koulutus ja sertifiointi</h3><div class="price">3 000 €</div><p>Ohjaajaa kohden, valmistautuminen kansainväliseen sertifiointiin.</p></div><div class="need"><h3>Koiran ensiavun koulutussimulaattori</h3><div class="price">alk. 25 000 €</div><p>Tai 2 500 € vuokraan koulutuksen ajaksi.</p></div></div>
+    <p class="note">Mainitsemme tukijat verkkosivuillamme ja raporteissamme.</p>
+    <div class="support-grid">
+      <div>
+        <p class="partner-box"><strong>Yrityksille:</strong> kumppanuuspaketit, joissa logonne näkyy ohjaajien työasuissa ja koirien valjaissa, verkkosivuillamme ja somessa. Myös tuotteet ja palvelut (ruoka, eläinlääkäri, varusteet) ovat lämpimästi tervetulleita.</p>
+        <h3>Näin se toimii</h3>
+        <ol class="steps"><li>Valitse tarve ja lähetä lomake.</li><li>Lähetämme kahden arkipäivän kuluessa laskun ja maksutiedot: tilisiirto yhdistyksen tilille tai kryptovaluutta (Bitcoin, USDT, USDC, ETH).</li><li>Saat näkyvyyttä sivuillamme ja tietoa siitä, mitä tukesi sai aikaan.</li></ol>
+        <p class="legal">Sydän Ukrainalle ry on Suomessa rekisteröity voittoa tavoittelematon yhdistys (Y-tunnus 3543515-1).</p>
+      </div>
+      <form class="callback" id="notify" novalidate>
+        <div><label for="nt-name">Nimi (vapaaehtoinen)</label><input id="nt-name" autocomplete="name"></div>
+        <div><label for="nt-email">Sähköposti</label><input id="nt-email" type="email" autocomplete="email" required></div>
+        <div><label for="nt-type">Haluan tukea</label>
+          <select id="nt-type"><option value="Щенок (€1 800)">Malinois-pentu (1 800 €)</option><option value="Набор образцов запахов (€650)">Hajukoulutussarja (650 €)</option><option value="Корм для собаки (€420)">Koiran ruoka (420 €)</option><option value="Ветеринария для собаки (€400)">Eläinlääkärikulut (400 €)</option><option value="Снаряжение для собаки (€300)">Koiran varusteet (300 €)</option><option value="Форма кинолога (€400)">Ohjaajan työasu (400 €)</option><option value="Обучение кинолога (€3 000)">Ohjaajan koulutus (3 000 €)</option><option value="Тренажёр первой помощи K9">Ensiapusimulaattori</option><option value="Партнёрство компании">Yrityskumppanuus</option><option value="Помощь продукцией или услугами">Tuotteet tai palvelut</option></select></div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="nt-website">Website</label><input id="nt-website" tabindex="-1" autocomplete="off"></div>
+        <label class="check"><input type="checkbox" id="nt-consent" required> <span>Hyväksyn, että Sydän Ukrainalle ry tallentaa yhteystietoni vastatakseen pyyntööni. <a href="/fi/privacy/">Tietosuojaseloste</a></span></label>
+        <button class="btn" type="submit">Pyydä tiedot</button>
+        <p class="form-note" id="nt-note" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -754,7 +775,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     fetch('/api/notify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       name:document.getElementById('nt-name').value,email:email,type:document.getElementById('nt-type').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('nt-website').value
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok){note.className='form-note ok';note.textContent='Kiitos! Lähetämme sinulle sähköpostia heti, kun lahjoitukset avautuvat.';f.reset()}
+      if(d&&d.ok){note.className='form-note ok';note.textContent='Kiitos! Vastaamme kahden arkipäivän kuluessa.';f.reset()}
       else{note.className='form-note err';note.textContent='Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
