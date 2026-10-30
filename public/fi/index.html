@@ -297,6 +297,11 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .inv-actions .primary{background:var(--green);color:var(--on-green);border-color:var(--green)}
 @media (max-width:860px){.support-grid{grid-template-columns:1fr;gap:28px}}
 @media print{body *{visibility:hidden}#invoice,#invoice *{visibility:visible}#invoice{position:absolute;left:0;top:0;width:100%;border:0}.inv-actions,.invoice .copy{display:none}}
+
+.codes{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start;margin:16px 0}
+.codes .qr svg{width:170px;height:170px;display:block;background:#fff;padding:10px;border-radius:8px}
+.codes .bar{flex:1 1 260px;min-width:0}
+.codes .bar svg{display:block;max-width:100%;height:auto;background:#fff;padding:10px;border-radius:8px}
 </style>
 </head>
 <body>
@@ -580,7 +585,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <p class="form-note" id="nt-note" aria-live="polite"></p>
       </form>
       <div class="invoice" id="invoice" hidden aria-live="polite"></div>
-      <script type="application/json" id="inv-i18n">{"title": "Lasku", "no": "Laskun numero", "date": "Päivä", "due": "Eräpäivä", "payee": "Saaja", "to": "Tukija", "item": "Kohde", "amount": "Summa", "vat": "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä.", "ref": "Viitenumero (käytä maksaessa)", "bank": "Pankki", "addr": "Lähetä tähän osoitteeseen", "btcNet": "Vain Bitcoin-verkko. Lähetä summaa vastaava määrä BTC:nä.", "evmNet": "Verkot: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Lähetä summaa vastaava määrä USDT:nä, USDC:nä, ETH:na tai BNB:nä.", "after": "Lähetä kryptomaksun jälkeen tapahtuman linkki osoitteeseen info@sydanukrainalle.org.", "copy": "Kopioi", "copied": "Kopioitu", "print": "Tallenna PDF / tulosta", "wa": "Lähetä WhatsAppiin", "tg": "Lähetä Telegramiin", "mailed": "Kopio laskusta on lähetetty sähköpostiisi.", "notmailed": "Tallenna lasku: käytä alla olevia painikkeita.", "again": "Uusi pyyntö", "noinv": "Kiitos! Tästä sovitaan erikseen: otamme yhteyttä kahden arkipäivän kuluessa.", "e_email": "Anna toimiva sähköpostiosoite.", "e_name": "Anna nimesi.", "e_consent": "Rastita suostumus, jotta voimme lähettää laskun.", "sending": "Laskua valmistellaan…", "e_gen": "Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org.", "e_net": "Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.", "share": "Lasku"}</script>
+      <script type="application/json" id="inv-i18n">{"title": "Lasku", "no": "Laskun numero", "date": "Päivä", "due": "Eräpäivä", "payee": "Saaja", "to": "Tukija", "item": "Kohde", "amount": "Summa", "vat": "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä.", "ref": "Viitenumero (käytä maksaessa)", "bank": "Pankki", "addr": "Lähetä tähän osoitteeseen", "btcNet": "Vain Bitcoin-verkko. Lähetä summaa vastaava määrä BTC:nä.", "evmNet": "Verkot: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Lähetä summaa vastaava määrä USDT:nä, USDC:nä, ETH:na tai BNB:nä.", "after": "Lähetä kryptomaksun jälkeen tapahtuman linkki osoitteeseen info@sydanukrainalle.org.", "copy": "Kopioi", "copied": "Kopioitu", "print": "Tallenna PDF / tulosta", "wa": "Lähetä WhatsAppiin", "tg": "Lähetä Telegramiin", "mailed": "Kopio laskusta on lähetetty sähköpostiisi.", "notmailed": "Tallenna lasku: käytä alla olevia painikkeita.", "again": "Uusi pyyntö", "noinv": "Kiitos! Tästä sovitaan erikseen: otamme yhteyttä kahden arkipäivän kuluessa.", "e_email": "Anna toimiva sähköpostiosoite.", "e_name": "Anna nimesi.", "e_consent": "Rastita suostumus, jotta voimme lähettää laskun.", "sending": "Laskua valmistellaan…", "e_gen": "Jokin meni vikaan. Kirjoita osoitteeseen info@sydanukrainalle.org.", "e_net": "Ei yhteyttä. Yritä uudelleen tai kirjoita osoitteeseen info@sydanukrainalle.org.", "share": "Lasku", "qrBank": "Skannaa pankkisovelluksella (SEPA QR, EU)", "bar": "Pankkiviivakoodi", "barHint": "Skannaa pankkisovelluksella tai syötä virtuaaliviivakoodi:", "qrCrypto": "Skannaa kryptolompakolla", "refShort": "Viite"}</script>
       </div>
     </div>
   </div>
@@ -806,6 +811,26 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   function copyBtn(text){var b=el('button','copy',T.copy);b.type='button';b.onclick=function(){
     (navigator.clipboard?navigator.clipboard.writeText(text):Promise.reject()).then(function(){b.textContent=T.copied;setTimeout(function(){b.textContent=T.copy},1500)}).catch(function(){})};return b}
   function payLine(parent,label,value){var w=el('div');w.appendChild(el('div','small',label));var l=el('div','payline');l.appendChild(el('span','mono',value));l.appendChild(copyBtn(value));w.appendChild(l);parent.appendChild(w)}
+
+  function codes(parent,inv,pay){
+    var wrap=el('div','codes');
+    try{
+      if(inv.method==='bank'){
+        var iban=pay.iban.replace(/\s/g,'');
+        var d=inv.due.split('.');
+        var ref=(Array(21).join('0')+inv.ref).slice(-20);
+        var vb='4'+iban.slice(2)+('000000'+Math.floor(inv.eur)).slice(-6)+'00'+'000'+ref+d[2].slice(2)+d[1]+d[0];
+        var epc=['BCD','002','1','SCT',pay.bic,pay.payee,iban,'EUR'+Number(inv.eur).toFixed(2),'','',T.refShort+' '+inv.ref+' '+inv.no,''].join('\n');
+        if(window.qrcode){var q=qrcode(0,'M');q.addData(epc);q.make();var qb=el('div','qr');qb.innerHTML=q.createSvgTag(4,0);qb.appendChild(el('p','small',T.qrBank));wrap.appendChild(qb)}
+        if(window.JsBarcode){var bb=el('div','bar');bb.appendChild(el('p','small',T.bar));var sv=document.createElementNS('http://www.w3.org/2000/svg','svg');bb.appendChild(sv);
+          JsBarcode(sv,vb,{format:'CODE128C',displayValue:false,height:70,width:1.4,margin:0});
+          bb.appendChild(el('p','small',T.barHint));var l=el('div','payline');l.appendChild(el('span','mono',vb));l.appendChild(copyBtn(vb));bb.appendChild(l);wrap.appendChild(bb)}
+      }else if(window.qrcode){
+        var a=inv.method==='btc'?'bitcoin:'+pay.btc:pay.evm;var q2=qrcode(0,'M');q2.addData(a);q2.make();
+        var qc=el('div','qr');qc.innerHTML=q2.createSvgTag(4,0);qc.appendChild(el('p','small',T.qrCrypto));wrap.appendChild(qc)}
+    }catch(e){}
+    if(wrap.childNodes.length)parent.appendChild(wrap);
+  }
   function render(inv,pay,mailed,name,email){
     box.innerHTML='';
     box.appendChild(el('h3',null,T.title));
@@ -830,6 +855,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       summary=T.share+' '+inv.no+'\n'+inv.item+': €'+inv.eur+'\n'+T.addr+': '+a+'\n'+(inv.method==='btc'?T.btcNet:T.evmNet)+'\n'+T.due+': '+inv.due;
     }
     box.appendChild(p);
+    codes(box,inv,pay);
     box.appendChild(el('p','small',T.vat+' '+pay.payee+', '+pay.address+', '+pay.email));
     box.appendChild(el('p','small',mailed?T.mailed:T.notmailed));
     var act=el('div','inv-actions');
@@ -912,5 +938,6 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   form.addEventListener('submit',function(e){e.preventDefault();var v=input.value.trim().slice(0,1000);if(!v)return;input.value='';ask(v)});
 })();
 </script>
+<script src="/js/qrcode.js" defer></script><script src="/js/barcode128.min.js" defer></script>
 </body>
 </html>
