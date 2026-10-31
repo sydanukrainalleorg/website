@@ -8,6 +8,8 @@
 //   ANTHROPIC_API_KEY  — optional. If set, the chat uses Claude; otherwise Cloudflare Workers AI (free tier).
 
 import { SYSTEM_PROMPT } from "./knowledge.js";
+import qrcode from "./qrcode.js";
+import { invoicePdf } from "./invoice-pdf.js";
 
 const CLAUDE_MODEL = "claude-haiku-5-5";
 const WORKERS_AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast";
@@ -144,19 +146,27 @@ function finnishRef(base) {
 const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 const MAIL_T = {
-  en: { subj: "Invoice", hi: "Thank you for supporting Global Mine Action Hub!", item: "Item", amount: "Amount", due: "Due date", ref: "Reference", vat: "No VAT: the association is not VAT-registered.", addr: "Send to this address", evmNet: "Networks: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Send the equivalent of the amount in USDT, USDC, ETH or BNB.", btcNet: "Bitcoin network only. Send the equivalent of the amount in BTC.", after: "After a crypto payment, please reply to this email with the transaction link." },
-  uk: { subj: "Рахунок", hi: "Дякуємо за підтримку Global Mine Action Hub!", item: "Призначення", amount: "Сума", due: "Сплатити до", ref: "Референс", vat: "Без ПДВ: асоціація не є платником ПДВ.", addr: "Надішліть на цю адресу", evmNet: "Мережі: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Надішліть еквівалент суми в USDT, USDC, ETH або BNB.", btcNet: "Лише мережа Bitcoin. Надішліть еквівалент суми в BTC.", after: "Після криптоплатежу дайте відповідь на цей лист із посиланням на транзакцію." },
-  fi: { subj: "Lasku", hi: "Kiitos, että tuet Global Mine Action Hubia!", item: "Kohde", amount: "Summa", due: "Eräpäivä", ref: "Viitenumero", vat: "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä.", addr: "Lähetä tähän osoitteeseen", evmNet: "Verkot: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Lähetä summaa vastaava määrä USDT:nä, USDC:nä, ETH:na tai BNB:nä.", btcNet: "Vain Bitcoin-verkko. Lähetä summaa vastaava määrä BTC:nä.", after: "Vastaa kryptomaksun jälkeen tähän viestiin ja liitä tapahtuman linkki." },
+  en: { subj: "Invoice", hi: "Thank you for supporting Global Mine Action Hub!", item: "Item", amount: "Amount", due: "Due date", ref: "Reference", vat: "No VAT: the association is not VAT-registered.", addr: "Send to this address", evmNet: "Networks: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Send the equivalent of the amount in USDT, USDC, ETH or BNB.", btcNet: "Bitcoin network only. Send the equivalent of the amount in BTC.", after: "After a crypto payment, please reply to this email with the transaction link.", pdf: "The invoice is attached as a PDF." },
+  uk: { subj: "Рахунок", hi: "Дякуємо за підтримку Global Mine Action Hub!", item: "Призначення", amount: "Сума", due: "Сплатити до", ref: "Референс", vat: "Без ПДВ: асоціація не є платником ПДВ.", addr: "Надішліть на цю адресу", evmNet: "Мережі: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Надішліть еквівалент суми в USDT, USDC, ETH або BNB.", btcNet: "Лише мережа Bitcoin. Надішліть еквівалент суми в BTC.", after: "Після криптоплатежу дайте відповідь на цей лист із посиланням на транзакцію.", pdf: "Рахунок у форматі PDF додано до листа." },
+  fi: { subj: "Lasku", hi: "Kiitos, että tuet Global Mine Action Hubia!", item: "Kohde", amount: "Summa", due: "Eräpäivä", ref: "Viitenumero", vat: "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä.", addr: "Lähetä tähän osoitteeseen", evmNet: "Verkot: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Lähetä summaa vastaava määrä USDT:nä, USDC:nä, ETH:na tai BNB:nä.", btcNet: "Vain Bitcoin-verkko. Lähetä summaa vastaava määrä BTC:nä.", after: "Vastaa kryptomaksun jälkeen tähän viestiin ja liitä tapahtuman linkki.", pdf: "Lasku on liitteenä PDF-tiedostona." },
 };
 
-async function emailInvoice(env, to, name, lang, inv) {
+async function emailInvoice(env, to, name, lang, inv, need) {
   if (!env.RESEND_API_KEY) return false;
+  let attachments;
+  try {
+    const pdf = invoicePdf({ ...inv, itemEn: need.en, itemFi: need.fi }, { name, email: to }, PAY, qrcode);
+    attachments = [{ filename: `${inv.no}.pdf`, content: btoa(pdf) }];
+  } catch (e) {
+    console.log("invoice pdf failed", e);
+  }
   const t = MAIL_T[lang] || MAIL_T.en;
   const pay = inv.method === "bank"
     ? `IBAN: <b>${PAY.iban}</b><br>BIC: ${PAY.bic} (${PAY.bank})<br>${t.ref}: <b>${inv.ref}</b>`
     : `${t.addr}:<br><b style="font-family:monospace">${inv.method === "btc" ? PAY.btc : PAY.evm}</b><br>${inv.method === "btc" ? t.btcNet : t.evmNet}<br>${t.after}`;
   const html = `<div style="font-family:Arial,sans-serif;max-width:560px;color:#24302A">
 <p>${t.hi}</p>
+${attachments ? `<p>${t.pdf}</p>` : ""}
 <h2 style="margin:0 0 8px">${t.subj} ${inv.no}</h2>
 <p>${esc(name)}<br>${esc(to)}</p>
 <p>${t.item}: <b>${inv.item}</b><br>${t.amount}: <b>€${inv.eur}</b><br>${t.due}: ${inv.due}</p>
@@ -165,7 +175,7 @@ async function emailInvoice(env, to, name, lang, inv) {
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, "content-type": "application/json" },
-    body: JSON.stringify({ from: `Sydän Ukrainalle ry <${PAY.email}>`, to: [to], bcc: [PAY.email], reply_to: PAY.email, subject: `${t.subj} ${inv.no} — Global Mine Action Hub`, html }),
+    body: JSON.stringify({ from: `Sydän Ukrainalle ry <${PAY.email}>`, to: [to], bcc: [PAY.email], reply_to: PAY.email, subject: `${t.subj} ${inv.no} — Global Mine Action Hub`, html, attachments }),
   });
   return r.ok;
 }
@@ -210,7 +220,7 @@ async function handleNotify(request, env) {
 
   let mailed = false;
   if (inv) {
-    try { mailed = await emailInvoice(env, email, name, lang, inv); } catch { mailed = false; }
+    try { mailed = await emailInvoice(env, email, name, lang, inv, need); } catch { mailed = false; }
   }
 
   const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
