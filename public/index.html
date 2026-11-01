@@ -302,6 +302,12 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .codes .qr svg{width:170px;height:170px;display:block;background:#fff;padding:10px;border-radius:8px}
 .codes .bar{flex:1 1 260px;min-width:0}
 .codes .bar svg{display:block;max-width:100%;height:auto;background:#fff;padding:10px;border-radius:8px}
+
+/* supporting membership */
+.membership .need.tier .price small{font-size:.8rem;font-weight:500;color:var(--muted)}
+.membership .about-box{border-left:4px solid var(--orange);padding:4px 0 4px 16px;margin:0 0 22px}
+.membership .about-box h3{margin:0 0 6px;font-size:1.05rem}
+.membership .about-box p{margin:0}
 </style>
 </head>
 <body>
@@ -523,7 +529,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <h2>Get involved</h2>
     <div class="three">
       <div><h3>Organisations</h3><p>Mine action operators, research teams, companies and foundations: let’s test, fund and use this technology together.</p><a href="#contact">Discuss a partnership</a></div>
-      <div><h3>Donors</h3><p>Your support funds the bee pilot, dog training and risk education for families in affected areas.</p><a href="#support">Ask how to support</a></div>
+      <div><h3>Donors</h3><p>Your support funds the bee pilot, dog training and risk education for families in affected areas.</p><a href="#support">Ask how to support</a><br><a href="#membership">Become a supporting member</a></div>
       <div><h3>Volunteers</h3><p>Translators, engineers, drone pilots, developers and educators: your skills can help keep people safe.</p><a href="#join">Offer your help</a></div>
     </div>
   </div>
@@ -586,6 +592,40 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       </form>
       <div class="invoice" id="invoice" hidden aria-live="polite"></div>
       <script type="application/json" id="inv-i18n">{"title": "Invoice", "no": "Invoice no.", "date": "Date", "due": "Due date", "payee": "Payee", "to": "Sponsor", "item": "Item", "amount": "Amount", "vat": "No VAT: the association is not VAT-registered.", "ref": "Reference (enter it with the payment)", "bank": "Bank", "addr": "Send to this address", "btcNet": "Bitcoin network only. Send the equivalent of the amount in BTC.", "evmNet": "Networks: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Send the equivalent of the amount in USDT, USDC, ETH or BNB.", "after": "After a crypto payment, please email the transaction link to info@sydanukrainalle.org.", "copy": "Copy", "copied": "Copied", "print": "Save PDF / print", "wa": "Send to WhatsApp", "tg": "Send to Telegram", "mailed": "A copy of the invoice has been sent to your email.", "notmailed": "Save this invoice: use the buttons below to keep a copy.", "again": "New request", "noinv": "Thank you! This option is agreed individually: we will contact you within 2 working days.", "e_email": "Enter a valid email address.", "e_name": "Enter your name.", "e_consent": "Tick the consent box so we can send the invoice.", "sending": "Preparing your invoice…", "e_gen": "Something went wrong. Please write to info@sydanukrainalle.org.", "e_net": "No connection. Please try again or write to info@sydanukrainalle.org.", "share": "Invoice", "qrBank": "Scan with your banking app (SEPA QR, EU)", "bar": "Finnish bank barcode", "barHint": "Scan in a Finnish banking app or type the virtual barcode:", "qrCrypto": "Scan with your crypto wallet", "refShort": "Reference"}</script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="membership" class="support membership">
+  <div class="wrap">
+    <div class="support-head">
+      <h2>Become a supporting member</h2>
+      <p class="lead">A small monthly fee, steady support. Supporting members let us plan ahead: dog training, food and vet care every month.</p>
+    </div>
+    <div class="needs"><button type="button" class="need tier" data-tier="basic"><h3>Supporting member</h3><span class="price">€5 <small>/ month</small></span><p>Regular news from the training ground and our annual report.</p><span class="pick">Choose →</span></button><button type="button" class="need tier" data-tier="supporter"><h3>Supporter</h3><span class="price">€10 <small>/ month</small></span><p>Helps cover scent training and equipment for our dogs.</p><span class="pick">Choose →</span></button><button type="button" class="need tier" data-tier="godparent"><h3>Dog’s godparent</h3><span class="price">€25 <small>/ month</small></span><p>About a third of one working dog’s monthly food and care. We send you news about the dog you support.</p><span class="pick">Choose →</span></button><button type="button" class="need tier" data-tier="company"><h3>Company member</h3><span class="price">€50 <small>/ month</small></span><p>Your company logo in our partners section and a thank-you on our social media.</p><span class="pick">Choose →</span></button></div>
+    <div class="support-grid">
+      <div>
+        <div class="about-box"><h3>What supporting membership means</h3><p>You become a supporting member of Sydän Ukrainalle ry, a registered non-profit association in Finland. Supporting members do not vote and do not take part in running the association. You receive news about our work and are welcome at our meetings. You can leave at any time with one email.</p></div>
+        <h3>How it works</h3>
+        <ol class="steps"><li>Choose a level and fill in the form.</li><li>You get your personal reference number and payment details right away: on screen and by email.</li><li>Set up a recurring payment (standing order) in your bank with this reference. It takes two minutes, and you can stop it at any time.</li><li>The board confirms your membership and we send you a welcome email.</li></ol>
+        <p class="legal">Sydän Ukrainalle ry is a registered non-profit association in Finland (business ID 3543515-1). No VAT: the association is not VAT-registered.</p>
+      </div>
+      <div>
+      <form class="callback" id="member-form" novalidate>
+        <div><label for="mb-tier">Membership level</label><select id="mb-tier"><option value="basic">Supporting member — €5 / month</option><option value="supporter">Supporter — €10 / month</option><option value="godparent">Dog’s godparent — €25 / month</option><option value="company">Company member — €50 / month</option></select></div>
+        <div><label for="mb-period">Payment interval</label><select id="mb-period"><option value="m">Monthly</option><option value="y">Yearly (12 × monthly fee)</option></select></div>
+        <div><label for="mb-pay">Payment method</label><select id="mb-pay"><option value="bank">Bank transfer (EUR)</option><option value="btc">Bitcoin (BTC)</option><option value="evm">USDT / USDC / ETH / BNB</option></select></div>
+        <div><label for="mb-name">Name or company</label><input id="mb-name" autocomplete="name" required></div>
+        <div><label for="mb-email">Email</label><input id="mb-email" type="email" autocomplete="email" required></div>
+        <div><label for="mb-phone">Phone or WhatsApp (optional)</label><input id="mb-phone" type="tel" autocomplete="tel"></div>
+        <div style="position:absolute;left:-9999px" aria-hidden="true"><label for="mb-website">Website</label><input id="mb-website" tabindex="-1" autocomplete="off"></div>
+        <label class="check"><input type="checkbox" id="mb-consent" required> <span>I agree that Sydän Ukrainalle ry may keep my details in its member register to manage my membership. <a href="/privacy/">Privacy policy</a></span></label>
+        <button class="btn" type="submit">Become a member</button>
+        <p class="form-note" id="mb-note" aria-live="polite"></p>
+      </form>
+      <div class="invoice" id="member-result" hidden aria-live="polite"></div>
+      <script type="application/json" id="mb-i18n">{"to": "Member", "title": "Welcome to Sydän Ukrainalle ry!", "no": "Application no.", "level": "Level", "amount": "Fee", "m": "per month", "y": "per year", "payee": "Payee", "bank": "Bank", "ref": "Your personal reference number: use it for every payment", "howBank": "In your bank app, set up a recurring payment (standing order) with these details: every month or every year, as you chose. Always use your reference number, so we can see that the payment is your membership fee.", "qr": "Scan with your banking app for the first payment (SEPA QR, EU)", "addr": "Send to this address", "btcNet": "Bitcoin network only. Send the equivalent of the fee in BTC.", "evmNet": "Networks: BNB Smart Chain, Ethereum, Polygon, Arbitrum, Base. Send the equivalent of the fee in USDT, USDC, ETH or BNB.", "cryptoHow": "Send the fee every month or every year, as you chose, and email the transaction link to info@sydanukrainalle.org.", "qrCrypto": "Scan with your crypto wallet", "board": "The board confirms new members. We will send you a welcome email.", "mailed": "These details have also been sent to your email.", "notmailed": "Save these details: use the button below to keep a copy.", "copy": "Copy", "copied": "Copied", "print": "Save PDF / print", "again": "Back", "e_name": "Enter your name or company name.", "e_email": "Enter a valid email address.", "e_consent": "Tick the consent box so we can register your membership.", "sending": "Sending…", "e_gen": "Something went wrong. Please write to info@sydanukrainalle.org.", "e_net": "No connection. Please try again or write to info@sydanukrainalle.org.", "refShort": "Membership"}</script>
       </div>
     </div>
   </div>
@@ -879,6 +919,76 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
       if(d&&d.ok&&d.invoice){note.textContent='';render(d.invoice,d.pay,d.mailed,name,email)}
       else if(d&&d.ok){note.className='form-note ok';note.textContent=T.noinv;f.reset();syncPay();markCard()}
+      else{note.className='form-note err';note.textContent=T.e_gen}
+    }).catch(function(){note.className='form-note err';note.textContent=T.e_net})
+    .finally(function(){btn.disabled=false});
+  });
+})();
+
+// supporting membership: application → personal reference number and payment details (sent to the team's Telegram and the member's email)
+(function(){
+  var f=document.getElementById('member-form'); if(!f)return;
+  var T=JSON.parse(document.getElementById('mb-i18n').textContent);
+  var note=document.getElementById('mb-note'), btn=f.querySelector('button[type="submit"]'), box=document.getElementById('member-result');
+  var sel=document.getElementById('mb-tier');
+  function mark(){document.querySelectorAll('.need.tier').forEach(function(c){c.classList.toggle('is-selected',c.dataset.tier===sel.value)})}
+  sel.addEventListener('change',mark);
+  document.querySelectorAll('.need.tier').forEach(function(c){c.addEventListener('click',function(){
+    sel.value=c.dataset.tier;mark();f.scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){document.getElementById('mb-name').focus({preventScroll:true})},450);
+  })});
+  mark();
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function copyBtn(text){var b=el('button','copy',T.copy);b.type='button';b.onclick=function(){
+    (navigator.clipboard?navigator.clipboard.writeText(text):Promise.reject()).then(function(){b.textContent=T.copied;setTimeout(function(){b.textContent=T.copy},1500)}).catch(function(){})};return b}
+  function payLine(parent,label,value){var w=el('div');w.appendChild(el('div','small',label));var l=el('div','payline');l.appendChild(el('span','mono',value));l.appendChild(copyBtn(value));w.appendChild(l);parent.appendChild(w)}
+  function money(n){return document.documentElement.lang==='fi'?n+' €':'€'+n}
+  function render(m,pay,mailed,name,email){
+    box.innerHTML='';
+    box.appendChild(el('h3',null,T.title));
+    box.appendChild(el('p','inv-no',T.no+' '+m.no));
+    var dl=el('dl');
+    function row(k,v,c){dl.appendChild(el('dt',null,k));dl.appendChild(el('dd',c||null,v))}
+    row(T.level,m.label);row(T.amount,money(m.amount)+' '+(m.period==='y'?T.y:T.m),'amount');
+    row(T.payee,pay.payee+' (Y-tunnus '+pay.businessId+')');row(T.to,name+', '+email);
+    box.appendChild(dl);
+    var p=el('div');
+    var codes=el('div','codes');
+    try{
+      if(m.method==='bank'){
+        payLine(p,T.ref,m.ref);payLine(p,'IBAN',pay.iban);payLine(p,'BIC ('+T.bank+': '+pay.bank+')',pay.bic);
+        p.appendChild(el('p','small',T.howBank));
+        if(window.qrcode){var epc=['BCD','002','1','SCT',pay.bic,pay.payee,pay.iban.replace(/\s/g,''),'EUR'+Number(m.amount).toFixed(2),'','',T.refShort+' '+m.ref+' '+m.no,''].join('\n');
+          var q=qrcode(0,'M');q.addData(epc);q.make();var qb=el('div','qr');qb.innerHTML=q.createSvgTag(4,0);qb.appendChild(el('p','small',T.qr));codes.appendChild(qb)}
+      }else{
+        var a=m.method==='btc'?pay.btc:pay.evm;
+        payLine(p,T.addr,a);p.appendChild(el('p','small',m.method==='btc'?T.btcNet:T.evmNet));p.appendChild(el('p','small',T.cryptoHow));
+        if(window.qrcode){var q2=qrcode(0,'M');q2.addData(m.method==='btc'?'bitcoin:'+a:a);q2.make();var qc=el('div','qr');qc.innerHTML=q2.createSvgTag(4,0);qc.appendChild(el('p','small',T.qrCrypto));codes.appendChild(qc)}
+      }
+    }catch(e){}
+    box.appendChild(p);
+    if(codes.childNodes.length)box.appendChild(codes);
+    box.appendChild(el('p','small',T.board));
+    box.appendChild(el('p','small',mailed?T.mailed:T.notmailed));
+    var act=el('div','inv-actions');
+    var pr=el('button','primary',T.print);pr.type='button';pr.onclick=function(){window.print()};act.appendChild(pr);
+    var back=el('button',null,T.again);back.type='button';back.onclick=function(){box.hidden=true;f.hidden=false;f.reset();mark();note.textContent=''};act.appendChild(back);
+    box.appendChild(act);
+    f.hidden=true;box.hidden=false;box.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim()};
+    var name=v('mb-name'),email=v('mb-email');
+    note.className='form-note err';
+    if(!name){note.textContent=T.e_name;return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){note.textContent=T.e_email;return}
+    if(!document.getElementById('mb-consent').checked){note.textContent=T.e_consent;return}
+    btn.disabled=true;note.className='form-note';note.textContent=T.sending;
+    fetch('/api/member',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      tier:sel.value,period:v('mb-period'),method:v('mb-pay'),name:name,email:email,phone:v('mb-phone'),consent:true,lang:document.documentElement.lang,website:v('mb-website')
+    })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
+      if(d&&d.ok&&d.member){note.textContent='';render(d.member,d.pay,d.mailed,name,email)}
       else{note.className='form-note err';note.textContent=T.e_gen}
     }).catch(function(){note.className='form-note err';note.textContent=T.e_net})
     .finally(function(){btn.disabled=false});

@@ -243,6 +243,104 @@ async function handleNotify(request, env) {
   return json({ ok: true, invoice: inv, mailed, pay: inv ? PAY : null });
 }
 
+/* ---------- supporting membership → reference number + Telegram (+ email) ---------- */
+
+const TIERS = {
+  basic:     { ru: "Поддерживающий член", en: "Supporting member", uk: "Підтримуючий член", fi: "Kannatusjäsen", eur: 5 },
+  supporter: { ru: "Сторонник", en: "Supporter", uk: "Прихильник", fi: "Tukija", eur: 10 },
+  godparent: { ru: "Крёстный собаки", en: "Dog’s godparent", uk: "Хрещений собаки", fi: "Koiran kummi", eur: 25 },
+  company:   { ru: "Компания-член", en: "Company member", uk: "Компанія-член", fi: "Yrityskannatusjäsen", eur: 50 },
+};
+
+const MEMBER_MAIL = {
+  en: { subj: "Your supporting membership", hi: "Thank you for becoming a supporting member of Sydän Ukrainalle ry!", level: "Level", fee: "Fee", m: "per month", y: "per year", ref: "Your personal reference number", how: "In your bank app, set up a recurring payment (standing order) with these details: every month or every year, as you chose. Always use your reference number.", crypto: "Send the fee every month or every year, as you chose, and reply to this email with the transaction link.", board: "The board confirms new members, and we will send you a welcome email. You can leave at any time by replying to this email. Supporting members do not vote and do not take part in running the association.", vat: "No VAT: the association is not VAT-registered." },
+  uk: { subj: "Ваше підтримуюче членство", hi: "Дякуємо, що стали підтримуючим членом Sydän Ukrainalle ry!", level: "Рівень", fee: "Внесок", m: "на місяць", y: "на рік", ref: "Ваш персональний референс", how: "У застосунку свого банку налаштуйте регулярний платіж із цими реквізитами: щомісяця або раз на рік, як ви обрали. Завжди вказуйте свій референс.", crypto: "Надсилайте внесок щомісяця або раз на рік, як ви обрали, і дайте відповідь на цей лист із посиланням на транзакцію.", board: "Правління підтверджує нових членів, і ми надішлемо вам вітального листа. Вийти можна будь-коли: просто дайте відповідь на цей лист. Підтримуючі члени не голосують і не беруть участі в управлінні асоціацією.", vat: "Без ПДВ: асоціація не є платником ПДВ." },
+  fi: { subj: "Kannatusjäsenyytesi", hi: "Kiitos, että liityit Sydän Ukrainalle ry:n kannatusjäseneksi!", level: "Taso", fee: "Maksu", m: "kuukaudessa", y: "vuodessa", ref: "Henkilökohtainen viitenumerosi", how: "Tee pankkisovelluksessasi toistuva maksu näillä tiedoilla: kuukausittain tai vuosittain valintasi mukaan. Käytä aina viitenumeroasi.", crypto: "Lähetä maksu kuukausittain tai vuosittain valintasi mukaan ja vastaa tähän viestiin tapahtuman linkillä.", board: "Hallitus hyväksyy uudet jäsenet, ja lähetämme sinulle tervetuloviestin. Voit erota milloin tahansa vastaamalla tähän viestiin. Kannatusjäsenellä ei ole äänioikeutta, eikä hän osallistu yhdistyksen hallintoon.", vat: "Ei arvonlisäveroa: yhdistys ei ole alv-rekisterissä." },
+};
+
+async function emailMember(env, to, name, lang, m) {
+  if (!env.RESEND_API_KEY) return false;
+  const t = MEMBER_MAIL[lang] || MEMBER_MAIL.en;
+  const money = lang === "fi" ? `${m.amount} €` : `€${m.amount}`;
+  const pay = m.method === "bank"
+    ? `${t.ref}: <b style="font-size:18px">${m.ref}</b><br>IBAN: <b>${PAY.iban}</b><br>BIC: ${PAY.bic} (${PAY.bank})<br>${PAY.payee}</p><p>${t.how}`
+    : `<b style="font-family:monospace">${m.method === "btc" ? PAY.btc : PAY.evm}</b></p><p>${t.crypto}`;
+  const html = `<div style="font-family:Arial,sans-serif;max-width:560px;color:#24302A">
+<p>${t.hi}</p>
+<h2 style="margin:0 0 8px">${m.no}</h2>
+<p>${esc(name)}<br>${esc(to)}</p>
+<p>${t.level}: <b>${m.label}</b><br>${t.fee}: <b>${money} ${m.period === "y" ? t.y : t.m}</b></p>
+<p>${pay}</p>
+<p>${t.board}</p>
+<p style="color:#666;font-size:13px">${t.vat}<br>${PAY.payee} (Y-tunnus ${PAY.businessId}), ${PAY.address}, ${PAY.email}</p></div>`;
+  const r = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, "content-type": "application/json" },
+    body: JSON.stringify({ from: `Sydän Ukrainalle ry <${PAY.email}>`, to: [to], bcc: [PAY.email], reply_to: PAY.email, subject: `${t.subj} ${m.no} — Global Mine Action Hub`, html }),
+  });
+  return r.ok;
+}
+
+async function handleMember(request, env) {
+  if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return json({ ok: false, error: "bad_request" }, 400);
+  }
+  if (clean(data.website, 200)) return json({ ok: true }); // spam trap
+
+  const email = clean(data.email, 120);
+  const name = clean(data.name, 100);
+  const phone = clean(data.phone, 40) || "—";
+  const lang = ["en", "uk", "fi"].includes(clean(data.lang, 5)) ? clean(data.lang, 5) : "en";
+  const tier = TIERS[clean(data.tier, 20)];
+  const period = clean(data.period, 2) === "y" ? "y" : "m";
+  const method = METHODS[clean(data.method, 10)] ? clean(data.method, 10) : "bank";
+  if (!tier || !name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) {
+    return json({ ok: false, error: "invalid" }, 400);
+  }
+  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return json({ ok: false, error: "not_configured" }, 500);
+
+  const now = new Date();
+  const hel = new Date(now.toLocaleString("en-US", { timeZone: "Europe/Helsinki" }));
+  const pad = (n) => String(n).padStart(2, "0");
+  const stamp = `${String(hel.getFullYear()).slice(2)}${pad(hel.getMonth() + 1)}${pad(hel.getDate())}`;
+  const rnd = String(Math.floor(1000 + Math.random() * 9000));
+  // permanent personal reference: starts with 9 so it never matches a sponsor invoice reference
+  const m = {
+    no: `GMAH-M-${stamp}-${rnd}`,
+    ref: finnishRef(`9${stamp}${rnd}`),
+    tier: clean(data.tier, 20), label: tier[lang] || tier.en,
+    eur: tier.eur, period, amount: period === "y" ? tier.eur * 12 : tier.eur, method,
+  };
+
+  let mailed = false;
+  try { mailed = await emailMember(env, email, name, lang, m); } catch { mailed = false; }
+
+  const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
+  const text =
+    `🤝 Заявка на поддерживающее членство — sydanukrainalle.org\n\n` +
+    `Уровень: ${tier.ru} (€${tier.eur}/мес)\n` +
+    `Оплата: ${period === "y" ? `раз в год, €${m.amount}` : `ежемесячно, €${m.amount}`}, ${METHODS[method]}\n` +
+    `Заявка: ${m.no}\nПерсональный референс: ${m.ref}\n` +
+    `Письмо с реквизитами: ${mailed ? "отправлено" : "не отправлено"}\n` +
+    `\nИмя / компания: ${name}\nEmail: ${email}\nТелефон / WhatsApp: ${phone}\n` +
+    `Язык сайта: ${LANGS[lang]}\n` +
+    `Страна посетителя: ${request.cf?.country || "—"}\n` +
+    `Время (Хельсинки): ${now.toLocaleString("ru-RU", { timeZone: "Europe/Helsinki" })}\n\n` +
+    `Нужно: утвердить в правлении, внести в реестр членов, отправить приветственное письмо.`;
+
+  const tg = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
+  });
+  if (!tg.ok) return json({ ok: false, error: "send_failed" }, 502);
+  return json({ ok: true, member: m, mailed, pay: PAY });
+}
+
 /* ---------- site chat ---------- */
 
 const MAX_MESSAGE = 1000;   // characters per message
@@ -456,6 +554,7 @@ export default {
     if (url.pathname === "/api/chat") return handleChat(request, env);
     if (url.pathname === "/api/notify") return handleNotify(request, env);
     if (url.pathname === "/api/join") return handleJoin(request, env);
+    if (url.pathname === "/api/member") return handleMember(request, env);
     if (url.pathname === "/api/telegram") return handleTelegram(request, env, ctx);
     if (url.pathname === "/api/telegram/setup") return handleTelegramSetup(request, env);
     return env.ASSETS.fetch(request);
