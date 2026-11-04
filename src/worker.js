@@ -110,6 +110,55 @@ async function handleJoin(request, env) {
   return json({ ok: true });
 }
 
+/* ---------- handler talent pool (/dog-handler/, /uk/kinolog/, /fi/koiranohjaaja/) → Telegram ---------- */
+
+const RESERVE = {
+  country: { FI: "Финляндия", EU: "другая страна ЕС", UA: "Украина", OT: "другая страна" },
+  dog: { none: "нет, хочет научиться", own: "есть своя собака", sport: "дрессировка / кинологический спорт", service: "служебная кинология (армия, полиция, ГСЧС)", pro: "профессиональный кинолог / инструктор" },
+  english: { "0": "не владеет", A: "начальный (A1–A2)", B: "средний (B1–B2)", C: "свободный (C1–C2)" },
+  ret: { "6m": "в течение полугода", "1y": "в течение года", later: "позже", ns: "ещё не решил(а)", ua: "уже в Украине" },
+};
+
+async function handleReserve(request, env) {
+  if (request.method !== "POST") return json({ ok: false, error: "method_not_allowed" }, 405);
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return json({ ok: false, error: "bad_request" }, 400);
+  }
+  if (clean(data.website, 200)) return json({ ok: true }); // spam trap
+  const name = clean(data.name, 100);
+  const email = clean(data.email, 120);
+  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || data.consent !== true) return json({ ok: false, error: "invalid" }, 400);
+  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return json({ ok: false, error: "not_configured" }, 500);
+
+  const pick = (map, key) => map[clean(key, 10)] || "—";
+  const LANGS = { en: "английский", uk: "украинский", fi: "финский" };
+  const text =
+    `🎯 Кадровый резерв кинологов — sydanukrainalle.org\n\n` +
+    `Имя: ${name}\n` +
+    `Email: ${email}\n` +
+    `Телефон / WhatsApp / Telegram: ${clean(data.phone, 60) || "—"}\n` +
+    `Где живёт: ${pick(RESERVE.country, data.country)}${clean(data.city, 80) ? `, ${clean(data.city, 80)}` : ""}\n` +
+    `Опыт с собаками: ${pick(RESERVE.dog, data.dog)}\n` +
+    `Английский: ${pick(RESERVE.english, data.english)}\n` +
+    `Возвращение в Украину: ${pick(RESERVE.ret, data.ret)}\n` +
+    `О себе: ${String(data.message ?? "").trim().slice(0, 600) || "—"}\n` +
+    `Язык страницы: ${LANGS[clean(data.lang, 5)] || "—"}\n` +
+    `Страна посетителя: ${request.cf?.country || "—"}\n` +
+    `Время (Хельсинки): ${new Date().toLocaleString("ru-RU", { timeZone: "Europe/Helsinki" })}\n\n` +
+    `Нужно: внести в таблицу резерва, отправить приветственное письмо, пригласить на ближайшую встречу.`;
+
+  const tg = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
+  });
+  if (!tg.ok) return json({ ok: false, error: "send_failed" }, 502);
+  return json({ ok: true });
+}
+
 /* ---------- donation interest list → Telegram ---------- */
 
 /* ---------- support form → invoice + Telegram (+ email if RESEND_API_KEY is set) ---------- */
@@ -555,6 +604,7 @@ export default {
     if (url.pathname === "/api/notify") return handleNotify(request, env);
     if (url.pathname === "/api/join") return handleJoin(request, env);
     if (url.pathname === "/api/member") return handleMember(request, env);
+    if (url.pathname === "/api/reserve") return handleReserve(request, env);
     if (url.pathname === "/api/telegram") return handleTelegram(request, env, ctx);
     if (url.pathname === "/api/telegram/setup") return handleTelegramSetup(request, env);
     return env.ASSETS.fetch(request);

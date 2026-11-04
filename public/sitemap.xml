@@ -15,4 +15,19 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/"/>
   </url>
+  <url><loc>https://sydanukrainalle.org/dog-handler/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/dog-handler/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/kinolog/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/koiranohjaaja/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/kinolog/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/dog-handler/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/kinolog/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/koiranohjaaja/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/koiranohjaaja/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/dog-handler/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/kinolog/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/koiranohjaaja/"/>
+  </url>
 </urlset>
