@@ -354,6 +354,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .backhome{font-size:.95rem}
 
 </style>
+<script src="/js/consent.js"></script>
 </head>
 <body>
 <header class="top">
@@ -473,7 +474,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       name:v('rs-name'),email:v('rs-email'),phone:v('rs-phone'),country:v('rs-country'),city:v('rs-city'),
       dog:v('rs-dog'),english:v('rs-en'),ret:v('rs-ret'),message:v('rs-msg'),consent:true,lang:document.documentElement.lang,website:v('rs-website')
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok){note.className='form-note ok';note.textContent=M.ok;f.reset()}
+      if(d&&d.ok){window.gmahConv&&gmahConv('reserve');note.className='form-note ok';note.textContent=M.ok;f.reset()}
       else{note.className='form-note err';note.textContent=M.err}
     }).catch(function(){note.className='form-note err';note.textContent=M.net})
     .finally(function(){btn.disabled=false});

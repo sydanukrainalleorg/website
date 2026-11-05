@@ -309,6 +309,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 .membership .about-box h3{margin:0 0 6px;font-size:1.05rem}
 .membership .about-box p{margin:0}
 </style>
+<script src="/js/consent.js"></script>
 </head>
 <body>
 <div class="lang-offer" id="lang-offer" hidden><div class="wrap"><span id="lang-offer-text"></span><a id="lang-offer-link" href="/"></a><button type="button" id="lang-offer-close" aria-label="Close">×</button></div></div>
@@ -803,7 +804,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     fetch('/api/callback',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       name:name,phone:phone,topic:document.getElementById('cb-topic').value,consent:true,lang:document.documentElement.lang,website:document.getElementById('cb-website').value
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you. We will call you back within one working day.';f.reset()}
+      if(d&&d.ok){window.gmahConv&&gmahConv('callback');note.className='form-note ok';note.textContent='Thank you. We will call you back within one working day.';f.reset()}
       else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org or message us on WhatsApp.'}
     }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
@@ -824,7 +825,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     fetch('/api/join',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       type:v('jn-type'),name:v('jn-name'),email:v('jn-email'),phone:v('jn-phone'),message:v('jn-msg'),consent:true,lang:document.documentElement.lang,website:v('jn-website')
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok){note.className='form-note ok';note.textContent='Thank you! We will contact you soon.';f.reset()}
+      if(d&&d.ok){window.gmahConv&&gmahConv('join');note.className='form-note ok';note.textContent='Thank you! We will contact you soon.';f.reset()}
       else{note.className='form-note err';note.textContent='Something went wrong. Please write to info@sydanukrainalle.org.'}
     }).catch(function(){note.className='form-note err';note.textContent='No connection. Please try again or write to info@sydanukrainalle.org.'})
     .finally(function(){btn.disabled=false});
@@ -990,7 +991,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     fetch('/api/member',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
       tier:sel.value,period:v('mb-period'),method:v('mb-pay'),name:name,email:email,phone:v('mb-phone'),consent:true,lang:document.documentElement.lang,website:v('mb-website')
     })}).then(function(r){return r.json().catch(function(){return {ok:false}})}).then(function(d){
-      if(d&&d.ok&&d.member){note.textContent='';render(d.member,d.pay,d.mailed,name,email)}
+      if(d&&d.ok&&d.member){window.gmahConv&&gmahConv('member');note.textContent='';render(d.member,d.pay,d.mailed,name,email)}
       else{note.className='form-note err';note.textContent=T.e_gen}
     }).catch(function(){note.className='form-note err';note.textContent=T.e_net})
     .finally(function(){btn.disabled=false});
