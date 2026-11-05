@@ -16,6 +16,8 @@
   var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+GTM;
   (document.head||document.documentElement).appendChild(s);
 
+  // Google Ads conversion actions (account 897-577-3431). "Анкета кинолога" = handler talent pool + dog programme form.
+  window.GMAH_ADS_SEND_TO=window.GMAH_ADS_SEND_TO||{reserve:'AW-18556158795/KvVtCOLPzrIdEMuGopBF',join:'AW-18556158795/KvVtCOLPzrIdEMuGopBF'};
   // conversion helper: call gmahConv('reserve'|'callback'|'join'|'member') after a form was sent successfully
   window.gmahConv=function(form){
     try{
