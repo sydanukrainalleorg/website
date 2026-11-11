@@ -217,6 +217,12 @@ input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;paddin
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
 .join-text h3{font-size:1.25rem;margin-top:1.4em}
+.photo{margin:0 0 22px}
+.photo img,.photo-pair img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--field)}
+.photo figcaption,.photo-pair figcaption{margin-top:8px;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 6px;max-width:620px}
+.photo-pair img{aspect-ratio:4/5;object-fit:cover}
+.photo-pair figcaption{grid-column:1/-1;margin-top:0}
 .ground{margin-top:24px;padding:16px 18px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:.97rem}
 textarea{resize:vertical;min-height:96px}
 .news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
@@ -423,6 +429,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <p><a href="#join">Join the dog programme</a></p>
       </div>
       <aside>
+        <figure class="photo"><img src="/img/malinois-search-1200.webp" srcset="/img/malinois-search-640.webp 640w, /img/malinois-search-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Belgian Malinois searching through tall dry grass, nose to the ground"><figcaption>Belgian Malinois, the breed most often used for mine detection. Illustrative photo.</figcaption></figure>
         <h4>Role in the system</h4>
         <p>Precise check of the zones that bees and drones have flagged, before clearance begins.</p>
       </aside>
@@ -542,6 +549,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <div class="join-text">
       <h2>Join our dog programme</h2>
       <p class="lead">We train mine detection dogs and their handlers at our own training ground. To grow the programme, we are looking for dogs and people.</p>
+      <figure class="photo-pair"><img src="/img/malinois-puppy-1200.webp" srcset="/img/malinois-puppy-640.webp 640w, /img/malinois-puppy-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Belgian Malinois puppy running across a green field"><img src="/img/malinois-harness-1200.webp" srcset="/img/malinois-harness-640.webp 640w, /img/malinois-harness-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Young Belgian Malinois in a harness sitting on grass"><figcaption>Our programme starts with puppies and young dogs. Illustrative photos.</figcaption></figure>
       <h3>Kennels and breeders</h3>
       <p>We are not a breeding kennel. We are looking for kennels and owners ready to donate puppies or young dogs with a strong nose and a drive to search: for example Belgian and Dutch Shepherds, German Shepherds, Labrador and Golden Retrievers, English Springer and Cocker Spaniels, beagles and Jack Russell terriers. Mixed breeds are welcome too, because character matters more than pedigree. We assess each dog together with the breeder or owner and keep you informed about its training.</p>
       <h3>Future dog handlers</h3>

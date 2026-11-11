@@ -217,6 +217,12 @@ input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;paddin
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
 .join-text h3{font-size:1.25rem;margin-top:1.4em}
+.photo{margin:0 0 22px}
+.photo img,.photo-pair img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--field)}
+.photo figcaption,.photo-pair figcaption{margin-top:8px;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 6px;max-width:620px}
+.photo-pair img{aspect-ratio:4/5;object-fit:cover}
+.photo-pair figcaption{grid-column:1/-1;margin-top:0}
 .ground{margin-top:24px;padding:16px 18px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:.97rem}
 textarea{resize:vertical;min-height:96px}
 .news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
@@ -423,6 +429,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <p><a href="#join">Долучитися до кінологічної програми</a></p>
       </div>
       <aside>
+        <figure class="photo"><img src="/img/malinois-search-1200.webp" srcset="/img/malinois-search-640.webp 640w, /img/malinois-search-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Бельгійська вівчарка малінуа шукає в сухій траві, ніс до землі"><figcaption>Бельгійська вівчарка малінуа — порода, яку найчастіше використовують для пошуку мін. Ілюстративне фото.</figcaption></figure>
         <h4>Роль у системі</h4>
         <p>Точна перевірка зон, позначених бджолами й дронами, до початку розмінування.</p>
       </aside>
@@ -542,6 +549,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <div class="join-text">
       <h2>Долучайтеся до кінологічної програми</h2>
       <p class="lead">Ми готуємо собак для пошуку мін та кінологів на власному тренувальному полігоні. Щоб розвивати програму, ми шукаємо собак і людей.</p>
+      <figure class="photo-pair"><img src="/img/malinois-puppy-1200.webp" srcset="/img/malinois-puppy-640.webp 640w, /img/malinois-puppy-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Цуценя малінуа біжить зеленим полем"><img src="/img/malinois-harness-1200.webp" srcset="/img/malinois-harness-640.webp 640w, /img/malinois-harness-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Молодий малінуа в шлеї сидить на траві"><figcaption>Наша програма починається з цуценят і молодих собак. Ілюстративні фото.</figcaption></figure>
       <h3>Розплідники та заводчики</h3>
       <p>Ми не займаємося розведенням собак. Шукаємо розплідники та власників, готових подарувати цуценят або молодих собак із гострим нюхом і бажанням шукати: наприклад бельгійських і голландських вівчарок, німецьких вівчарок, лабрадорів і золотистих ретриверів, англійських спрингер- і кокер-спанієлів, біглів і джек-рассел-тер’єрів. Безпородні собаки теж підходять, бо характер важливіший за родовід. Кожну собаку ми оцінюємо разом із заводчиком чи власником і розповідаємо вам про її навчання.</p>
       <h3>Майбутні кінологи</h3>

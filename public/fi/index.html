@@ -217,6 +217,12 @@ input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;paddin
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
 .join-text h3{font-size:1.25rem;margin-top:1.4em}
+.photo{margin:0 0 22px}
+.photo img,.photo-pair img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--field)}
+.photo figcaption,.photo-pair figcaption{margin-top:8px;font-size:.82rem;line-height:1.45;color:var(--muted)}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0 6px;max-width:620px}
+.photo-pair img{aspect-ratio:4/5;object-fit:cover}
+.photo-pair figcaption{grid-column:1/-1;margin-top:0}
 .ground{margin-top:24px;padding:16px 18px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:.97rem}
 textarea{resize:vertical;min-height:96px}
 .news-card{margin-top:28px;padding:28px 32px;background:var(--surface);border:1px solid var(--line);border-radius:14px;max-width:760px}
@@ -423,6 +429,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <p><a href="#join">Liity koiraohjelmaan</a></p>
       </div>
       <aside>
+        <figure class="photo"><img src="/img/malinois-search-1200.webp" srcset="/img/malinois-search-640.webp 640w, /img/malinois-search-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Belgianpaimenkoira malinois etsii kuivassa heinikossa kuono maassa"><figcaption>Belgianpaimenkoira malinois on miinanetsinnässä yleisimmin käytetty rotu. Kuvituskuva.</figcaption></figure>
         <h4>Rooli järjestelmässä</h4>
         <p>Mehiläisten ja droonien merkitsemien alueiden tarkka tarkistus ennen raivauksen alkua.</p>
       </aside>
@@ -542,6 +549,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <div class="join-text">
       <h2>Liity koiraohjelmaamme</h2>
       <p class="lead">Koulutamme miinakoiria ja niiden ohjaajia omalla harjoitusalueellamme. Ohjelman kasvattamiseksi etsimme koiria ja ihmisiä.</p>
+      <figure class="photo-pair"><img src="/img/malinois-puppy-1200.webp" srcset="/img/malinois-puppy-640.webp 640w, /img/malinois-puppy-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Malinois-pentu juoksee vihreällä niityllä"><img src="/img/malinois-harness-1200.webp" srcset="/img/malinois-harness-640.webp 640w, /img/malinois-harness-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Nuori malinois valjaissa istuu nurmikolla"><figcaption>Ohjelmamme alkaa pennuista ja nuorista koirista. Kuvituskuvat.</figcaption></figure>
       <h3>Kennelit ja kasvattajat</h3>
       <p>Emme ole kasvattajakennel. Etsimme kenneleitä ja omistajia, jotka ovat valmiita lahjoittamaan pentuja tai nuoria koiria, joilla on hyvä hajuaisti ja halu etsiä: esimerkiksi belgian- ja hollanninpaimenkoiria, saksanpaimenkoiria, labradorin- ja kultaisianoutajia, englanninspringer- ja cockerspanieleita, beagleja ja jackrussellinterriereitä. Myös sekarotuiset koirat ovat tervetulleita, sillä luonne on tärkeämpi kuin sukutaulu. Arvioimme jokaisen koiran yhdessä kasvattajan tai omistajan kanssa ja kerromme sinulle sen koulutuksen etenemisestä.</p>
       <h3>Tulevat koiranohjaajat</h3>
