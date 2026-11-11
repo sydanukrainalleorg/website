@@ -226,6 +226,11 @@ input,select,textarea{width:100%;font:400 1rem "IBM Plex Sans",sans-serif;paddin
 .socials .soon small{margin-left:auto;font-size:.78rem;font-weight:600;color:var(--orange)}
 @media (max-width:860px){.support .wrap{grid-template-columns:1fr;gap:28px}}
 .join-text h3{font-size:1.25rem;margin-top:1.4em}
+.photo-pair.join-photos{max-width:none;grid-template-columns:repeat(4,1fr);margin:28px 0 40px}
+.join-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.join-grid .join-text>h3:first-child{margin-top:0}
+@media (max-width:860px){.join-grid{grid-template-columns:1fr;gap:28px}}
+@media (max-width:760px){.photo-pair.join-photos{grid-template-columns:repeat(2,1fr);gap:10px;margin:22px 0 28px}}
 .photo{margin:0 0 22px}
 .photo img,.photo-pair img{display:block;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);background:var(--field)}
 .photo figcaption,.photo-pair figcaption{margin-top:8px;font-size:.82rem;line-height:1.45;color:var(--muted)}
@@ -569,10 +574,13 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 
 <section id="join" class="support">
   <div class="wrap">
-    <div class="join-text">
+    <div class="join-head">
       <h2>Liity koiraohjelmaamme</h2>
       <p class="lead">Koulutamme miinakoiria ja niiden ohjaajia omalla harjoitusalueellamme. Ohjelman kasvattamiseksi etsimme koiria ja ihmisiä.</p>
-      <figure class="photo-pair"><img src="/img/malinois-puppy-1200.webp" srcset="/img/malinois-puppy-640.webp 640w, /img/malinois-puppy-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Malinois-pentu juoksee vihreällä niityllä"><img src="/img/malinois-harness-1200.webp" srcset="/img/malinois-harness-640.webp 640w, /img/malinois-harness-1200.webp 1200w" sizes="(max-width:660px) 46vw, 300px" width="1200" height="1500" loading="lazy" decoding="async" alt="Nuori malinois valjaissa istuu nurmikolla"><figcaption>Ohjelmamme alkaa pennuista ja nuorista koirista. Kuvituskuvat.</figcaption></figure>
+    </div>
+    <figure class="photo-pair join-photos"><img src="/img/malinois-puppy-1200.webp" srcset="/img/malinois-puppy-640.webp 640w, /img/malinois-puppy-1200.webp 1200w" sizes="(max-width:760px) 46vw, 270px" width="1200" height="1500" loading="lazy" decoding="async" alt="Malinois-pentu juoksee vihreällä niityllä"><img src="/img/malinois-harness-1200.webp" srcset="/img/malinois-harness-640.webp 640w, /img/malinois-harness-1200.webp 1200w" sizes="(max-width:760px) 46vw, 270px" width="1200" height="1500" loading="lazy" decoding="async" alt="Nuori malinois valjaissa istuu nurmikolla"><img src="/img/malinois-rest-1200.webp" srcset="/img/malinois-rest-640.webp 640w, /img/malinois-rest-1200.webp 1200w" sizes="(max-width:760px) 46vw, 270px" width="1200" height="1500" loading="lazy" decoding="async" alt="Belgianpaimenkoira malinois makaa nurmikolla"><img src="/img/malinois-meadow-1200.webp" srcset="/img/malinois-meadow-640.webp 640w, /img/malinois-meadow-1200.webp 1200w" sizes="(max-width:760px) 46vw, 270px" width="1200" height="1500" loading="lazy" decoding="async" alt="Malinois lepää voikukkaniityllä"><figcaption>Ohjelmamme alkaa pennuista ja nuorista koirista. Kuvituskuvat.</figcaption></figure>
+    <div class="join-grid">
+    <div class="join-text">
       <h3>Kennelit ja kasvattajat</h3>
       <p>Emme ole kasvattajakennel. Etsimme kenneleitä ja omistajia, jotka ovat valmiita lahjoittamaan pentuja tai nuoria koiria, joilla on hyvä hajuaisti ja halu etsiä: esimerkiksi belgian- ja hollanninpaimenkoiria, saksanpaimenkoiria, labradorin- ja kultaisianoutajia, englanninspringer- ja cockerspanieleita, beagleja ja jackrussellinterriereitä. Myös sekarotuiset koirat ovat tervetulleita, sillä luonne on tärkeämpi kuin sukutaulu. Arvioimme jokaisen koiran yhdessä kasvattajan tai omistajan kanssa ja kerromme sinulle sen koulutuksen etenemisestä.</p>
       <h3>Tulevat koiranohjaajat</h3>
@@ -594,6 +602,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <button class="btn" type="submit">Lähetä</button>
       <p class="form-note" id="jn-note" aria-live="polite"></p>
     </form>
+    </div>
   </div>
 </section>
 
