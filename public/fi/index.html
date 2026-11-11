@@ -121,6 +121,9 @@ nav.main a:hover{color:var(--orange)}
 .steps button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:inset 0 3px 0 var(--orange)}
 .step-caption{padding:16px 18px 18px;background:var(--surface);border-top:1px solid var(--line);font-size:.95rem;min-height:86px}
 .step-caption p{margin:0}
+.system-video{margin:24px 0 0}
+.system-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:var(--field)}
+.system-video figcaption{margin-top:8px;font-size:.82rem;line-height:1.45;color:var(--muted)}
 .hero-photo{position:relative;margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--field);aspect-ratio:5/4}
 .hero-photo img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:45% 60%;animation:heroDrift 22s ease-in-out infinite alternate}
 .hero-photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 14px;font-size:.82rem;line-height:1.45;color:#F4F0E3;background:linear-gradient(to top,rgba(20,26,21,.72),rgba(20,26,21,0))}
@@ -466,6 +469,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <div>
         <h3>Miten osat toimivat yhdessä</h3>
         <p>Mehiläiset ja droonit antavat nopean ensikatsauksen laajoihin alueisiin. Niiden osoittamat alueet merkitään, ja koirapartiot sekä koneet tarkistavat ne huolellisesti ennen raivausta.</p>
+        <figure class="system-video"><video muted loop playsinline preload="none" poster="/video/bees-hive-poster.webp" width="960" height="540" aria-label="Mehiläisiä pesän suuaukolla"><source src="/video/bees-hive.mp4" type="video/mp4"></video><figcaption>Mehiläisiä pesän suulla. Kuvitusvideo.</figcaption></figure>
       </div>
       <div class="map-card" aria-label="Näin kokonaisvaltainen havaitsemisjärjestelmä toimii">
         <svg id="field" viewBox="0 0 600 420" role="img" aria-label="Kuvitus tutkittavasta alueesta: mehiläiset kerääntyvät räjähteen hajun kohdalle, droonit kartoittavat parvet ja ryhmät lähetetään ensisijaisille alueille">
@@ -1092,5 +1096,11 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 })();
 </script>
 <script src="/js/qrcode.js" defer></script><script src="/js/barcode128.min.js" defer></script>
+<script>
+(function(){var v=document.querySelector('.system-video video');if(!v)return;
+var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(still||!('IntersectionObserver' in window)){v.controls=true;return}
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){if(v.preload!=='auto'){v.preload='auto'}var p=v.play();if(p&&p.catch)p.catch(function(){v.controls=true})}else{v.pause()}})},{threshold:.25}).observe(v)})();
+</script>
 </body>
 </html>
