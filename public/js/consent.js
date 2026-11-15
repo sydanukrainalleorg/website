@@ -16,8 +16,18 @@
   var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+GTM;
   (document.head||document.documentElement).appendChild(s);
 
-  // Google Ads conversion actions (account 897-577-3431). "Анкета кинолога" = handler talent pool + dog programme form.
-  window.GMAH_ADS_SEND_TO=window.GMAH_ADS_SEND_TO||{reserve:'AW-18556158795/KvVtCOLPzrIdEMuGopBF',join:'AW-18556158795/KvVtCOLPzrIdEMuGopBF'};
+  // Google tag for Google Ads (account 897-577-3431). The GTM container has no Ads tag,
+  // so without this the 'conversion' events below were never sent to Google Ads.
+  // Consent Mode above still applies: no ad cookies until the visitor accepts.
+  var ADS='AW-18556158795';
+  var a=document.createElement('script');a.async=true;a.src='https://www.googletagmanager.com/gtag/js?id='+ADS;
+  (document.head||document.documentElement).appendChild(a);
+  gtag('config',ADS);
+
+  // Google Ads conversion actions. "Анкета кинолога" = every lead form on the site:
+  // handler talent pool, dog programme, callback request, supporting membership.
+  var LEAD=ADS+'/KvVtCOLPzrIdEMuGopBF';
+  window.GMAH_ADS_SEND_TO=window.GMAH_ADS_SEND_TO||{reserve:LEAD,join:LEAD,callback:LEAD,member:LEAD};
   // conversion helper: call gmahConv('reserve'|'callback'|'join'|'member') after a form was sent successfully
   window.gmahConv=function(form){
     try{
