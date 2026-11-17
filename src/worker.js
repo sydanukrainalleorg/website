@@ -164,7 +164,7 @@ async function handleReserve(request, env) {
 /* ---------- support form → invoice + Telegram (+ email if RESEND_API_KEY is set) ---------- */
 
 const NEEDS = {
-  puppy:    { ru: "Щенок малинуа", en: "Malinois puppy", uk: "Цуценя малінуа", fi: "Malinois-pentu", eur: 1800 },
+  puppy:    { ru: "Щенок малинуа", en: "Malinois puppy", uk: "Цуценя малінуа", fi: "Malinois-pentu", eur: 2500 },
   scent:    { ru: "Набор образцов запахов", en: "Scent training kit", uk: "Набір для навчання на запах", fi: "Hajukoulutussarja", eur: 650 },
   food:     { ru: "Корм для собаки, 6 мес.", en: "Food for one dog, 6 months", uk: "Корм для однієї собаки, 6 міс.", fi: "Yhden koiran ruoka, 6 kk", eur: 420 },
   vet:      { ru: "Ветеринария для собаки, 6 мес.", en: "Vet care for one dog, 6 months", uk: "Ветеринарний догляд, 6 міс.", fi: "Eläinlääkärikulut, 6 kk", eur: 400 },
