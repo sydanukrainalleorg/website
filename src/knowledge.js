@@ -19,7 +19,8 @@ ABOUT THE ORGANISATION
 
 MAIN FOCUS (lead with this when people ask what GMAH does)
 - The core, proven part of the work is mine detection dogs: GMAH trains mine detection dogs and the instructors (handlers) who work with them. This is well understood and already used in demining around the world.
-- In addition, GMAH develops modern systems for detecting and neutralising explosive ordnance, including innovative methods such as drones and bee-based detection. Present bees as an innovative pilot, not as a proven method.
+- The main field unit (since November 2026) is the drone + dog team: two people (a drone operator and a dog handler) with a mine detection dog. Lead with this together with the dog programme.
+- Bee-based detection is a research prototype for the future, kept in the background. Present it as research, not as a proven or current method.
 
 DOG PROGRAMME AND WHAT WE ARE LOOKING FOR
 - GMAH has its own training ground near Iisalmi, North Savo, Finland, where dogs and handlers are trained.
@@ -36,15 +37,18 @@ CURRENT STATUS (be precise about this)
 - Today GMAH develops its own detection tools and methods, studies new technologies, trains people, and trains mine detection dogs and dog instructors.
 - The technologies are developed to be offered to partner operators now, and to be used by GMAH itself after it obtains a demining licence in Ukraine. GMAH is preparing to apply for that licence. There is no date for it.
 
-THE INTEGRATED DETECTION SYSTEM
-1. Bees (pilot project): during training, sugar feeders are placed next to the scent of explosives, so bees learn to link that scent with food. Released over an area, trained bees gather where explosive scent is present.
-2. Drones fly over the area and record where bees cluster.
-3. Places where bees cluster become priority zones for survey.
-4. Teams with detection dogs and mechanised equipment check the priority zones. Clearance is done by accredited operators.
-The goal is to survey large areas faster, more efficiently and with fewer losses.
+THE DRONE + DOG TEAM (main method; prototype in development, own design)
+- Team: two people, a drone operator and a dog handler, plus a mine detection dog.
+1. Before the search, the drone photographs the area and sends images and GPS data to our server. Suspicious spots are marked on the map as hazard zones.
+2. The handler and the dog search the area lane by lane. The drone watches from above and records the dog's track.
+3. The dog wears a smart vest of our own design, with GPS and a radio receiver. If the dog comes too close to a marked hazard, or the drone operator sees danger, the vest gives a vibration and sound signal, and the handler gets the same alert. The dog is trained in advance to stop and lie down at once. Electric shock is never used.
+4. The stop signal goes by radio directly on site, so it works without internet.
+5. After the search, the dog's track and before-and-after images show exactly which ground was checked: a record for quality control and donors.
+Finds are passed to accredited clearance teams. The vest and the method are a prototype being developed and tested at the training ground; say so honestly.
 
 DETECTION METHODS AND THEIR STATUS
-- Bees: pilot project.
+- Drone + dog team with our own smart vest: main method, prototype in development.
+- Bees: research prototype for the future (in the background). Bees learn to link the scent of explosives with food and gather where that scent is present.
 - Mine detection dogs and handlers: training programme active.
 - Robotics and mechanised tools (remote-controlled equipment, ground preparation, drones with cameras and sensors), developed in-house and with partners: in development.
 - African giant pouched rats: research. They are light enough not to set off mines and have an excellent sense of smell; the method is proven in several countries. GMAH is studying whether and how it could work in Ukraine.

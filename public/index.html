@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Global Mine Action Hub — Sydän Ukrainalle ry</title>
-<meta name="description" content="Global Mine Action Hub trains mine detection dogs and their instructors and develops modern systems for detecting and neutralising explosive ordnance in Ukraine, including drones and bees.">
+<meta name="description" content="Global Mine Action Hub trains mine detection dogs and their instructors and develops modern systems for detecting and neutralising explosive ordnance in Ukraine, with field teams of a drone and a mine detection dog at the core.">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Global Mine Action Hub">
 <meta property="og:title" content="Global Mine Action Hub — Safe land. Safe return.">
-<meta property="og:description" content="Global Mine Action Hub trains mine detection dogs and their instructors and develops modern systems for detecting and neutralising explosive ordnance in Ukraine, including drones and bees.">
+<meta property="og:description" content="Global Mine Action Hub trains mine detection dogs and their instructors and develops modern systems for detecting and neutralising explosive ordnance in Ukraine, with field teams of a drone and a mine detection dog at the core.">
 <meta property="og:url" content="https://sydanukrainalle.org/">
 <meta property="og:image" content="https://sydanukrainalle.org/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -365,7 +365,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   <div class="wrap">
     <div>
       <h1>Safe land. Safe&nbsp;return.</h1>
-      <p class="lead">We train mine detection dogs and their instructors, and develop modern systems for detecting and neutralising explosive ordnance, from drones to bee-based detection, so that Ukraine’s land can be made safe faster and with fewer losses.</p>
+      <p class="lead">We train mine detection dogs and their handlers, and develop modern systems for detecting explosive ordnance. At the core of our work is a field team of a drone and a mine detection dog, so that Ukraine’s land can be made safe faster and with fewer losses.</p>
       <div class="actions">
         <a class="btn" href="#technology">See how it works</a>
         <a class="btn ghost" href="#involved">Partner with us</a>
@@ -400,15 +400,32 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 <section id="technology">
   <div class="wrap">
     <h2>Detection technology</h2>
-    <p class="lead">No single method finds every hazard. We combine biological detection, aerial data and machines, so that each one covers the weaknesses of the others.</p>
+    <p class="lead">No single method finds every hazard. At the core of our work is a field team: a drone, a mine detection dog and two people. Bees and other biological methods are prototypes we are developing for the future.</p>
     <div class="tech-tabs" role="tablist" aria-label="Detection methods">
-      <button role="tab" aria-selected="true" aria-controls="t-dogs" id="tb-dogs">Detection dogs</button>
+      <button role="tab" aria-selected="true" aria-controls="t-team" id="tb-team">Drone + dog team</button>
+      <button role="tab" aria-selected="false" aria-controls="t-dogs" id="tb-dogs">Detection dogs</button>
+      <button role="tab" aria-selected="false" aria-controls="t-robots" id="tb-robots">Robotics and drones</button>
       <button role="tab" aria-selected="false" aria-controls="t-bees" id="tb-bees">Bees</button>
-      <button role="tab" aria-selected="false" aria-controls="t-robots" id="tb-robots">Robotics and machines</button>
       <button role="tab" aria-selected="false" aria-controls="t-rats" id="tb-rats">African giant rats</button>
     </div>
 
-    <div class="tech-panel" id="t-dogs" role="tabpanel" aria-labelledby="tb-dogs">
+    <div class="tech-panel" id="t-team" role="tabpanel" aria-labelledby="tb-team">
+      <div>
+        <span class="badge">Core method · prototype in development</span>
+        <h3>Drone + dog team</h3>
+        <p>Our basic field unit is a team of two people: a drone operator and a dog handler with a mine detection dog.</p>
+        <p>Before the search, the drone photographs the area and sends the images and GPS data to our server. Suspicious spots are marked on the map as hazard zones. While the dog works, the drone watches from above and records the dog’s track.</p>
+        <p>The dog wears a smart vest of our own design, with GPS and a radio receiver. If the dog comes too close to a marked hazard, or the drone operator sees danger, the vest gives a vibration and sound signal. The handler gets the same alert, and the dog is trained in advance to stop and lie down at once. The signal never uses electric shock.</p>
+        <p>After the search, the dog’s track and the before-and-after images show exactly which ground was checked: a clear record for quality control and for donors.</p>
+      </div>
+      <aside>
+        <figure class="photo"><img src="/img/drone-survey-1200.webp" srcset="/img/drone-survey-640.webp 640w, /img/drone-survey-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Survey drone flying low over a dry field"><figcaption>The drone gives the view from above, the dog searches by scent. Illustrative photo.</figcaption></figure>
+        <h4>Role in the system</h4>
+        <p>The main working unit for survey. Safer work for people and dogs, and a full digital record of every area.</p>
+      </aside>
+    </div>
+
+    <div class="tech-panel" id="t-dogs" role="tabpanel" aria-labelledby="tb-dogs" hidden>
       <div>
         <span class="badge">Core programme · training active</span>
         <h3>Detection dogs and their handlers</h3>
@@ -419,21 +436,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <aside>
         <figure class="photo"><img src="/img/malinois-run-1200.webp" srcset="/img/malinois-run-640.webp 640w, /img/malinois-run-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Belgian Malinois running across a meadow towards the camera"><figcaption>Detection dogs need speed, stamina and a strong drive to search. Illustrative photo.</figcaption></figure>
         <h4>Role in the system</h4>
-        <p>Precise check of the zones that bees and drones have flagged, before clearance begins.</p>
-      </aside>
-    </div>
-
-    <div class="tech-panel" id="t-bees" role="tabpanel" aria-labelledby="tb-bees" hidden>
-      <div>
-        <span class="badge">Innovation · pilot project</span>
-        <h3>Bees that lead us to explosives</h3>
-        <p>Honey bees have an exceptional sense of smell. During training, we place sugar feeders next to the scent of explosives, so bees learn to link that scent with food.</p>
-        <p>When released over an area, trained bees gather where explosive scent is present. Drones record where they cluster, and the clusters show us where to look first.</p>
-      </div>
-      <aside>
-        <figure class="photo"><img src="/img/bees-1200.webp" srcset="/img/bees-640.webp 640w, /img/bees-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Honey bees flying near a hive"><figcaption>Honey bees can learn to link the scent of explosives with food. Illustrative photo.</figcaption></figure>
-        <h4>Role in the system</h4>
-        <p>Fast first look at large areas. Bees cover ground that would take people weeks, and they are too light to set off a mine.</p>
+        <p>Searches the ground by scent, working in one team with the drone.</p>
       </aside>
     </div>
 
@@ -448,6 +451,20 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
         <figure class="photo"><img src="/img/drone-survey-1200.webp" srcset="/img/drone-survey-640.webp 640w, /img/drone-survey-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Survey drone flying low over a dry field"><figcaption>Drones with cameras and sensors survey large areas from the air. Illustrative photo.</figcaption></figure>
         <h4>Role in the system</h4>
         <p>Keep people at a distance from danger and speed up work on large areas.</p>
+      </aside>
+    </div>
+
+    <div class="tech-panel" id="t-bees" role="tabpanel" aria-labelledby="tb-bees" hidden>
+      <div>
+        <span class="badge">Prototype · research and development</span>
+        <h3>Bees that lead us to explosives</h3>
+        <p>Honey bees have an exceptional sense of smell. During training, we place sugar feeders next to the scent of explosives, so bees learn to link that scent with food.</p>
+        <p>When released over an area, trained bees gather where explosive scent is present. Drones record where they cluster, and the clusters show us where to look first.</p>
+      </div>
+      <aside>
+        <figure class="photo"><img src="/img/bees-1200.webp" srcset="/img/bees-640.webp 640w, /img/bees-1200.webp 1200w" sizes="(max-width:820px) 92vw, 420px" width="1200" height="800" loading="lazy" decoding="async" alt="Honey bees flying near a hive"><figcaption>Honey bees can learn to link the scent of explosives with food. Illustrative photo.</figcaption></figure>
+        <h4>Role in the system</h4>
+        <p>Fast first look at large areas. Bees cover ground that would take people weeks, and they are too light to set off a mine.</p>
       </aside>
     </div>
 
@@ -467,12 +484,12 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
 
     <div class="system">
       <div>
-        <h3>How the parts work together</h3>
-        <p>Bees and drones give a fast first look at large areas. The zones they flag are marked, and dog teams and machines check them precisely before clearance begins.</p>
-        <figure class="system-video"><video muted loop playsinline preload="none" poster="/video/bees-hive-poster.webp" width="960" height="540" aria-label="Honey bees at the entrance of a hive"><source src="/video/bees-hive.mp4" type="video/mp4"></video><figcaption>Bees at the hive entrance. Illustrative video.</figcaption></figure>
+        <h3>How the team works</h3>
+        <p>The drone gives the view from above, the dog searches by scent, and people make the decisions. The stop signal goes by radio directly on site, so it works even without internet.</p>
+        <ul class="values"><li><strong>Drone operator</strong>maps the area, watches the dog from above and can send the stop signal.</li><li><strong>Dog handler</strong>works with the dog, reads its signals and marks finds.</li><li><strong>Dog in a smart vest</strong>searches by scent and stops on the vest’s signal.</li></ul>
       </div>
       <div class="map-card" aria-label="How the integrated detection system works">
-        <svg id="field" viewBox="0 0 600 420" role="img" aria-label="Illustration of a survey area: bees gather where explosive scent is present, drones map the clusters and teams are sent to priority zones">
+        <svg id="field" viewBox="0 0 600 420" role="img" aria-label="Illustration of a survey area: the drone maps it, hazard zones are marked, the dog searches and its vest stops it near danger">
           <g fill="none" stroke="var(--contour)" stroke-width="1.2">
             <path d="M-20 360 C 80 330 140 380 240 350 S 420 300 620 340"/>
             <path d="M-20 300 C 90 270 150 320 250 290 S 430 240 620 280"/>
@@ -484,30 +501,40 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
             <path d="M60 170 C 120 130 200 190 260 160 S 330 110 300 220"/>
           </g>
           <polyline id="drone" class="fade" opacity="0" fill="none" stroke="var(--green-text)" stroke-width="1.5" stroke-dasharray="5 6"
-            points="40,40 560,40 560,110 40,110 40,180 560,180 560,250 40,250 40,320 560,320 560,390 40,390"/>
+            points="40,30 560,30 560,95 40,95 40,160 560,160 560,225 40,225 40,290 560,290 560,355 40,355"/>
           <g id="zones" class="fade" opacity="0" fill="none" stroke="var(--orange)" stroke-width="2" stroke-dasharray="8 6">
             <circle cx="430" cy="150" r="62"/>
             <circle cx="205" cy="305" r="56"/>
           </g>
-          <g id="bees"></g>
+          <g id="hazards" class="fade" opacity="0" stroke="var(--orange)" stroke-width="2.4" stroke-linecap="round">
+            <path d="M418 138 l12 12 m0 -12 l-12 12"/><path d="M440 160 l12 12 m0 -12 l-12 12"/><path d="M196 296 l12 12 m0 -12 l-12 12"/>
+          </g>
+          <path id="track" class="fade" opacity="0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-dasharray="2 5" stroke-linecap="round" d="M40 50 H560 V88 H40 V128 H338"/>
+          <g id="stop" class="fade" opacity="0" font-family="IBM Plex Sans, sans-serif" font-size="13" font-weight="600" fill="var(--orange)">
+            <circle cx="338" cy="128" r="20" fill="none" stroke="var(--orange)" stroke-width="2"/><circle cx="338" cy="128" r="30" fill="none" stroke="var(--orange)" stroke-width="1" opacity=".5"/>
+            <text x="308" y="178">STOP</text>
+          </g>
+          <rect id="operator" class="fade" opacity="0" x="540" y="366" width="12" height="12" fill="var(--green-text)"/>
+          <rect id="handler" class="fade" opacity="0" x="0" y="0" width="11" height="11" fill="var(--green-text)"/>
+          <circle id="dog" class="fade" opacity="0" r="7" cx="0" cy="0" fill="var(--green-text)" stroke="var(--surface)" stroke-width="2"/>
           <g id="teams" class="fade" opacity="0" font-family="IBM Plex Sans, sans-serif" font-size="13" fill="var(--ink)">
-            <rect x="478" y="196" width="10" height="10" fill="var(--green-text)"/><text x="494" y="206">Dog team</text>
-            <rect x="478" y="216" width="10" height="10" fill="var(--green-text)"/><text x="494" y="226">Machine</text>
-            <rect x="250" y="352" width="10" height="10" fill="var(--green-text)"/><text x="266" y="362">Survey team</text>
+            <rect x="40" y="398" width="10" height="10" fill="var(--green-text)"/><text x="56" y="408">Drone operator</text>
+            <rect x="230" y="398" width="10" height="10" fill="var(--green-text)"/><text x="246" y="408">Handler</text>
+            <circle cx="405" cy="403" r="6" fill="var(--green-text)"/><text x="418" y="408">Dog</text>
           </g>
         </svg>
         <div class="steps" role="tablist" aria-label="System steps">
-          <button role="tab" aria-selected="true" data-step="0"><span>1</span>Bees search</button>
-          <button role="tab" aria-selected="false" data-step="1"><span>2</span>Drones map</button>
-          <button role="tab" aria-selected="false" data-step="2"><span>3</span>Zones marked</button>
-          <button role="tab" aria-selected="false" data-step="3"><span>4</span>Teams verify</button>
+          <button role="tab" aria-selected="true" data-step="0"><span>1</span>Drone maps</button>
+          <button role="tab" aria-selected="false" data-step="1"><span>2</span>Zones marked</button>
+          <button role="tab" aria-selected="false" data-step="2"><span>3</span>Dog searches</button>
+          <button role="tab" aria-selected="false" data-step="3"><span>4</span>Stop signal</button>
         </div>
         <div class="step-caption" aria-live="polite"><p id="caption"></p></div>
       </div>
     </div>
 
     <div class="road">
-      <div><h3>Now</h3><p>Developing the bee pilot, our own tools and the drone mapping method. Training dogs, handlers and specialists.</p></div>
+      <div><h3>Now</h3><p>Building the drone + dog team: our own smart vest prototype, training dogs to respond to its signal, training handlers and drone operators. The bee method continues as research.</p></div>
       <div><h3>Next</h3><p>Field testing with partners. Our technology becomes available to accredited mine action operators.</p></div>
       <div><h3>After licensing</h3><p>We apply the full system ourselves, as a licensed demining operator in Ukraine.</p></div>
     </div>
@@ -532,6 +559,11 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   <div class="wrap">
     <h2>Field updates</h2>
     <p class="lead">Videos and news from training, tests and our team.</p>
+    <article class="news-card">
+      <time datetime="2026-11">November 2026</time>
+      <h3>New field team: drone + dog</h3>
+      <p>We have changed how our field team works. Each team is now two people, a drone operator and a dog handler, working with a mine detection dog. We are building our own smart vest, with GPS and a radio signal, that stops the dog near a marked hazard. <a href="#t-team">How the team works</a></p>
+    </article>
     <article class="news-card">
       <time datetime="2026-10">October 2026</time>
       <h3>Global Mine Action Hub is launched</h3>
@@ -570,7 +602,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
     <h2>Get involved</h2>
     <div class="three">
       <div><h3>Organisations</h3><p>Mine action operators, research teams, companies and foundations: let’s test, fund and use this technology together.</p><a href="#contact">Discuss a partnership</a></div>
-      <div><h3>Donors</h3><p>Your support funds the bee pilot, dog training and risk education for families in affected areas.</p><a href="#support">Ask how to support</a><br><a href="#membership">Become a supporting member</a></div>
+      <div><h3>Donors</h3><p>Your support funds our drone + dog teams, dog training and risk education for families in affected areas.</p><a href="#support">Ask how to support</a><br><a href="#membership">Become a supporting member</a></div>
       <div><h3>Volunteers</h3><p>Translators, engineers, drone pilots, developers and educators: your skills can help keep people safe.</p><a href="#join">Offer your help</a></div>
     </div>
   </div>
@@ -763,31 +795,23 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');t.setAttribute('aria-expanded','false')})});
 })();
 
-// hero system map
+// hero system map: drone + dog team
 (function(){
-  var NS='http://www.w3.org/2000/svg', g=document.getElementById('bees'), N=46, bees=[];
-  function rnd(seed){var x=Math.sin(seed*999)*10000;return x-Math.floor(x)}
-  for(var i=0;i<N;i++){
-    var c=document.createElementNS(NS,'circle');c.setAttribute('r','3.6');c.setAttribute('class','bee');
-    c.setAttribute('cx','0');c.setAttribute('cy','0');g.appendChild(c);
-    var free={x:30+rnd(i+1)*540,y:30+rnd(i+77)*360};
-    var target=i%10<4?{x:430,y:150}:(i%10<7?{x:205,y:305}:null);
-    var a=rnd(i+300)*Math.PI*2, r=8+rnd(i+500)*34;
-    var clus=target?{x:target.x+Math.cos(a)*r,y:target.y+Math.sin(a)*r}:{x:30+rnd(i+900)*540,y:30+rnd(i+400)*360};
-    bees.push({el:c,free:free,clus:clus});
-  }
   var captions=[
-    'Trained bees are released over the area. They search for the scent they have learned to link with food: the scent of explosives.',
-    'Drones fly over the area in a grid and record where bees gather.',
-    'Places where bees cluster become priority zones for survey.',
-    'Teams with detection dogs and machines check the priority zones. Clearance is carried out by accredited operators.'
+    'The drone photographs the area from above and sends the images with GPS data to our server.',
+    'Suspicious spots are marked on the map as hazard zones. The dog’s smart vest knows where they are.',
+    'The handler and the dog search the area lane by lane. The drone watches from above and records the dog’s track.',
+    'If the dog comes too close to a hazard zone, the vest vibrates and sounds, the handler is alerted and the dog stops. Finds are passed to accredited clearance teams.'
   ];
+  var dog=document.getElementById('dog'), pos=[null,null,{x:200,y:88},{x:338,y:128}];
   var buttons=document.querySelectorAll('.steps button'), cap=document.getElementById('caption');
+  function op(id,v){document.getElementById(id).setAttribute('opacity',v)}
   function show(s){
-    bees.forEach(function(b){var p=s===0?b.free:b.clus;b.el.style.transform='translate('+p.x+'px,'+p.y+'px)'});
-    document.getElementById('drone').setAttribute('opacity',s===1?1:(s>1?.35:0));
-    document.getElementById('zones').setAttribute('opacity',s>=2?1:0);
-    document.getElementById('teams').setAttribute('opacity',s===3?1:0);
+    op('drone',s===0?1:.3);
+    op('zones',s>=1?1:0); op('hazards',s>=1?1:0);
+    op('track',s>=2?1:0); op('teams',s>=2?1:0); op('stop',s===3?1:0);
+    var h=document.getElementById('handler');op('operator',s>=2?1:0);
+    if(pos[s]){dog.setAttribute('cx',pos[s].x);dog.setAttribute('cy',pos[s].y);dog.setAttribute('opacity',1);h.setAttribute('x',pos[s].x-46);h.setAttribute('y',pos[s].y-5);h.setAttribute('opacity',1)}else{dog.setAttribute('opacity',0);h.setAttribute('opacity',0)}
     buttons.forEach(function(b,i){b.setAttribute('aria-selected',i===s)});
     cap.textContent=captions[s];
   }
@@ -1065,8 +1089,9 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   var open=document.getElementById('chat-open'), chat=document.getElementById('chat'), log=document.getElementById('log'), form=document.getElementById('chat-form'), input=document.getElementById('chat-input'), chips=document.getElementById('chips'), send=form.querySelector('button');
   var history=[], busy=false;
   var KB=[
-    {k:['bee','bees','бджол','пчел'],a:'Our bee pilot trains bees to link the scent of explosives with food. Released over an area, they gather where that scent is present, and drones record the clusters. This shows survey teams where to look first.'},
-    {k:['dog','собак'],a:'We train mine detection dogs and their instructors. Dog teams check the priority zones that bees and drones have flagged.'},
+    {k:['drone','droon','drooni','vest','liivi','дрон','жилет'],a:'Our field team is a drone operator and a dog handler with a mine detection dog. The drone maps the area and marks hazard zones, and the dog searches by scent. A smart vest of our own design gives the dog and the handler a vibration and sound stop signal if the dog comes close to danger.'},
+    {k:['bee','bees','mehiläi','бджол','пчел'],a:'Our bee method is a research prototype. Bees are trained to link the scent of explosives with food, and they gather where that scent is present. Our main work today is the drone + dog team.'},
+    {k:['dog','koira','собак'],a:'We train mine detection dogs and their handlers. The dog works in one team with a drone, wearing a smart vest that stops it near danger.'},
     {k:['licen','clear','demin','ліценз','розмін','лиценз','размин'],a:'Today we develop technology and train specialists. Clearance is carried out by accredited operators. We are preparing to apply for our own demining licence in Ukraine.'},
     {k:['found','object','suspicious','знайш','нашел','нашёл','предмет'],a:'Do not touch it and do not move closer. Remember the place, leave by the same route and call 101 or 112 in Ukraine.'}
   ];
@@ -1086,7 +1111,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       .catch(function(){var a=fallback(q);typing.textContent=a;history.push({role:'assistant',content:a})})
       .finally(function(){busy=false;send.disabled=false;log.scrollTop=log.scrollHeight;input.focus()});
   }
-  ['How do the bees work?','Do you clear mines?','How can I partner?','I found a suspicious object'].forEach(function(t){
+  ['How does the drone + dog team work?','Do you clear mines?','How can I partner?','I found a suspicious object'].forEach(function(t){
     var b=document.createElement('button');b.type='button';b.textContent=t;b.onclick=function(){ask(t)};chips.appendChild(b);
   });
   function toggle(v){chat.hidden=!v;open.setAttribute('aria-expanded',v);if(v){if(!log.children.length)add('Hello. Ask me about our technology, partnerships or mine safety, in any language.','bot');input.focus()}}
