@@ -533,6 +533,50 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       </div>
     </div>
 
+    <div class="vest3d" id="vest-3d">
+      <style>
+.vest3d{margin:32px 0 8px}
+.vest3d .v3-view{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.vest3d model-viewer{display:block;width:100%;height:min(68vh,520px);background:transparent;--poster-color:transparent}
+.vest3d .v3-load{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.95rem;pointer-events:none}
+.vest3d .hs{background:var(--ink);color:var(--surface);border:0;border-radius:999px;padding:5px 10px;font-family:inherit;font-weight:600;font-size:12px;line-height:1.2;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:default}
+.vest3d .hs::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--orange);margin-right:6px;vertical-align:1px}
+.vest3d .v3-ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.vest3d .v3-ctrl button{font:inherit;font-weight:600;font-size:.95rem;min-height:44px;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+@media (max-width:600px){.vest3d .hs[slot=hotspot-1],.vest3d .hs[slot=hotspot-2],.vest3d .hs[slot=hotspot-3]{visibility:hidden}}
+.vest3d .v3-credit{font-size:.85rem;color:var(--muted);margin-top:8px}
+</style>
+      <h3>Наш прототип розумного жилета в 3D</h3>
+      <p>Обертайте модель пальцем або мишею, масштаб — щипком або колесом. Плаский блок на спині містить радіо, GPS і датчик руху; вібропади вшиті всередину. Прототип у розробці, ще не випробуваний у полі.</p>
+      <div class="v3-view">
+        <model-viewer data-src="/3d/gmah-k9-dog-vest.glb" alt="3D-модель мінно-розшукової собаки в розумному жилеті GMAH K9" camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="1500" rotation-per-second="16deg" interaction-prompt="auto" shadow-intensity="0.8" shadow-softness="0.9" exposure="1.05" camera-orbit="40deg 72deg auto" min-camera-orbit="auto 15deg auto" max-camera-orbit="auto 95deg auto" environment-image="neutral" field-of-view="24deg">
+          <button type="button" class="hs" slot="hotspot-0" data-position="0.028 0.635 -0.003" data-normal="0 1 0" tabindex="-1">Блок: радіо · GPS · датчик руху</button>
+          <button type="button" class="hs" slot="hotspot-1" data-position="-0.085 0.605 -0.003" data-normal="0 1 0" tabindex="-1">Гнучка антена</button>
+          <button type="button" class="hs" slot="hotspot-2" data-position="-0.067 0.575 0.03" data-normal="0 1 0" tabindex="-1">Мітка для дрона</button>
+          <button type="button" class="hs" slot="hotspot-3" data-position="0.058 0.528 -0.13" data-normal="0 0 -1" tabindex="-1">Вібропад (усередині)</button>
+          <button type="button" class="hs" slot="hotspot-4" data-position="0.417 0.362 -0.003" data-normal="1 0 0" tabindex="-1">Нагрудна стропа</button>
+          <button type="button" class="hs" slot="hotspot-5" data-position="-0.067 0.343 -0.167" data-normal="0 0 -1" tabindex="-1">Підпруга</button>
+        </model-viewer>
+        <div class="v3-load">Завантаження 3D-моделі…</div>
+      </div>
+      <div class="v3-ctrl"><button type="button" data-v3="labels" data-on="Сховати підписи" data-off="Показати підписи">Сховати підписи</button><button type="button" data-v3="spin" data-on="Зупинити обертання" data-off="Обертати">Зупинити обертання</button></div>
+      <p class="v3-credit">3D-модель собаки: Quaternius (CC0). Жилет: розробка GMAH.</p>
+      <script>
+      (function(){
+        var box=document.getElementById("vest-3d"), mv=box.querySelector("model-viewer"), started=false;
+        function start(){ if(started) return; started=true;
+          var s=document.createElement("script"); s.type="module"; s.src="/js/model-viewer.min.js"; document.head.appendChild(s);
+          mv.setAttribute("src", mv.getAttribute("data-src"));
+          mv.addEventListener("load", function(){ var l=box.querySelector(".v3-load"); if(l) l.remove(); });
+        }
+        if("IntersectionObserver" in window){ var io=new IntersectionObserver(function(e){ if(e.some(function(x){return x.isIntersecting;})){ start(); io.disconnect(); } },{rootMargin:"300px"}); io.observe(box); } else start();
+        box.querySelectorAll("[data-v3]").forEach(function(b){ var on=true; b.addEventListener("click", function(){ on=!on; b.textContent=on?b.dataset.on:b.dataset.off;
+          if(b.dataset.v3==="labels") box.querySelectorAll(".hs").forEach(function(h){ h.style.display=on?"":"none"; });
+          else if(on) mv.setAttribute("auto-rotate",""); else mv.removeAttribute("auto-rotate"); }); });
+      })();
+      </script>
+    </div>
+
     <div class="road">
       <div><h3>Зараз</h3><p>Створюємо розрахунок «дрон + собака»: прототип власного розумного жилета, навчання собак реагувати на його сигнал, підготовка кінологів і операторів дронів. Метод із бджолами продовжуємо як дослідження.</p></div>
       <div><h3>Далі</h3><p>Польові випробування з партнерами. Наші технології стають доступними для акредитованих операторів протимінної діяльності.</p></div>
