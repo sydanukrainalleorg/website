@@ -5,7 +5,10 @@
   "image": "",
   "image_small": "",
   "sources": [
-    {"name": "Save the Children, 19.02.2026", "url": "https://www.savethechildren.net/news/ukraine-demining-dog-helping-children-stay-safe-worlds-most-heavily-mined-country"}
+    {
+      "name": "Save the Children, 19.02.2026",
+      "url": "https://www.savethechildren.net/news/ukraine-demining-dog-helping-children-stay-safe-worlds-most-heavily-mined-country"
+    }
   ],
   "en": {
     "title": "A demining dog teaches children in Ukraine how to stay safe",
@@ -15,7 +18,16 @@
       "Save the Children has run explosive ordnance risk education in Ukraine together with the Ukrainian Deminers Association since 2022. According to the organisation, one in ten landmine casualties in Ukraine is a child, and about 23% of the country's land is potentially contaminated with mines and unexploded ordnance.",
       "The aim of the lessons is simple: every child should know how to recognise danger and what to do when they see it."
     ],
-    "why": "Our reminder: if you see a suspicious object, do not approach or touch it, move away the same way you came and call the emergency number (101 in Ukraine, 112 in the EU). Risk education is one of the five pillars of mine action, and dogs make it memorable for children."
+    "why": "Our reminder: if you see a suspicious object, do not approach or touch it, move away the same way you came and call the emergency number (101 in Ukraine, 112 in the EU). Risk education is one of the five pillars of mine action, and dogs make it memorable for children.",
+    "seo_title": "A demining dog teaches children in Ukraine to stay safe",
+    "description": "Chivas, a trained mine detection dog, helps Save the Children teach children in frontline Kharkiv to recognise landmines and explosive hazards and stay safe.",
+    "keywords": [
+      "mine risk education",
+      "mine safety for children",
+      "mine detection dog",
+      "Save the Children",
+      "Kharkiv"
+    ]
   },
   "fi": {
     "title": "Miinakoira opettaa lapsille turvallisuutta Ukrainassa",
@@ -25,7 +37,16 @@
       "Save the Children on järjestänyt räjähdevaaraopetusta Ukrainassa yhdessä Ukrainan miinanraivaajien yhdistyksen (Ukrainian Deminers Association) kanssa vuodesta 2022. Järjestön mukaan joka kymmenes Ukrainan maamiinojen uhreista on lapsi, ja noin 23 % maan pinta-alasta on mahdollisesti miinojen ja räjähtämättömien ammusten saastuttamaa.",
       "Tuntien tavoite on yksinkertainen: jokaisen lapsen pitää osata tunnistaa vaara ja tietää, mitä tehdä, kun hän näkee sen."
     ],
-    "why": "Muistutus: jos näet epäilyttävän esineen, älä lähesty tai koske siihen, poistu samaa reittiä kuin tulit ja soita hätänumeroon (Ukrainassa 101, Suomessa 112). Riskikasvatus on yksi miinatoiminnan viidestä osa-alueesta, ja koirat tekevät siitä lapsille mieleenpainuvaa."
+    "why": "Muistutus: jos näet epäilyttävän esineen, älä lähesty tai koske siihen, poistu samaa reittiä kuin tulit ja soita hätänumeroon (Ukrainassa 101, Suomessa 112). Riskikasvatus on yksi miinatoiminnan viidestä osa-alueesta, ja koirat tekevät siitä lapsille mieleenpainuvaa.",
+    "seo_title": "Miinakoira opettaa lapsille turvallisuutta Ukrainassa",
+    "description": "Koulutettu miinakoira Chivas auttaa Save the Childrenia opettamaan Harkovan lapsia tunnistamaan miinat ja räjähdevaarat. Lue, miten toimia vaaratilanteessa.",
+    "keywords": [
+      "miinaturvallisuus",
+      "riskikasvatus",
+      "miinakoira",
+      "Save the Children",
+      "Harkova"
+    ]
   },
   "uk": {
     "title": "Собака-сапер навчає дітей в Україні мінної безпеки",
@@ -35,6 +56,15 @@
       "Save the Children разом з Українською асоціацією саперів (Ukrainian Deminers Association) проводить навчання з мінної безпеки в Україні з 2022 року. За даними організації, кожна десята жертва мін в Україні — дитина, а близько 23 % території країни потенційно забруднені мінами та вибухонебезпечними предметами.",
       "Мета уроків проста: кожна дитина має знати, як розпізнати небезпеку і що робити, коли її побачила."
     ],
-    "why": "Нагадуємо: якщо бачите підозрілий предмет — не наближайтеся й не торкайтеся його, відійдіть тим самим шляхом, яким прийшли, і телефонуйте 101. Навчання мінної безпеки — одна з пʼяти складових протимінної діяльності, а собаки роблять його для дітей незабутнім."
+    "why": "Нагадуємо: якщо бачите підозрілий предмет — не наближайтеся й не торкайтеся його, відійдіть тим самим шляхом, яким прийшли, і телефонуйте 101. Навчання мінної безпеки — одна з пʼяти складових протимінної діяльності, а собаки роблять його для дітей незабутнім.",
+    "seo_title": "Собака-сапер навчає дітей мінної безпеки",
+    "description": "Навчений собака-сапер Чівас допомагає Save the Children вчити дітей у Харкові розпізнавати міни й вибухонебезпечні предмети. Що робити, якщо бачите небезпеку.",
+    "keywords": [
+      "мінна безпека",
+      "безпека дітей",
+      "собака-сапер",
+      "Save the Children",
+      "Харків"
+    ]
   }
 }

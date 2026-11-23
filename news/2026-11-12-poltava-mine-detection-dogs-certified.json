@@ -5,9 +5,18 @@
   "image": "/img/malinois-run-1200.webp",
   "image_small": "/img/malinois-run-640.webp",
   "sources": [
-    {"name": "ZMIST (zmist.pl.ua), 12.11.2026", "url": "https://zmist.pl.ua/news/sapery-kinology-z-poltavshhyny-projshly-atestacziyu-minno-poshukovyh-sobak/"},
-    {"name": "Malva TV (malva.tv), 12.11.2026", "url": "https://malva.tv/20261112/u-mobiljnomu-rjatuvaljnomu-centri-shvydkoho-reahuvannja-sumy-dsns-ukrajiny-vidbulasja-atestacija-minno-poshukovyx-sobak/"},
-    {"name": "ZMIST: a dog training centre for demining in Poltava region", "url": "https://zmist.pl.ua/news/sobak-trenuvatymut-dlya-poshuku-min-na-poltavshhyni/"}
+    {
+      "name": "ZMIST (zmist.pl.ua), 12.11.2026",
+      "url": "https://zmist.pl.ua/news/sapery-kinology-z-poltavshhyny-projshly-atestacziyu-minno-poshukovyh-sobak/"
+    },
+    {
+      "name": "Malva TV (malva.tv), 12.11.2026",
+      "url": "https://malva.tv/20261112/u-mobiljnomu-rjatuvaljnomu-centri-shvydkoho-reahuvannja-sumy-dsns-ukrajiny-vidbulasja-atestacija-minno-poshukovyx-sobak/"
+    },
+    {
+      "name": "ZMIST: a dog training centre for demining in Poltava region",
+      "url": "https://zmist.pl.ua/news/sobak-trenuvatymut-dlya-poshuku-min-na-poltavshhyni/"
+    }
   ],
   "en": {
     "title": "Mine detection dogs from Poltava region pass certification with Ukraine's State Emergency Service",
@@ -18,7 +27,17 @@
       "Earlier, dog teams from Poltava and Mykolaiv regions completed a three-week demining course with instructors of the SESU Mobile Rescue Centre, combining theory with intensive practice. After the course the handlers continue daily training in their units to keep and improve their skills.",
       "SESU, UNDP and APOPO have also discussed setting up a dog training centre in Poltava region, where dogs will be prepared to detect explosive objects for demining work."
     ],
-    "why": "Why it matters to us: certification is what turns a trained dog into a working demining dog. Ukraine is building up its own dog teams, and GMAH wants to prepare handlers and dogs to the same standard."
+    "why": "Why it matters to us: certification is what turns a trained dog into a working demining dog. Ukraine is building up its own dog teams, and GMAH wants to prepare handlers and dogs to the same standard.",
+    "seo_title": "Poltava mine detection dogs certified by SESU in Sumy",
+    "description": "Deminer dog handlers from Poltava region and their mine detection dogs passed certification at the SESU rescue centre in Sumy on 12 November 2026.",
+    "keywords": [
+      "mine detection dogs",
+      "dog handler",
+      "SESU",
+      "State Emergency Service of Ukraine",
+      "Poltava",
+      "certification"
+    ]
   },
   "fi": {
     "title": "Poltavan alueen miinakoirat läpäisivät Ukrainan pelastuspalvelun sertifioinnin",
@@ -29,7 +48,16 @@
       "Aiemmin Poltavan ja Mykolajivin alueiden koiraryhmät suorittivat kolmen viikon miinanraivauskurssin pelastuspalvelun liikkuvan pelastuskeskuksen kouluttajien johdolla. Kurssi yhdisti teoriaa ja intensiivistä harjoittelua. Kurssin jälkeen ohjaajat jatkavat päivittäistä harjoittelua omissa yksiköissään.",
       "Pelastuspalvelu, YK:n kehitysohjelma UNDP ja APOPO ovat myös keskustelleet koirien koulutuskeskuksen perustamisesta Poltavan alueelle. Siellä koiria valmennettaisiin löytämään räjähteitä miinanraivaustyötä varten."
     ],
-    "why": "Miksi tämä on meille tärkeää: sertifiointi tekee koulutetusta koirasta työssä käyvän miinakoiran. Ukraina kasvattaa omia koiraryhmiään, ja GMAH haluaa valmentaa ohjaajia ja koiria samaan tasoon."
+    "why": "Miksi tämä on meille tärkeää: sertifiointi tekee koulutetusta koirasta työssä käyvän miinakoiran. Ukraina kasvattaa omia koiraryhmiään, ja GMAH haluaa valmentaa ohjaajia ja koiria samaan tasoon.",
+    "seo_title": "Poltavan miinakoirat sertifioitiin Sumyssa",
+    "description": "Poltavan alueen miinanraivaajakoiranohjaajat ja heidän koiransa läpäisivät sertifioinnin Ukrainan pelastuspalvelun keskuksessa Sumyssa 12.11.2026.",
+    "keywords": [
+      "miinakoirat",
+      "koiranohjaaja",
+      "Ukrainan pelastuspalvelu",
+      "Poltava",
+      "sertifiointi"
+    ]
   },
   "uk": {
     "title": "Мінно-пошукові собаки з Полтавщини пройшли атестацію в ДСНС",
@@ -40,6 +68,15 @@
       "Раніше кінологічні розрахунки з Полтавської та Миколаївської областей пройшли тритижневий курс із розмінування під керівництвом інструкторів Мобільного рятувального центру ДСНС, де теорія поєднувалася з інтенсивною практикою. Після курсу кінологи продовжують щоденні тренування у своїх підрозділах.",
       "ДСНС, ПРООН та APOPO також обговорили створення на Полтавщині тренувального кінологічного центру, де собак готуватимуть до виявлення вибухонебезпечних предметів для робіт із розмінування."
     ],
-    "why": "Чому це важливо для нас: саме атестація перетворює навченого собаку на робочого собаку-сапера. Україна нарощує власні кінологічні команди, і GMAH прагне готувати кінологів і собак за тим самим стандартом."
+    "why": "Чому це важливо для нас: саме атестація перетворює навченого собаку на робочого собаку-сапера. Україна нарощує власні кінологічні команди, і GMAH прагне готувати кінологів і собак за тим самим стандартом.",
+    "seo_title": "Мінно-пошукові собаки з Полтавщини пройшли атестацію",
+    "description": "Сапери-кінологи з Полтавщини та їхні мінно-пошукові собаки пройшли атестацію в рятувальному центрі ДСНС «Суми» 12 листопада 2026 року.",
+    "keywords": [
+      "мінно-пошукові собаки",
+      "кінолог-сапер",
+      "ДСНС",
+      "Полтавщина",
+      "атестація собак"
+    ]
   }
 }

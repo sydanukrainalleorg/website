@@ -42,6 +42,7 @@ T = {
         "cta": "Ukraine needs thousands of mine detection dog teams. Join our talent pool of future handlers or support the programme.",
         "cta1": ("Become a dog handler", "/dog-handler/"), "cta2": ("Support GMAH", "/#support"),
         "rss": "News feed (RSS)",
+        "bc_home": "Home", "bc_news": "News", "related": "More news", "updated": "Updated",
     },
     "fi": {
         "list_title": "Miinatoiminnan uutiset", "kicker": "Uutiset",
@@ -52,6 +53,7 @@ T = {
         "cta": "Ukraina tarvitsee tuhansia miinakoiraryhmiä. Liity tulevien koiranohjaajien reserviin tai tue ohjelmaa.",
         "cta1": ("Ryhdy koiranohjaajaksi", "/fi/koiranohjaaja/"), "cta2": ("Tue GMAH:ta", "/fi/#support"),
         "rss": "Uutissyöte (RSS)",
+        "bc_home": "Etusivu", "bc_news": "Uutiset", "related": "Lisää uutisia", "updated": "Päivitetty",
     },
     "uk": {
         "list_title": "Новини протимінної діяльності", "kicker": "Новини",
@@ -62,10 +64,15 @@ T = {
         "cta": "Україні потрібні тисячі команд із собаками-шукачами мін. Долучайтеся до кадрового резерву майбутніх кінологів або підтримайте програму.",
         "cta1": ("Стати кінологом", "/uk/kinolog/"), "cta2": ("Підтримати GMAH", "/uk/#support"),
         "rss": "Стрічка новин (RSS)",
+        "bc_home": "Головна", "bc_news": "Новини", "related": "Інші новини", "updated": "Оновлено",
     },
 }
 
 E = html.escape
+ORG_ID = f"{SITE}/#organization"
+ORG_REF = {"@type": "NGO", "@id": ORG_ID, "name": "Global Mine Action Hub (Sydän Ukrainalle ry)", "url": f"{SITE}/",
+           "logo": {"@type": "ImageObject", "url": f"{SITE}/apple-touch-icon.png"}}
+TITLE_MAX, DESC_MIN, DESC_MAX = 65, 70, 160
 
 
 def fmt_date(d, lang):
@@ -87,6 +94,16 @@ def load_items():
             for k in ("title", "summary", "body"):
                 if not it[lang].get(k):
                     raise SystemExit(f"{f.name}: '{lang}.{k}' is empty")
+        for lang in LANGS:
+            x = it[lang]
+            st = x.get("seo_title") or x["title"]
+            d = x.get("description") or x["summary"]
+            if len(st) > TITLE_MAX:
+                print(f"WARNING {f.name} [{lang}]: title for search is {len(st)} chars (max {TITLE_MAX}) - add a shorter 'seo_title'")
+            if not DESC_MIN <= len(d) <= DESC_MAX:
+                print(f"WARNING {f.name} [{lang}]: description is {len(d)} chars (aim {DESC_MIN}-{DESC_MAX}) - add/adjust 'description'")
+        if it.get("updated"):
+            it["_updated"] = date.fromisoformat(it["updated"])
         if not re.fullmatch(r"[a-z0-9-]+", it["slug"]):
             raise SystemExit(f"{f.name}: slug must be lowercase latin letters, digits and dashes")
         items.append(it)
@@ -138,6 +155,13 @@ article.news .sources ul{padding-left:1.2em;margin:.4em 0}
 .cta h2{font-size:1.6rem}
 .cta .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
 footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);font-size:.9rem}
+.crumbs{font-size:.9rem;color:var(--muted);margin-bottom:22px}
+.crumbs span{color:var(--muted)}
+.related{padding:0 0 40px}
+.related h2{font-size:1.6rem;margin-bottom:16px}
+.related .news-list{padding-bottom:40px}
+.related .news-card h3{font-size:1.2rem;margin:.2em 0 .4em}
+.related .news-card h3 a{color:var(--ink);text-decoration:none}
 """
 
 
@@ -151,18 +175,19 @@ def lang_switch(lang, paths):
     return f'<nav class="langs" aria-label="{aria}" style="margin-left:auto">{"".join(out)}</nav>'
 
 
-def page(lang, *, title, desc, url_path, alt_paths, body, og_type="website", jsonld=None, og_image=None):
+def page(lang, *, title, desc, url_path, alt_paths, body, og_type="website", jsonld=None, og_image=None, extra_head=""):
     style, brand, footer_p = template_parts(lang)
     t = T[lang]
     alts = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{SITE}{alt_paths[l]}">' for l in LANGS)
     img = og_image or f"{SITE}/og-image.png"
-    ld = f'<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>\n' if jsonld else ""
+    lds = jsonld if isinstance(jsonld, list) else ([jsonld] if jsonld else [])
+    ld = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>\n' for j in lds)
     return f"""<!DOCTYPE html>
 <html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{E(title)} — Global Mine Action Hub</title>
+<title>{E(title)} | GMAH</title>
 <meta name="description" content="{E(desc)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -176,6 +201,7 @@ def page(lang, *, title, desc, url_path, alt_paths, body, og_type="website", jso
 <meta property="og:image" content="{img}">
 <meta property="og:locale" content="{LOCALE[lang]}">
 <meta name="twitter:card" content="summary_large_image">
+{extra_head}<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <link rel="canonical" href="{SITE}{url_path}">
 {alts}
 <link rel="alternate" hreflang="x-default" href="{SITE}{alt_paths['en']}">
@@ -218,7 +244,7 @@ def card(it, lang, heading="h2"):
     cls = "news-card"
     if it.get("image_small") or it.get("image"):
         src = it.get("image_small") or it["image"]
-        img = f'<a href="{url}" tabindex="-1" aria-hidden="true"><img src="{src}" alt="" loading="lazy" width="640" height="480"></a>'
+        img = f'<a href="{url}" tabindex="-1"><img src="{src}" alt="{E(t["title"])}" loading="lazy" width="640" height="480"></a>'
     else:
         cls += " noimg"
     return f"""<li class="{cls}">{img}<div>
@@ -229,12 +255,25 @@ def card(it, lang, heading="h2"):
 </div></li>"""
 
 
+def breadcrumbs(lang, crumbs):
+    """crumbs: list of (name, path or None). Returns (html, jsonld)."""
+    parts = []
+    for name, path in crumbs:
+        parts.append(f'<a href="{path}">{E(name)}</a>' if path else f'<span aria-current="page">{E(name)}</span>')
+    html_ = f'<nav class="crumbs" aria-label="Breadcrumb">{" › ".join(parts)}</nav>'
+    ld = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": n, **({"item": f"{SITE}{p}"} if p else {})}
+        for i, (n, p) in enumerate(crumbs)]}
+    return html_, ld
+
+
 def build_list(items, lang):
     t = T[lang]
     cards = "\n".join(card(i, lang) for i in items)
+    bc_html, bc_ld = breadcrumbs(lang, [(t["bc_home"], HOME[lang]), (t["bc_news"], None)])
     body = f"""<section class="hero">
   <div class="wrap">
-    <a class="backhome" href="{HOME[lang]}">{E(t['home'])}</a><br><br>
+    {bc_html}
     <span class="kicker">{E(t['kicker'])}</span>
     <h1>{E(t['list_title'])}</h1>
     <p class="lead">{E(t['list_desc'])}</p>
@@ -246,12 +285,14 @@ def build_list(items, lang):
     jsonld = {
         "@context": "https://schema.org", "@type": "CollectionPage", "name": t["list_title"],
         "description": t["list_desc"], "url": f"{SITE}{BASE[lang]}", "inLanguage": lang,
-        "publisher": {"@type": "NGO", "name": "Sydän Ukrainalle ry", "url": f"{SITE}/"},
+        "publisher": ORG_REF,
+        "mainEntity": {"@type": "ItemList", "itemListElement": [
+            {"@type": "ListItem", "position": n + 1, "url": f"{SITE}{BASE[lang]}{i['slug']}/"} for n, i in enumerate(items)]},
     }
-    return page(lang, title=t["list_title"], desc=t["list_desc"], url_path=BASE[lang], alt_paths=BASE, body=body, jsonld=jsonld)
+    return page(lang, title=t["list_title"], desc=t["list_desc"][:DESC_MAX], url_path=BASE[lang], alt_paths=BASE, body=body, jsonld=[jsonld, bc_ld])
 
 
-def build_item(it, lang):
+def build_item(it, lang, items=()):
     t = T[lang]
     x = it[lang]
     paths = {l: f"{BASE[l]}{it['slug']}/" for l in LANGS}
@@ -265,11 +306,19 @@ def build_item(it, lang):
         lis = "".join(f'<li><a href="{E(s["url"])}" target="_blank" rel="noopener">{E(s["name"])}</a></li>' for s in it["sources"])
         src = f'<div class="sources"><b>{E(t["sources"] if len(it["sources"]) > 1 else t["source"])}:</b><ul>{lis}</ul></div>'
     c1, c2 = t["cta1"], t["cta2"]
+    bc_html, bc_ld = breadcrumbs(lang, [(t["bc_home"], HOME[lang]), (t["bc_news"], BASE[lang]), (x["title"], None)])
+    upd = ""
+    if it.get("_updated"):
+        upd = f' <span>{E(t["updated"])}: <time datetime="{it["updated"]}">{fmt_date(it["_updated"], lang)}</time></span>'
+    others = [o for o in items if o["slug"] != it["slug"]][:3]
+    related = ""
+    if others:
+        related = f'<section class="related"><h2>{E(t["related"])}</h2><ul class="news-list">' + "".join(card(o, lang, heading="h3") for o in others) + "</ul></section>"
     body = f"""<article class="news">
 <section class="hero" style="padding-bottom:0">
   <div class="wrap">
-    <a class="backhome" href="{BASE[lang]}">{E(t['all'])}</a><br><br>
-    <div class="meta"><span class="tag">{E(tag(it, lang))}</span><time datetime="{it['date']}">{fmt_date(it['_date'], lang)}</time></div>
+    {bc_html}
+    <div class="meta"><span class="tag">{E(tag(it, lang))}</span><time datetime="{it['date']}">{fmt_date(it['_date'], lang)}</time>{upd}</div>
     <h1>{E(x['title'])}</h1>
     <p class="lead">{E(x['summary'])}</p>
   </div>
@@ -281,19 +330,27 @@ def build_item(it, lang):
 {src}
 <div class="cta"><h2>{E(t['cta_t'])}</h2><p>{E(t['cta'])}</p><div class="actions"><a class="btn" href="{c1[1]}">{E(c1[0])}</a><a class="btn ghost" href="{c2[1]}">{E(c2[0])}</a></div></div>
 </div>
-</article>"""
+</article>
+<div class="wrap">{related}</div>"""
     jsonld = {
         "@context": "https://schema.org", "@type": "NewsArticle", "headline": x["title"],
-        "description": x["summary"], "datePublished": it["date"], "inLanguage": lang,
+        "description": x.get("description") or x["summary"], "datePublished": it["date"],
+        "dateModified": it.get("updated") or it["date"], "inLanguage": lang,
         "mainEntityOfPage": f"{SITE}{paths[lang]}",
         "image": [f"{SITE}{it['image']}"] if it.get("image") else [f"{SITE}/og-image.png"],
-        "author": {"@type": "Organization", "name": "Global Mine Action Hub", "url": f"{SITE}/"},
-        "publisher": {"@type": "NGO", "name": "Sydän Ukrainalle ry", "url": f"{SITE}/", "logo": {"@type": "ImageObject", "url": f"{SITE}/apple-touch-icon.png"}},
+        "author": ORG_REF,
+        "publisher": ORG_REF,
     }
+    if x.get("keywords"):
+        jsonld["keywords"] = ", ".join(x["keywords"])
     if it.get("sources"):
         jsonld["isBasedOn"] = [s["url"] for s in it["sources"]]
     og = f"{SITE}{it['image']}" if it.get("image") else None
-    return page(lang, title=x["title"], desc=x["summary"], url_path=paths[lang], alt_paths=paths, body=body, og_type="article", jsonld=jsonld, og_image=og)
+    head = f'<meta property="article:published_time" content="{it["date"]}">\n'
+    if it.get("updated"):
+        head += f'<meta property="article:modified_time" content="{it["updated"]}">\n'
+    return page(lang, title=x.get("seo_title") or x["title"], desc=x.get("description") or x["summary"], url_path=paths[lang],
+                alt_paths=paths, body=body, og_type="article", jsonld=[jsonld, bc_ld], og_image=og, extra_head=head)
 
 
 def build_rss(items, lang):
@@ -330,12 +387,14 @@ def replace_block(text, start, end, new, insert_before=None):
 def update_sitemap(items):
     p = PUB / "sitemap.xml"
     s = p.read_text(encoding="utf-8")
-    groups = [BASE] + [{l: f"{BASE[l]}{it['slug']}/" for l in LANGS} for it in items]
+    newest = max((i.get("updated") or i["date"]) for i in items) if items else date.today().isoformat()
+    groups = [(BASE, newest)] + [({l: f"{BASE[l]}{it['slug']}/" for l in LANGS}, it.get("updated") or it["date"]) for it in items]
     urls = []
-    for g in groups:
+    for g, lastmod in groups:
         alts = "".join(f'\n    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE}{g[l]}"/>' for l in ("en", "uk", "fi"))
+        alts += f'\n    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE}{g["en"]}"/>'
         for l in ("en", "uk", "fi"):
-            urls.append(f"  <url><loc>{SITE}{g[l]}</loc>{alts}\n  </url>")
+            urls.append(f"  <url><loc>{SITE}{g[l]}</loc><lastmod>{lastmod}</lastmod>{alts}\n  </url>")
     s = replace_block(s, "<!-- news:start -->", "<!-- news:end -->", "\n".join(urls), insert_before="</urlset>")
     p.write_text(s, encoding="utf-8")
 
@@ -386,7 +445,7 @@ def main():
         for it in items:
             d = base / it["slug"]
             d.mkdir(exist_ok=True)
-            (d / "index.html").write_text(build_item(it, lang), encoding="utf-8")
+            (d / "index.html").write_text(build_item(it, lang, items), encoding="utf-8")
         update_home(items, lang)
     update_sitemap(items)
     print(f"Built {len(items)} news items × {len(LANGS)} languages.")

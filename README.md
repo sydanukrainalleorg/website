@@ -15,7 +15,7 @@ Website of Global Mine Action Hub, a programme of Sydän Ukrainalle ry (Y-tunnus
 2. Run `python3 tools/build_news.py`.
 3. Commit and push to `main`.
 
-Do not copy other sites' articles: write a short summary in our own words and link to the original.
+Do not copy other sites' articles: write a short summary in our own words and link to the original. Full SEO rules for every publication: see CLAUDE.md.
 
 Every change pushed to the `main` branch is published automatically by Cloudflare.
 

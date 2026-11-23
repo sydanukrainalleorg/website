@@ -5,7 +5,10 @@
   "image": "/img/drone-survey-1200.webp",
   "image_small": "/img/drone-survey-640.webp",
   "sources": [
-    {"name": "Ministry of Economy and Environment of Ukraine (kmu.gov.ua), 13.11.2026", "url": "https://www.kmu.gov.ua/news/minekonomiky-pidsumky-humanitarnoho-rozminuvannia-za-zhovten"}
+    {
+      "name": "Ministry of Economy and Environment of Ukraine (kmu.gov.ua), 13.11.2026",
+      "url": "https://www.kmu.gov.ua/news/minekonomiky-pidsumky-humanitarnoho-rozminuvannia-za-zhovten"
+    }
   ],
   "en": {
     "title": "Ukraine's state demining programme: 691 hectares of farmland cleared in October",
@@ -16,7 +19,16 @@
       "Work has also started in the buffer zone 20–50 km from the front line and the state border: 702 plots with a total area of 106 km².",
       "Under the programme, the state covers the full cost of clearing agricultural land, and the work is carried out by mine action operators. The programme is financed through the Ukraine Facility, the EU's support instrument for Ukraine."
     ],
-    "why": "Why it matters to us: every cleared field is a farm that can work again. Surveying and clearing land like this is exactly where trained detection dogs speed up the work."
+    "why": "Why it matters to us: every cleared field is a farm that can work again. Surveying and clearing land like this is exactly where trained detection dogs speed up the work.",
+    "seo_title": "Ukraine demining: 691 ha of farmland cleared in October 2026",
+    "description": "Ukraine's state demining programme cleared 691 ha of farmland in October 2026; 110 contracts have returned 20,709 ha to farmers. Ministry of Economy data.",
+    "keywords": [
+      "humanitarian demining Ukraine",
+      "farmland demining",
+      "Ministry of Economy Ukraine",
+      "mine clearance results",
+      "Ukraine Facility"
+    ]
   },
   "fi": {
     "title": "Ukrainan valtion miinanraivausohjelma: lokakuussa raivattiin 691 hehtaaria peltoa",
@@ -27,7 +39,15 @@
       "Työt ovat alkaneet myös puskurivyöhykkeellä 20–50 kilometrin päässä rintamalinjasta ja valtionrajasta: 702 aluetta, yhteensä 106 km².",
       "Ohjelmassa valtio maksaa maatalousmaan raivauksen kokonaan, ja työt tekevät miinatoimintaoperaattorit. Ohjelma rahoitetaan EU:n Ukrainan tukivälineen (Ukraine Facility) kautta."
     ],
-    "why": "Miksi tämä on meille tärkeää: jokainen raivattu pelto on tila, joka voi taas tehdä työtä. Juuri tällaisen maan tutkimisessa ja raivauksessa koulutetut koirat nopeuttavat työtä."
+    "why": "Miksi tämä on meille tärkeää: jokainen raivattu pelto on tila, joka voi taas tehdä työtä. Juuri tällaisen maan tutkimisessa ja raivauksessa koulutetut koirat nopeuttavat työtä.",
+    "seo_title": "Ukrainan miinanraivaus: 691 ha peltoa raivattu lokakuussa",
+    "description": "Ukrainan valtion ohjelmassa raivattiin lokakuussa 2026 691 ha peltoa; yhteensä 20 709 ha on palautettu viljelijöille. Luvut talousministeriöltä.",
+    "keywords": [
+      "miinanraivaus Ukraina",
+      "peltojen raivaus",
+      "humanitaarinen miinanraivaus",
+      "Ukraine Facility"
+    ]
   },
   "uk": {
     "title": "Державна програма розмінування: у жовтні очищено 691 гектар сільгоспземель",
@@ -38,6 +58,15 @@
       "Роботи вже тривають і в буферній зоні за 20–50 км від лінії фронту та державного кордону: 702 ділянки загальною площею 106 км².",
       "За програмою держава повністю оплачує очищення сільськогосподарських земель, а роботи виконують оператори протимінної діяльності. Програма фінансується в межах Ukraine Facility — інструменту підтримки України від ЄС."
     ],
-    "why": "Чому це важливо для нас: кожне очищене поле — це господарство, яке знову може працювати. Саме під час обстеження й очищення таких земель навчені собаки пришвидшують роботу."
+    "why": "Чому це важливо для нас: кожне очищене поле — це господарство, яке знову може працювати. Саме під час обстеження й очищення таких земель навчені собаки пришвидшують роботу.",
+    "seo_title": "Розмінування: у жовтні 2026 очищено 691 га сільгоспземель",
+    "description": "За держпрограмою гуманітарного розмінування в жовтні 2026 очищено 691 га сільгоспземель, а загалом аграріям повернуто 20 709 га. Дані Мінекономіки.",
+    "keywords": [
+      "гуманітарне розмінування",
+      "розмінування сільгоспземель",
+      "Мінекономіки",
+      "підсумки розмінування",
+      "Ukraine Facility"
+    ]
   }
 }
