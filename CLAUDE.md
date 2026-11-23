@@ -24,3 +24,4 @@ The owner's goal: maximum visibility of the organisation in search engines. Appl
 - Each page: one `<h1>`, unique `<title>` and meta description, canonical URL, hreflang EN/FI/UK + x-default, Open Graph tags.
 - `public/sitemap.xml`: the news part is generated between `<!-- news:start -->` and `<!-- news:end -->`; add new static pages above that block by hand.
 - `robots.txt` allows everything and points to the sitemap.
+- Never remove the `google-site-verification` and `msvalidate.01` meta tags from `public/index.html`: they keep the site verified in Google Search Console and Bing Webmaster Tools (account alxx.roi@gmail.com).
