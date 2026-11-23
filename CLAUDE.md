@@ -16,7 +16,7 @@ The owner's goal: maximum visibility of the organisation in search engines. Appl
 7. **Image**: use a relevant image from `public/img/` (`image` + `image_small`); it is shown as "Illustrative photo". Never use photos of real people taken from other sites.
 8. **Build**: run `python3 tools/build_news.py`. It must print no `WARNING` lines (it checks title/description length). It generates: list pages, article pages with NewsArticle + BreadcrumbList structured data, breadcrumbs, "More news" internal links, RSS feeds, sitemap with `lastmod` and hreflang, and the "Latest news" block on the home pages.
 9. **Update**: when correcting an item later, add `"updated": "YYYY-MM-DD"` — it becomes `dateModified` and the sitemap `lastmod`.
-10. **Publish**: commit, push to `main`, then check the live URLs. After publishing, ask Google to index the new URLs in Search Console (URL inspection → Request indexing) when access is available.
+10. **Publish**: commit, push to `main`, then check the live URLs. After publishing, ask Google to index the new URLs in Search Console (URL inspection → Request indexing) and submit them in Bing Webmaster Tools (URL Submission, 100 URLs/day) — both on account alxx.roi@gmail.com, via the browser.
 11. **Give the owner a full Russian translation** of every published text (he does not read Finnish and reads little English).
 
 ## Site-wide SEO that must stay in place
