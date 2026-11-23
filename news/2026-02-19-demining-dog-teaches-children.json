@@ -1,0 +1,40 @@
+{
+  "slug": "demining-dog-teaches-children",
+  "date": "2026-02-19",
+  "kind": "industry",
+  "image": "",
+  "image_small": "",
+  "sources": [
+    {"name": "Save the Children, 19.02.2026", "url": "https://www.savethechildren.net/news/ukraine-demining-dog-helping-children-stay-safe-worlds-most-heavily-mined-country"}
+  ],
+  "en": {
+    "title": "A demining dog teaches children in Ukraine how to stay safe",
+    "summary": "In frontline cities such as Kharkiv, Chivas, a trained mine detection dog, helps Save the Children teach children to recognise explosive hazards.",
+    "body": [
+      "Save the Children has told the story of Chivas, a six-year-old German Spitz trained as a mine detection dog. Besides detection work, he takes part in mine safety lessons for children in frontline cities such as Kharkiv, where he signals danger by crossing his paws.",
+      "Save the Children has run explosive ordnance risk education in Ukraine together with the Ukrainian Deminers Association since 2022. According to the organisation, one in ten landmine casualties in Ukraine is a child, and about 23% of the country's land is potentially contaminated with mines and unexploded ordnance.",
+      "The aim of the lessons is simple: every child should know how to recognise danger and what to do when they see it."
+    ],
+    "why": "Our reminder: if you see a suspicious object, do not approach or touch it, move away the same way you came and call the emergency number (101 in Ukraine, 112 in the EU). Risk education is one of the five pillars of mine action, and dogs make it memorable for children."
+  },
+  "fi": {
+    "title": "Miinakoira opettaa lapsille turvallisuutta Ukrainassa",
+    "summary": "Rintaman läheisissä kaupungeissa, kuten Harkovassa, koulutettu miinakoira Chivas auttaa Save the Childrenia opettamaan lapsia tunnistamaan räjähdevaarat.",
+    "body": [
+      "Save the Children on kertonut Chivasista, kuusivuotiaasta saksanpystykorvasta, joka on koulutettu miinakoiraksi. Etsintätyön lisäksi Chivas osallistuu lasten miinaturvallisuustunneille rintaman läheisissä kaupungeissa, kuten Harkovassa. Vaarasta se varoittaa ristimällä tassunsa.",
+      "Save the Children on järjestänyt räjähdevaaraopetusta Ukrainassa yhdessä Ukrainan miinanraivaajien yhdistyksen (Ukrainian Deminers Association) kanssa vuodesta 2022. Järjestön mukaan joka kymmenes Ukrainan maamiinojen uhreista on lapsi, ja noin 23 % maan pinta-alasta on mahdollisesti miinojen ja räjähtämättömien ammusten saastuttamaa.",
+      "Tuntien tavoite on yksinkertainen: jokaisen lapsen pitää osata tunnistaa vaara ja tietää, mitä tehdä, kun hän näkee sen."
+    ],
+    "why": "Muistutus: jos näet epäilyttävän esineen, älä lähesty tai koske siihen, poistu samaa reittiä kuin tulit ja soita hätänumeroon (Ukrainassa 101, Suomessa 112). Riskikasvatus on yksi miinatoiminnan viidestä osa-alueesta, ja koirat tekevät siitä lapsille mieleenpainuvaa."
+  },
+  "uk": {
+    "title": "Собака-сапер навчає дітей в Україні мінної безпеки",
+    "summary": "У прифронтових містах, як-от Харків, навчений собака-сапер Чівас допомагає Save the Children вчити дітей розпізнавати вибухонебезпечні предмети.",
+    "body": [
+      "Save the Children розповіла про Чіваса — шестирічного німецького шпіца, навченого шукати міни. Окрім пошукової роботи, він бере участь в уроках мінної безпеки для дітей у прифронтових містах, як-от Харків. Небезпеку він показує, схрещуючи лапи.",
+      "Save the Children разом з Українською асоціацією саперів (Ukrainian Deminers Association) проводить навчання з мінної безпеки в Україні з 2022 року. За даними організації, кожна десята жертва мін в Україні — дитина, а близько 23 % території країни потенційно забруднені мінами та вибухонебезпечними предметами.",
+      "Мета уроків проста: кожна дитина має знати, як розпізнати небезпеку і що робити, коли її побачила."
+    ],
+    "why": "Нагадуємо: якщо бачите підозрілий предмет — не наближайтеся й не торкайтеся його, відійдіть тим самим шляхом, яким прийшли, і телефонуйте 101. Навчання мінної безпеки — одна з пʼяти складових протимінної діяльності, а собаки роблять його для дітей незабутнім."
+  }
+}

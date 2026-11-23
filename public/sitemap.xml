@@ -30,4 +30,66 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/kinolog/"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/koiranohjaaja/"/>
   </url>
+<!-- news:start -->
+  <url><loc>https://sydanukrainalle.org/news/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/novyny/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/uutiset/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/news/umac-2026-brussels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/umac-2026-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/umac-2026-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/umac-2026-brussels/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/novyny/umac-2026-brussels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/umac-2026-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/umac-2026-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/umac-2026-brussels/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/uutiset/umac-2026-brussels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/umac-2026-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/umac-2026-brussels/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/umac-2026-brussels/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/news/ukraine-demining-results-october-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/ukraine-demining-results-october-2026/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/ukraine-demining-results-october-2026/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/ukraine-demining-results-october-2026/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/novyny/ukraine-demining-results-october-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/ukraine-demining-results-october-2026/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/ukraine-demining-results-october-2026/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/ukraine-demining-results-october-2026/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/uutiset/ukraine-demining-results-october-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/ukraine-demining-results-october-2026/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/ukraine-demining-results-october-2026/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/ukraine-demining-results-october-2026/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/news/demining-dog-teaches-children/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/demining-dog-teaches-children/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/demining-dog-teaches-children/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/demining-dog-teaches-children/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/novyny/demining-dog-teaches-children/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/demining-dog-teaches-children/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/demining-dog-teaches-children/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/demining-dog-teaches-children/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/uutiset/demining-dog-teaches-children/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/demining-dog-teaches-children/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/demining-dog-teaches-children/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/demining-dog-teaches-children/"/>
+  </url>
+<!-- news:end -->
 </urlset>

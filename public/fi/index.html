@@ -73,7 +73,7 @@ section{padding:88px 0;border-top:1px solid var(--line)}
 
 /* header */
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.top .wrap{display:flex;align-items:center;gap:24px;height:68px;max-width:1440px}
 .brand{text-decoration:none;color:var(--ink);line-height:1.15;display:flex;align-items:center;gap:10px}
 .brand-mark{width:38px;height:38px;flex:none;color:var(--green-text)}
 .brand-text{display:block}
@@ -87,7 +87,7 @@ nav.main a,.top .btn{white-space:nowrap}
 nav.main a:hover{color:var(--orange)}
 .top .btn{padding:11px 16px;font-size:.92rem}
 .menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line);color:var(--ink);border-radius:6px;padding:8px 12px;font:inherit}
-@media (max-width:1180px){
+@media (max-width:1440px){
   nav.main{display:none;position:absolute;left:0;right:0;top:68px;background:var(--bg);flex-direction:column;padding:16px 24px 24px;border-bottom:1px solid var(--line)}
   nav.main.open{display:flex}
   .menu-toggle{display:block}
@@ -103,7 +103,7 @@ nav.main a:hover{color:var(--orange)}
 .lang-offer .wrap{display:flex;align-items:center;gap:16px;min-height:48px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
 .lang-offer a{color:var(--on-green);font-weight:600}
 .lang-offer button{margin-left:auto;background:none;border:0;color:var(--on-green);font-size:1.3rem;cursor:pointer;line-height:1}
-@media (max-width:1180px){.langs{margin-left:auto}.menu-toggle{margin-left:8px}}
+@media (max-width:1440px){.langs{margin-left:auto}.menu-toggle{margin-left:8px}}
 @media (max-width:600px){.brand-mark{width:30px;height:30px}.brand{gap:8px}.top .wrap{gap:10px}.brand b{font-size:1.05rem}.brand small{display:none}.langs a{padding:7px 6px}.menu-toggle{padding:7px 10px}}
 
 /* hero */
@@ -352,6 +352,7 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
       <a href="#safety">Turvallisuus</a>
       <a href="#involved">Osallistu</a>
       <a href="/fi/koiranohjaaja/">Koiranohjaajaksi</a>
+      <a href="/fi/uutiset/">Uutiset</a>
       <a href="#contact">Yhteystiedot</a>
     </nav>
     <nav class="langs" aria-label="Kieli"><a href="/" hreflang="en" lang="en" data-lang="en">EN</a><a href="/uk/" hreflang="uk" lang="uk" data-lang="uk">УКР</a><a href="/fi/" hreflang="fi" lang="fi" data-lang="fi" aria-current="true">FI</a></nav>
@@ -754,6 +755,46 @@ footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--muted);f
   </div>
 </section>
 
+<!-- news-block:start -->
+<section id="news" class="news-home">
+  <div class="wrap">
+    <h2>Tuoreimmat uutiset</h2>
+    <ul class="news-list home">
+<li class="news-card"><a href="/fi/uutiset/umac-2026-brussels/" tabindex="-1" aria-hidden="true"><img src="/img/malinois-harness-640.webp" alt="" loading="lazy" width="640" height="480"></a><div>
+  <div class="meta"><span class="tag">Alan uutiset</span><time datetime="2026-11-19">19. marraskuuta 2026</time></div>
+  <h3><a href="/fi/uutiset/umac-2026-brussels/">UMAC 2026 Brysselissä: kumppanit lupasivat noin 70 miljoonaa euroa Ukrainan miinanraivaukseen</a></h3>
+  <p>Neljäs Ukrainan miinatoimintakonferenssi pidettiin Brysselissä 16.–18. marraskuuta. Kumppanimaat ilmoittivat noin 70 miljoonan euron sitoumuksista humanitaariseen miinanraivaukseen.</p>
+  <a href="/fi/uutiset/umac-2026-brussels/">Lue lisää →</a>
+</div></li>
+<li class="news-card"><a href="/fi/uutiset/ukraine-demining-results-october-2026/" tabindex="-1" aria-hidden="true"><img src="/img/drone-survey-640.webp" alt="" loading="lazy" width="640" height="480"></a><div>
+  <div class="meta"><span class="tag">Alan uutiset</span><time datetime="2026-11-13">13. marraskuuta 2026</time></div>
+  <h3><a href="/fi/uutiset/ukraine-demining-results-october-2026/">Ukrainan valtion miinanraivausohjelma: lokakuussa raivattiin 691 hehtaaria peltoa</a></h3>
+  <p>Lokakuussa 2026 miinanraivausoperaattorit raivasivat 691 hehtaaria maatalousmaata Ukrainan valtion humanitaarisen miinanraivauksen ohjelmassa. Yhteensä 110 valmistunutta sopimusta on palauttanut käyttöön 20 709 hehtaaria.</p>
+  <a href="/fi/uutiset/ukraine-demining-results-october-2026/">Lue lisää →</a>
+</div></li>
+<li class="news-card noimg"><div>
+  <div class="meta"><span class="tag">Alan uutiset</span><time datetime="2026-02-19">19. helmikuuta 2026</time></div>
+  <h3><a href="/fi/uutiset/demining-dog-teaches-children/">Miinakoira opettaa lapsille turvallisuutta Ukrainassa</a></h3>
+  <p>Rintaman läheisissä kaupungeissa, kuten Harkovassa, koulutettu miinakoira Chivas auttaa Save the Childrenia opettamaan lapsia tunnistamaan räjähdevaarat.</p>
+  <a href="/fi/uutiset/demining-dog-teaches-children/">Lue lisää →</a>
+</div></li>
+    </ul>
+    <p><a class="btn ghost" href="/fi/uutiset/">Kaikki uutiset →</a></p>
+  </div>
+</section>
+<style>
+.news-home .news-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:0;margin:24px 0;list-style:none}
+.news-home .news-card{display:flex;flex-direction:column;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.news-home .news-card img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:8px;display:block}
+.news-home .news-card h3{font-size:1.2rem;margin:.3em 0}
+.news-home .news-card h3 a{color:var(--ink);text-decoration:none}
+.news-home .news-card h3 a:hover{color:var(--orange)}
+.news-home .news-card p{font-size:.95rem;margin:0 0 .6em}
+.news-home .meta{font-size:.8rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.news-home .tag{color:var(--orange);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+@media (max-width:900px){.news-home .news-list{grid-template-columns:1fr}}
+</style>
+<!-- news-block:end -->
 <section id="contact" class="contact">
   <div class="wrap">
     <div>

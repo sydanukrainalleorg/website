@@ -1,0 +1,43 @@
+{
+  "slug": "ukraine-demining-results-october-2026",
+  "date": "2026-11-13",
+  "kind": "industry",
+  "image": "/img/drone-survey-1200.webp",
+  "image_small": "/img/drone-survey-640.webp",
+  "sources": [
+    {"name": "Ministry of Economy and Environment of Ukraine (kmu.gov.ua), 13.11.2026", "url": "https://www.kmu.gov.ua/news/minekonomiky-pidsumky-humanitarnoho-rozminuvannia-za-zhovten"}
+  ],
+  "en": {
+    "title": "Ukraine's state demining programme: 691 hectares of farmland cleared in October",
+    "summary": "In October 2026, operators cleared 691 hectares of agricultural land under Ukraine's state humanitarian demining programme. In total, 110 completed contracts have returned 20,709 hectares to use.",
+    "body": [
+      "On 13 November 2026, Ukraine's Ministry of Economy published the October results of its Humanitarian Demining budget programme. During the month, mine action operators cleared 691 hectares of agricultural land, four contracts were completed, and operators were paid UAH 61 million for finished work.",
+      "In total, 110 contracts have been completed, returning 20,709 hectares of farmland to use at a total cost of UAH 1.281 billion. Another 51 contracts covering about 9,740 hectares are in progress.",
+      "Work has also started in the buffer zone 20–50 km from the front line and the state border: 702 plots with a total area of 106 km².",
+      "Under the programme, the state covers the full cost of clearing agricultural land, and the work is carried out by mine action operators. The programme is financed through the Ukraine Facility, the EU's support instrument for Ukraine."
+    ],
+    "why": "Why it matters to us: every cleared field is a farm that can work again. Surveying and clearing land like this is exactly where trained detection dogs speed up the work."
+  },
+  "fi": {
+    "title": "Ukrainan valtion miinanraivausohjelma: lokakuussa raivattiin 691 hehtaaria peltoa",
+    "summary": "Lokakuussa 2026 miinanraivausoperaattorit raivasivat 691 hehtaaria maatalousmaata Ukrainan valtion humanitaarisen miinanraivauksen ohjelmassa. Yhteensä 110 valmistunutta sopimusta on palauttanut käyttöön 20 709 hehtaaria.",
+    "body": [
+      "Ukrainan talousministeriö julkaisi 13.11.2026 humanitaarisen miinanraivauksen budjettiohjelman lokakuun tulokset. Kuukauden aikana operaattorit raivasivat 691 hehtaaria maatalousmaata, neljä sopimusta valmistui ja valmiista töistä maksettiin 61 miljoonaa hryvnaa.",
+      "Yhteensä 110 sopimusta on valmistunut, ja niiden ansiosta 20 709 hehtaaria peltoa on palautettu käyttöön. Töiden kokonaiskustannus on 1,281 miljardia hryvnaa. Lisäksi käynnissä on 51 sopimusta, jotka kattavat noin 9 740 hehtaaria.",
+      "Työt ovat alkaneet myös puskurivyöhykkeellä 20–50 kilometrin päässä rintamalinjasta ja valtionrajasta: 702 aluetta, yhteensä 106 km².",
+      "Ohjelmassa valtio maksaa maatalousmaan raivauksen kokonaan, ja työt tekevät miinatoimintaoperaattorit. Ohjelma rahoitetaan EU:n Ukrainan tukivälineen (Ukraine Facility) kautta."
+    ],
+    "why": "Miksi tämä on meille tärkeää: jokainen raivattu pelto on tila, joka voi taas tehdä työtä. Juuri tällaisen maan tutkimisessa ja raivauksessa koulutetut koirat nopeuttavat työtä."
+  },
+  "uk": {
+    "title": "Державна програма розмінування: у жовтні очищено 691 гектар сільгоспземель",
+    "summary": "У жовтні 2026 року оператори протимінної діяльності очистили 691 гектар сільськогосподарських земель за державною програмою гуманітарного розмінування. Загалом 110 завершених договорів повернули до використання 20 709 гектарів.",
+    "body": [
+      "13 листопада 2026 року Міністерство економіки оприлюднило результати бюджетної програми «Гуманітарне розмінування» за жовтень. За місяць оператори протимінної діяльності очистили 691 гектар сільськогосподарських земель, завершено чотири договори, а за виконані роботи сплачено 61 мільйон гривень.",
+      "Загалом завершено 110 договорів, завдяки яким до використання повернуто 20 709 гектарів землі; вартість робіт становить 1,281 мільярда гривень. Ще 51 договір на близько 9 740 гектарів виконується.",
+      "Роботи вже тривають і в буферній зоні за 20–50 км від лінії фронту та державного кордону: 702 ділянки загальною площею 106 км².",
+      "За програмою держава повністю оплачує очищення сільськогосподарських земель, а роботи виконують оператори протимінної діяльності. Програма фінансується в межах Ukraine Facility — інструменту підтримки України від ЄС."
+    ],
+    "why": "Чому це важливо для нас: кожне очищене поле — це господарство, яке знову може працювати. Саме під час обстеження й очищення таких земель навчені собаки пришвидшують роботу."
+  }
+}
