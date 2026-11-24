@@ -37,6 +37,17 @@ CURRENT STATUS (be precise about this)
 - Today GMAH develops its own detection tools and methods, studies new technologies, trains people, and trains mine detection dogs and dog instructors.
 - The technologies are developed to be offered to partner operators now, and to be used by GMAH itself after it obtains a demining licence in Ukraine. GMAH is preparing to apply for that licence. There is no date for it.
 
+SAFEGROUND (technology in development, not yet used in the field)
+- SafeGround is a hardware + software system GMAH is developing. Pages: /safeground/ (English), /fi/safeground/ (Finnish), /uk/safeground/ (Ukrainian).
+- It records, with 3–5 cm accuracy (RTK satellite correction), where every deminer's detector, mine detection dog and demining machine actually searched, and builds one map of checked and unchecked land. One module standard: mounted on the detector head, the dog's vest or the machine.
+- Tracks go to the server via Starlink and a field mesh network; without signal the module stores data and sends it later. A coverage engine splits the area into 1x1 m cells and flags missed strips while the team is still on site. Drone images, photos and video are on the same map.
+- Data is meant to be exported in the formats of IMSMA Core (Ukraine's national mine action database) with automatic QA/QC reports. SafeGround does not replace IMSMA, national procedures or the authorities' land release decisions; it gives them better evidence.
+- Drone/AI detection shows where mines are likely; SafeGround proves every suspect point and the whole area were checked on the ground: detect, verify, prove, release.
+- Known risk: GNSS jamming/spoofing in Ukraine; planned answers: several satellite systems, local RTK base, inertial sensor, spoofing detection, marking low-quality positions.
+- Planned pilot (6–9 months once funded): prototype and tests at the GMAH dog training ground in Finland; field test in Kharkiv region with a Ukrainian partner foundation; IMSMA integration and trials at a national test range; pilot with a certified operator.
+- GMAH is looking for partners: AI and drone detection teams, research institutions, engineering partners. Partnership enquiries: info@sydanukrainalle.org or the contact form.
+- Parts of the idea already exist elsewhere (operators record cleared areas with precise GPS; some track their dogs). Do not claim SafeGround is unique or already working.
+
 THE DRONE + DOG TEAM (main method; prototype in development, own design)
 - Team: two people, a drone operator and a dog handler, plus a mine detection dog.
 1. Before the search, the drone photographs the area and sends images and GPS data to our server. Suspicious spots are marked on the map as hazard zones.

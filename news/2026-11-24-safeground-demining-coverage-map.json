@@ -1,0 +1,78 @@
+{
+  "slug": "safeground-demining-coverage-map",
+  "date": "2026-11-24",
+  "kind": "gmah",
+  "image": "/img/drone-survey-1200.webp",
+  "image_small": "/img/drone-survey-640.webp",
+  "sources": [
+    {
+      "name": "SafeGround — Global Mine Action Hub",
+      "url": "https://sydanukrainalle.org/safeground/"
+    },
+    {
+      "name": "Demine Ukraine national platform (EGAP)",
+      "url": "https://egap.in.ua/en/project/platforma_rozminujemo_ukrayinu"
+    }
+  ],
+  "en": {
+    "title": "GMAH starts developing SafeGround, a demining coverage map with 3–5 cm accuracy",
+    "summary": "Global Mine Action Hub is developing SafeGround: a system that records where deminers, mine detection dogs and machines searched, to within 3–5 cm, and shows checked and unchecked land on one map.",
+    "body": [
+      "Global Mine Action Hub has started developing SafeGround, a hardware and software system for humanitarian demining. A small RTK positioning module is mounted on the detector head, the dog’s vest or the demining machine and records the search path with 3–5 cm accuracy.",
+      "Tracks go to the server through Starlink and a field mesh network. The area is divided into 1×1 m cells, and the map shows at once which cells were searched and where a strip was missed, so the team can go back before leaving the site. Drone images, photos and video are on the same map.",
+      "SafeGround is meant to pass data to IMSMA Core, Ukraine’s national mine action database, and to produce automatic quality control reports. It does not replace national procedures: land is released by the authorities, and SafeGround gives them better evidence.",
+      "The system is in development and not yet used in the field. GMAH plans a 6–9 month pilot once funding and partners are in place, and is looking for AI and drone detection teams, research institutions and engineering partners."
+    ],
+    "why": "Why it matters to us: about a quarter of Ukraine, more than 138,000 km², is potentially contaminated. Precise proof of where land was searched helps return it to people faster and with confidence.",
+    "seo_title": "SafeGround: demining coverage map with 3–5 cm accuracy",
+    "description": "GMAH is developing SafeGround, which records where deminers, mine detection dogs and machines searched with 3–5 cm accuracy. Partners wanted for the pilot.",
+    "keywords": [
+      "SafeGround",
+      "humanitarian demining Ukraine",
+      "demining technology",
+      "RTK GNSS demining",
+      "mine detection dogs",
+      "land release"
+    ]
+  },
+  "fi": {
+    "title": "GMAH aloittaa SafeGroundin kehittämisen – miinanraivauksen kattavuuskartta 3–5 cm:n tarkkuudella",
+    "summary": "Global Mine Action Hub kehittää SafeGround-järjestelmää, joka tallentaa 3–5 cm:n tarkkuudella, missä raivaajat, miinakoirat ja koneet etsivät, ja näyttää tarkastetun ja tarkastamattoman maan yhdellä kartalla.",
+    "body": [
+      "Global Mine Action Hub on aloittanut SafeGroundin kehittämisen. Se on humanitaarisen miinanraivauksen laite- ja ohjelmistojärjestelmä. Pieni RTK-paikannusmoduuli kiinnitetään miinanilmaisimen kelaan, koiran liiviin tai raivauskoneeseen, ja se tallentaa etsintäreitin 3–5 cm:n tarkkuudella.",
+      "Reitit siirtyvät palvelimelle Starlinkin ja kenttäverkon (mesh) kautta. Alue jaetaan 1×1 m:n ruutuihin, ja kartta näyttää heti, mitkä ruudut on tutkittu ja mihin jäi aukko, joten ryhmä voi palata ennen lähtöä. Drone-kuvat, valokuvat ja video ovat samalla kartalla.",
+      "SafeGround on tarkoitus liittää Ukrainan kansalliseen miinatoimintatietokantaan IMSMA Coreen, ja se tuottaa automaattiset laadunvarmistusraportit. Se ei korvaa kansallisia menettelyjä: maan vapauttamisesta päättävät viranomaiset, ja SafeGround antaa heille paremmat todisteet.",
+      "Järjestelmä on kehitteillä, eikä sitä vielä käytetä maastossa. GMAH suunnittelee 6–9 kuukauden pilottia, kun rahoitus ja kumppanit ovat mukana. Etsimme tekoäly- ja drone-tunnistuksen tiimejä, tutkimuslaitoksia ja insinöörikumppaneita."
+    ],
+    "why": "Miksi tämä on meille tärkeää: noin neljännes Ukrainasta, yli 138 000 km², on mahdollisesti räjähteiden saastuttamaa. Tarkka todiste tutkitusta maasta auttaa palauttamaan sen ihmisille nopeammin ja luotettavasti.",
+    "seo_title": "SafeGround: miinanraivauksen kattavuuskartta 3–5 cm",
+    "description": "GMAH kehittää SafeGroundia, joka tallentaa 3–5 cm:n tarkkuudella, missä raivaajat, miinakoirat ja koneet etsivät. Etsimme kumppaneita pilottiin.",
+    "keywords": [
+      "SafeGround",
+      "miinanraivaus Ukraina",
+      "humanitaarinen miinanraivaus",
+      "miinanraivausteknologia",
+      "miinakoirat"
+    ]
+  },
+  "uk": {
+    "title": "GMAH починає розробку SafeGround — карти покриття розмінування з точністю 3–5 см",
+    "summary": "Global Mine Action Hub розробляє SafeGround — систему, яка з точністю до 3–5 см фіксує, де працювали сапери, собаки-шукачі мін і техніка, та показує перевірену й неперевірену землю на одній карті.",
+    "body": [
+      "Global Mine Action Hub розпочав розробку SafeGround — програмно-апаратного комплексу для гуманітарного розмінування. Невеликий модуль RTK-позиціювання кріпиться на котушку міношукача, жилет собаки або машину розмінування і записує шлях пошуку з точністю 3–5 см.",
+      "Треки надходять на сервер через Starlink і польову mesh-мережу. Ділянку поділено на клітинки 1×1 м, і карта одразу показує, які клітинки перевірено, а де пропущено смугу, — тож команда може повернутися, перш ніж залишити ділянку. Знімки з дронів, фото й відео — на тій самій карті.",
+      "SafeGround має передавати дані до IMSMA Core — національної бази даних протимінної діяльності України — і формувати автоматичні звіти контролю якості. Він не замінює національних процедур: рішення про звільнення земель ухвалюють державні органи, а SafeGround дає їм кращі докази.",
+      "Система перебуває в розробці й ще не використовується в полі. GMAH планує пілот на 6–9 місяців, щойно будуть фінансування і партнери, і шукає команди з дронів та ШІ-виявлення, наукові установи та інженерних партнерів."
+    ],
+    "why": "Чому це важливо для нас: приблизно чверть території України, понад 138 000 км², потенційно забруднена. Точний доказ того, де землю обстежено, допомагає швидше й надійніше повертати її людям.",
+    "seo_title": "SafeGround: карта покриття розмінування з точністю 3–5 см",
+    "description": "GMAH розробляє SafeGround, що з точністю 3–5 см фіксує, де працювали сапери, собаки-шукачі мін і техніка. Шукаємо партнерів для пілоту.",
+    "keywords": [
+      "SafeGround",
+      "гуманітарне розмінування",
+      "технології розмінування",
+      "собаки-шукачі мін",
+      "розмінування України"
+    ]
+  }
+}

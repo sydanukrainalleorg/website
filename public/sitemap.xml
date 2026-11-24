@@ -30,24 +30,60 @@
     <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/kinolog/"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/koiranohjaaja/"/>
   </url>
+  <url><loc>https://sydanukrainalle.org/safeground/</loc><lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/safeground/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/safeground/</loc><lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/safeground/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/safeground/</loc><lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/safeground/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/safeground/"/>
+  </url>
 <!-- news:start -->
-  <url><loc>https://sydanukrainalle.org/news/</loc><lastmod>2026-11-19</lastmod>
+  <url><loc>https://sydanukrainalle.org/news/</loc><lastmod>2026-11-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/news/"/>
   </url>
-  <url><loc>https://sydanukrainalle.org/uk/novyny/</loc><lastmod>2026-11-19</lastmod>
+  <url><loc>https://sydanukrainalle.org/uk/novyny/</loc><lastmod>2026-11-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/news/"/>
   </url>
-  <url><loc>https://sydanukrainalle.org/fi/uutiset/</loc><lastmod>2026-11-19</lastmod>
+  <url><loc>https://sydanukrainalle.org/fi/uutiset/</loc><lastmod>2026-11-24</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/"/>
     <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/"/>
     <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/news/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/news/safeground-demining-coverage-map/</loc><lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/news/safeground-demining-coverage-map/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/uk/novyny/safeground-demining-coverage-map/</loc><lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/news/safeground-demining-coverage-map/"/>
+  </url>
+  <url><loc>https://sydanukrainalle.org/fi/uutiset/safeground-demining-coverage-map/</loc><lastmod>2026-11-24</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/novyny/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/uutiset/safeground-demining-coverage-map/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/news/safeground-demining-coverage-map/"/>
   </url>
   <url><loc>https://sydanukrainalle.org/news/umac-2026-brussels/</loc><lastmod>2026-11-19</lastmod>
     <xhtml:link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/news/umac-2026-brussels/"/>
