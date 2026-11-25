@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fi" data-preset="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Puhdas pelto — miinakoirapeli | GMAH</title>
+<meta name="description" content="Ohjaa nuorta malinois Valoa pellolla, löydä harjoituskohteet hajun avulla ja muuta maa auringonkukiksi. Global Mine Action Hubin ilmainen selainpeli.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://sydanukrainalle.org/fi/peli/">
+<link rel="alternate" hreflang="en" href="https://sydanukrainalle.org/game/">
+<link rel="alternate" hreflang="fi" href="https://sydanukrainalle.org/fi/peli/">
+<link rel="alternate" hreflang="uk" href="https://sydanukrainalle.org/uk/hra/">
+<link rel="alternate" hreflang="x-default" href="https://sydanukrainalle.org/game/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Global Mine Action Hub">
+<meta property="og:title" content="Puhdas pelto — miinakoirapeli | GMAH">
+<meta property="og:description" content="Ohjaa nuorta malinois Valoa pellolla, löydä harjoituskohteet hajun avulla ja muuta maa auringonkukiksi. Global Mine Action Hubin ilmainen selainpeli.">
+<meta property="og:url" content="https://sydanukrainalle.org/fi/peli/">
+<meta property="og:image" content="https://sydanukrainalle.org/og-image.png">
+<meta property="og:locale" content="fi_FI">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, respectful, tactical — a training exam, not a war game
+   IDEA: a handler's field card — graphite ground, gold markings, the field blooms when cleared
+   PICTURE: the 7×7 field itself with a Malinois token that sniffs, perks its ears and sits
+   COLOUR and TYPE: graphite #141619, gold #c9a24a, amber scent glow, green only for growth; Manrope
+   LAYOUT: header + lang, stats, the field, mode controls; sheets for intro / stop / rest / win */
+:root{color-scheme:dark;--bg:#131518;--panel:#1b1e22;--cell:#1f2328;--line:#2d3238;--ink:#ece7dc;--mute:#9b978e;--gold:#c9a24a;--gold2:#ecd08a;--amber:#e09a45;--leaf:#4f7a4a;--leaf2:#8db46f}
+*{box-sizing:border-box;min-width:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{margin:0;background:radial-gradient(120% 70% at 50% -10%,#23272d 0,var(--bg) 60%) fixed;color:var(--ink);font:16px/1.5 Manrope,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:clip}
+.app{max-width:480px;margin:0 auto;padding:max(12px,env(safe-area-inset-top)) 14px max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;min-height:100%}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;flex:1 1 auto;overflow:hidden}.brand>div{overflow:hidden}.brand svg{flex:none}
+.brand svg{width:34px;height:34px}
+.brand b{display:block;font-size:18px;font-weight:800;letter-spacing:.01em;line-height:1.1}
+.brand small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--mute);font-size:13px;line-height:1.2}
+.hdr-r{display:flex;align-items:center;gap:6px;flex:none}
+.snd{all:unset;cursor:pointer;display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:#0f1113;border:1px solid var(--line);color:var(--gold2)}
+.snd svg{width:20px;height:20px}.snd[aria-pressed=true]{color:var(--mute)}
+.snd:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.langs{display:flex;gap:2px;background:#0f1113;border:1px solid var(--line);border-radius:10px;padding:3px}
+.langs button{all:unset;cursor:pointer;font-size:13px;font-weight:700;color:var(--mute);padding:6px 6px;border-radius:7px;min-width:20px;text-align:center}
+.langs button[aria-pressed=true]{background:#2a2e34;color:var(--gold2)}
+.langs button:focus-visible,.btn:focus-visible,.seg button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.stats{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:8px}
+.st{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 10px}
+.st span{display:block;font-size:13px;color:var(--mute);line-height:1.2}
+.st b{font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:5px;background:#2a2e34;border-radius:9px;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:9px;transition:width .25s}
+.bar.low i{background:var(--amber)}
+.status{min-height:44px;display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;background:#171a1e;border:1px solid var(--line);font-size:15px;font-weight:600}
+.status .dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--mute)}
+.status[data-l="1"] .dot{background:#8a6a3a}.status[data-l="2"] .dot{background:var(--amber)}.status[data-l="3"] .dot{background:var(--gold2);box-shadow:0 0 10px var(--amber)}
+.status[data-l=sit] .dot{background:var(--gold)}
+.status.warn{border-color:#6b5426;color:var(--gold2)}
+.field{background:#0e1012;border:1px solid var(--line);border-radius:16px;padding:6px;box-shadow:0 20px 50px -20px #000}
+.grid{position:relative;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:repeat(7,minmax(0,1fr));aspect-ratio:1;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.c{position:relative;overflow:hidden;margin:2px;border-radius:8px;border:1px solid #252a30;background:repeating-linear-gradient(135deg,#1b1f24 0 6px,#1e2227 6px 12px);display:grid;place-items:center;cursor:pointer;font-weight:800;font-size:clamp(15px,4.4vw,20px);color:var(--gold2);transition:background .3s,border-color .2s}
+.c.rv{background:#262a30;border-color:#30353c}
+.c.s1{background:radial-gradient(circle,rgba(224,154,69,.13),transparent 72%),#262a30}
+.c.s2{background:radial-gradient(circle,rgba(224,154,69,.27),transparent 75%),#282a2c;border-color:#5a4529}
+.c.s3{background:radial-gradient(circle,rgba(236,180,90,.48),rgba(224,154,69,.12) 80%),#2c2a26;border-color:#8a6630}
+.c.nx{border-color:#5d5034}
+.flagmode .c.nx:not(.rv){border:1px dashed var(--gold)}
+.c .pw{position:absolute;right:3px;bottom:3px;width:32%;height:32%;opacity:.35;fill:var(--mute)}
+.c .fl{position:absolute;inset:19%;width:62%;height:62%}
+.c.hz{border-color:var(--gold2);box-shadow:0 0 0 2px rgba(236,208,138,.35)}
+.c.hz::after{content:"";width:34%;height:34%;border:2px solid var(--gold2);transform:rotate(45deg);border-radius:3px}
+.c.bl{background:#1e2b1f;border-color:#2f4630;transition:background .5s var(--d),border-color .5s var(--d)}
+.c .pl{position:absolute;inset:13%;width:74%;height:74%;opacity:0;transform:scale(.3) translateY(20%);animation:grow .55s cubic-bezier(.2,.9,.3,1.3) var(--d) forwards}
+@keyframes grow{to{opacity:1;transform:none}}
+.dog{position:absolute;left:0;top:0;width:calc(100%/7);height:calc(100%/7);display:grid;place-items:center;pointer-events:none;transition:transform .22s ease;z-index:2}
+.dog svg{width:80%;height:80%;filter:drop-shadow(0 4px 6px rgba(0,0,0,.6));transition:transform .25s}
+.dog::before{content:"";position:absolute;inset:8%;border-radius:50%;border:2px solid transparent}
+.dog.sniff svg{animation:bob .7s ease-in-out infinite}
+.dog.ears .ear{animation:perk .5s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+.dog.alert::before{border-color:var(--amber);animation:ping 1s ease-out infinite}
+.dog.alert .ear{transform:scaleY(1.12);transform-box:fill-box;transform-origin:50% 100%}
+.dog.sit svg{transform:translateY(10%) scale(.86)}
+.dog.sit::before{border-color:var(--gold);inset:4%}
+.dog.won{opacity:0;transition:opacity .4s .3s}
+@keyframes bob{50%{transform:translateY(7%)}}
+@keyframes perk{to{transform:scaleY(1.14) rotate(var(--r,0deg))}}
+@keyframes ping{from{opacity:1;transform:scale(.85)}to{opacity:0;transform:scale(1.25)}}
+.ctrl{display:grid;grid-template-columns:1fr 52px;gap:8px}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#0f1113;border:1px solid var(--line);border-radius:14px;padding:4px;gap:4px}
+.seg button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border-radius:10px;font-weight:700;font-size:15px;color:var(--mute)}
+.seg button svg{width:18px;height:18px;fill:currentColor}
+.seg button[aria-pressed=true]{background:#2a2e34;color:var(--gold2)}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:12px;font-weight:700;font-size:16px;text-align:center}
+.btn.pri{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#1a1609}
+.btn.sec{background:#262a30;color:var(--ink);border:1px solid var(--line)}
+.btn.icon{padding:0;width:52px;background:#0f1113;border:1px solid var(--line);color:var(--mute)}
+.btn.icon svg{width:22px;height:22px}
+.hint{font-size:13px;color:var(--mute);text-align:center;margin:0}
+.ov{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(8,9,11,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ov.on{display:flex}
+.sheet{width:100%;max-width:440px;max-height:calc(100dvh - 32px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 20px;display:flex;flex-direction:column;gap:14px;animation:up .3s ease}
+@keyframes up{from{transform:translateY(16px);opacity:0}}
+.sheet h2{margin:0;font-size:30px;line-height:1.05;font-weight:800;text-wrap:balance}
+.sheet p{margin:0}
+.lead{color:#cfc9bc}
+.hero{display:grid;place-items:center;padding:10px 0 4px}
+.hero svg{width:116px;height:116px}
+.rules{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.rules li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;font-size:15px;color:#d6d0c4}
+.rules svg{width:26px;height:26px;fill:var(--gold)}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.figs>div{background:#15181b;border:1px solid var(--line);border-radius:12px;padding:10px}
+.figs span{display:block;font-size:13px;color:var(--mute)}
+.figs b{font-size:19px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.stars{display:flex;gap:3px;margin-top:3px}.stars svg{width:18px;height:18px}
+.card{background:#15181b;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:15px}
+.card b{display:block;color:var(--gold2);font-size:13px;margin-bottom:2px}
+.card.safe{border-color:#3d5a39;background:#172018}.card.safe b{color:var(--leaf2)}
+.cta{display:grid;gap:10px;padding-top:4px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);opacity:0;background:var(--gold2);color:#1a1609;font-weight:700;padding:10px 18px;border-radius:999px;z-index:20;transition:.25s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.foot{font-size:13px;color:var(--mute);text-align:center;margin-top:auto}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}.c .pl{opacity:1;transform:none}}
+@media (max-width:360px){.st{padding:7px 8px}.brand small{display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="fur" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e3bd6a"/><stop offset="1" stop-color="#a87a35"/></linearGradient>
+    <symbol id="dogHead" viewBox="0 0 40 40">
+      <polygon class="ear" style="--r:-4deg" points="8.5,3 15.5,15 8,17.5" fill="url(#fur)"/>
+      <polygon class="ear" style="--r:4deg" points="31.5,3 32,17.5 24.5,15" fill="url(#fur)"/>
+      <polygon points="10.5,6.5 13.5,14 10,15.2" fill="#5a3d1b"/>
+      <polygon points="29.5,6.5 30,15.2 26.5,14" fill="#5a3d1b"/>
+      <path d="M9.5 16.5Q20 10 30.5 16.5L28.5 26Q24.5 34.5 20 37Q15.5 34.5 11.5 26Z" fill="url(#fur)"/>
+      <path d="M15 23.5Q20 21 25 23.5L22.6 33.5Q20 36.3 17.4 33.5Z" fill="#2b2115"/>
+      <circle cx="15.6" cy="21" r="1.5" fill="#1a130b"/><circle cx="24.4" cy="21" r="1.5" fill="#1a130b"/>
+      <circle cx="16" cy="20.6" r=".45" fill="#f4e2b8"/><circle cx="24.8" cy="20.6" r=".45" fill="#f4e2b8"/>
+      <ellipse cx="20" cy="33.4" rx="2.2" ry="1.5" fill="#0d0a07"/>
+    </symbol>
+    <symbol id="paw" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="5" ry="4.2"/><circle cx="5.5" cy="10" r="2.2"/><circle cx="9.5" cy="6" r="2.2"/><circle cx="14.5" cy="6" r="2.2"/><circle cx="18.5" cy="10" r="2.2"/></symbol>
+    <symbol id="flag" viewBox="0 0 24 24"><rect x="6" y="3" width="1.8" height="19" rx=".9" fill="#c9a24a"/><path d="M7.8 4h11l-3 4.2 3 4.3h-11z" fill="#f1ead8"/><ellipse cx="7" cy="21.6" rx="4" ry="1" fill="rgba(0,0,0,.35)"/></symbol>
+    <symbol id="sun" viewBox="0 0 24 24"><g fill="#e8b93e"><ellipse cx="12" cy="5" rx="2" ry="3.4"/><ellipse cx="12" cy="19" rx="2" ry="3.4"/><ellipse cx="5" cy="12" rx="3.4" ry="2"/><ellipse cx="19" cy="12" rx="3.4" ry="2"/><ellipse cx="7" cy="7" rx="2" ry="3.4" transform="rotate(-45 7 7)"/><ellipse cx="17" cy="17" rx="2" ry="3.4" transform="rotate(-45 17 17)"/><ellipse cx="17" cy="7" rx="2" ry="3.4" transform="rotate(45 17 7)"/><ellipse cx="7" cy="17" rx="2" ry="3.4" transform="rotate(45 7 17)"/></g><circle cx="12" cy="12" r="4.2" fill="#4a3216"/><circle cx="12" cy="12" r="2.4" fill="#2f2010"/></symbol>
+    <symbol id="wheat" viewBox="0 0 24 24"><path d="M12 23V6" stroke="#8db46f" stroke-width="1.4" fill="none"/><g fill="#d9b25a"><ellipse cx="12" cy="4" rx="1.4" ry="2.6"/><ellipse cx="9.6" cy="8" rx="1.3" ry="2.4" transform="rotate(-30 9.6 8)"/><ellipse cx="14.4" cy="8" rx="1.3" ry="2.4" transform="rotate(30 14.4 8)"/><ellipse cx="9.6" cy="12" rx="1.3" ry="2.4" transform="rotate(-30 9.6 12)"/><ellipse cx="14.4" cy="12" rx="1.3" ry="2.4" transform="rotate(30 14.4 12)"/><ellipse cx="9.6" cy="16" rx="1.3" ry="2.4" transform="rotate(-30 9.6 16)"/><ellipse cx="14.4" cy="16" rx="1.3" ry="2.4" transform="rotate(30 14.4 16)"/></g></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z"/></symbol>
+    <symbol id="hand" viewBox="0 0 24 24"><path d="M8 11V5a1.5 1.5 0 013 0v5V3.5a1.5 1.5 0 013 0V10V5a1.5 1.5 0 013 0v8c0 4.5-3 8-7 8-3 0-4.4-1.6-6-4.3L3.6 12.6a1.5 1.5 0 012.5-1.6L8 13.5z"/></symbol>
+    <symbol id="num" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" opacity=".25"/><path d="M10 7.5l2.8-1.3V18h-2V9z"/></symbol>
+    <symbol id="sndOn" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="sndOff" viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="redo" viewBox="0 0 24 24"><path d="M12 5a7 7 0 107 7h-2a5 5 0 11-5-5v3l4-4-4-4z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="app">
+  <header>
+    <div class="brand">
+      <svg aria-hidden="true"><use href="#dogHead"/></svg>
+      <div><b data-i="title"></b><small>by GMAH</small></div>
+    </div>
+    <div class="hdr-r"><button class="snd" id="snd" aria-pressed="false"><svg><use id="sndUse" href="#sndOn"/></svg></button><div class="langs" id="langs" role="group" aria-label="Language"></div></div>
+  </header>
+
+  <div class="stats">
+    <div class="st"><span data-i="stam"></span><b id="vStam"></b><div class="bar" id="bar"><i id="barI"></i></div></div>
+    <div class="st"><span data-i="flags"></span><b id="vFlags"></b></div>
+    <div class="st"><span data-i="time"></span><b id="vTime">0:00</b></div>
+  </div>
+
+  <div class="status" id="status" aria-live="polite"><span class="dot"></span><span id="statusT"></span></div>
+
+  <div class="field"><div class="grid" id="grid"></div></div>
+
+  <div class="ctrl">
+    <div class="seg" role="group">
+      <button id="mStep" aria-pressed="true"><svg><use href="#paw"/></svg><span data-i="mStep"></span></button>
+      <button id="mFlag" aria-pressed="false"><svg><use href="#flag"/></svg><span data-i="mFlag"></span></button>
+    </div>
+    <button class="btn icon" id="restart" aria-label="Restart"><svg><use href="#redo"/></svg></button>
+  </div>
+  <p class="hint" data-i="hint"></p>
+  <p class="foot" data-i="foot"></p>
+</div>
+
+<div class="ov" id="ov"><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+{
+class SoundEngine {
+  constructor(storageKey = "gmah_sound_muted") {
+    this.storageKey = storageKey;
+    this.ctx = null;
+    this.muted = this._loadMuted();
+  }
+
+  _loadMuted() {
+    try {
+      return localStorage.getItem(this.storageKey) === "true";
+    } catch {
+      return false;
+    }
+  }
+
+  _saveMuted() {
+    try {
+      localStorage.setItem(this.storageKey, String(this.muted));
+    } catch {
+      // Игнорируем ошибки доступа к storage в приватном режиме
+    }
+  }
+
+  unlock() {
+    if (typeof window === "undefined") return null;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+
+    if (!this.ctx) {
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx.state === "suspended") {
+      this.ctx.resume().catch(() => {});
+    }
+    return this.ctx;
+  }
+
+  setMuted(value) {
+    this.muted = Boolean(value);
+    this._saveMuted();
+  }
+
+  toggleMute() {
+    this.setMuted(!this.muted);
+    return this.muted;
+  }
+
+  isMuted() {
+    return this.muted;
+  }
+
+  // 1. Мягкий звук шага (приглушённый импульс + лёгкий отклик по уровню запаха 0..3)
+  playStep(smellLevel = 0) {
+    if (this.muted) return;
+    const ctx = this.unlock();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const baseFreq = 110 + Math.max(0, Math.min(3, smellLevel)) * 22;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "triangle";
+    osc.frequency.setValueAtTime(baseFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(55, now + 0.065);
+
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.12, now + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.075);
+  }
+
+  // 2. Звук установки флага (чёткий, доброжелательный двухнотный сигнал)
+  playFlag() {
+    if (this.muted) return;
+    const ctx = this.unlock();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const notes = [523.25, 659.25]; // C5 -> E5
+
+    notes.forEach((freq, idx) => {
+      const start = now + idx * 0.07;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, start);
+
+      gain.gain.setValueAtTime(0.001, start);
+      gain.gain.linearRampToValueAtTime(0.14, start + 0.012);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + 0.14);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(start);
+      osc.stop(start + 0.15);
+    });
+  }
+
+  // 3. Фанфары победы (тёплая восходящая мелодия в мажоре при полном разминировании)
+  playFanfare() {
+    if (this.muted) return;
+    const ctx = this.unlock();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    // C5 - E5 - G5 - C6
+    const melody = [
+      { freq: 523.25, offset: 0.0, duration: 0.14 },
+      { freq: 659.25, offset: 0.12, duration: 0.14 },
+      { freq: 783.99, offset: 0.24, duration: 0.16 },
+      { freq: 1046.5, offset: 0.38, duration: 0.42 },
+    ];
+
+    melody.forEach(({ freq, offset, duration }) => {
+      const start = now + offset;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(freq, start);
+
+      gain.gain.setValueAtTime(0.001, start);
+      gain.gain.linearRampToValueAtTime(0.18, start + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(start);
+      osc.stop(start + duration + 0.02);
+    });
+  }
+
+  // 4. Спокойный сигнал остановки работы кинологом (спокойный короткий тон)
+  playHandlerStop() {
+    if (this.muted) return;
+    const ctx = this.unlock();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(240, now);
+    osc.frequency.linearRampToValueAtTime(170, now + 0.22);
+
+    gain.gain.setValueAtTime(0.001, now);
+    gain.gain.linearRampToValueAtTime(0.14, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.25);
+  }
+}
+
+const soundEngine = new SoundEngine();
+
+const T={
+ru:{sndOn:"Звук включён",sndOff:"Звук выключен",title:"Чистое поле",sub:"Global Mine Action Hub",dog:"Вало",stam:"Выносливость",flags:"Флажки",time:"Время",mStep:"Шаг",mFlag:"Сидеть",
+hint:"Долгое нажатие на клетку рядом с собакой — тоже флажок.",foot:"Прототип · уровень 1, глава «Финляндия»",
+introT:"Первый экзамен Вало",intro:"Финляндия, учебная база GMAH. Вало — молодая бельгийская овчарка малинуа. Задача: найти 6 учебных объектов на поле 7×7 и вернуть землю людям.",
+r1:"Тапните соседнюю клетку — Вало сделает шаг и понюхает землю.",r2:"Цифра — сколько объектов в 8 клетках вокруг. Чем ярче ореол, тем сильнее запах.",r3:"Нашли объект — включите «Сидеть» и отметьте клетку рядом с собакой. Вало сядет: так настоящие собаки показывают находку, не трогая её.",r4:"Шаг на неотмеченный объект — кинолог остановит работу. Берегите выносливость.",
+go:"Начать экзамен",
+calm:"Чисто. Вало спокойна.",sniff:"Слабый запах — Вало принюхивается.",ears:"Запах ближе — уши вверх.",alert:"Сильный запах! Объект совсем рядом.",sit:"Вало села. Место отмечено.",
+adj:"Собака ходит только на соседние клетки.",locked:"Здесь флажок — шаг заблокирован.",tooFar:"Подойдите ближе — флажок ставится только рядом с собакой.",clear:"Эту клетку Вало уже проверила — чисто.",noFlags:"Все флажки уже стоят. Снимите лишний.",wrong:"Все флажки стоят, но где-то ошибка. Проверьте отметки.",
+stopT:"Стоп!",stop:"Опасный объект. Собака отведена на безопасное расстояние. Кинолог начинает поле заново.",again:"Начать заново",
+tiredT:"Привал",tired:"Вало устала — собакам нужен отдых. Попробуйте путь короче.",retry:"Ещё раз",
+winT:"Поле чистое",win:"Земля снова может кормить людей.",area:"Очищено",stars:"Оценка",
+factT:"Факт",fact:"Минно-розыскная собака не копает и не трогает находку: она садится рядом и ждёт кинолога. Это называется пассивная индикация.",
+safeT:"Правило безопасности",safe:"Увидел незнакомый предмет? Не трогай — отойди — сообщи взрослым или в службу спасения.",
+ctaT:"Обучение одной настоящей собаки стоит около 20 000 €. Помогите подготовить следующего щенка.",donate:"Поддержать GMAH",share:"Поделиться",copied:"Скопировано",replay:"Сыграть снова"},
+uk:{sndOn:"Звук увімкнено",sndOff:"Звук вимкнено",title:"Чисте поле",sub:"Global Mine Action Hub",dog:"Вало",stam:"Витривалість",flags:"Прапорці",time:"Час",mStep:"Крок",mFlag:"Сидіти",
+hint:"Довге натискання на клітинку поруч із собакою — теж прапорець.",foot:"Прототип · рівень 1, розділ «Фінляндія»",
+introT:"Перший іспит Вало",intro:"Фінляндія, навчальна база GMAH. Вало — молода бельгійська вівчарка малінуа. Завдання: знайти 6 навчальних об'єктів на полі 7×7 і повернути землю людям.",
+r1:"Торкніться сусідньої клітинки — Вало зробить крок і понюхає землю.",r2:"Цифра — скільки об'єктів у 8 клітинках довкола. Що яскравіший ореол, то сильніший запах.",r3:"Знайшли об'єкт — увімкніть «Сидіти» й позначте клітинку поруч із собакою. Вало сяде: так справжні собаки показують знахідку, не торкаючись її.",r4:"Крок на непозначений об'єкт — кінолог зупинить роботу. Бережіть витривалість.",
+go:"Почати іспит",
+calm:"Чисто. Вало спокійна.",sniff:"Слабкий запах — Вало принюхується.",ears:"Запах ближче — вуха догори.",alert:"Сильний запах! Об'єкт зовсім поруч.",sit:"Вало сіла. Місце позначено.",
+adj:"Собака ходить лише на сусідні клітинки.",locked:"Тут прапорець — крок заблоковано.",tooFar:"Підійдіть ближче — прапорець ставиться лише поруч із собакою.",clear:"Цю клітинку Вало вже перевірила — чисто.",noFlags:"Усі прапорці вже стоять. Зніміть зайвий.",wrong:"Усі прапорці стоять, але десь помилка. Перевірте позначки.",
+stopT:"Стоп!",stop:"Небезпечний об'єкт. Собаку відведено на безпечну відстань. Кінолог починає поле заново.",again:"Почати заново",
+tiredT:"Привал",tired:"Вало втомилася — собакам потрібен відпочинок. Спробуйте коротший шлях.",retry:"Ще раз",
+winT:"Поле чисте",win:"Земля знову може годувати людей.",area:"Очищено",stars:"Оцінка",
+factT:"Факт",fact:"Мінно-розшукова собака не копає і не торкається знахідки: вона сідає поруч і чекає на кінолога. Це називається пасивна індикація.",
+safeT:"Правило безпеки",safe:"Побачив незнайомий предмет? Не чіпай — відійди — повідом дорослим або в службу порятунку.",
+ctaT:"Навчання однієї справжньої собаки коштує близько 20 000 €. Допоможіть підготувати наступне цуценя.",donate:"Підтримати GMAH",share:"Поділитися",copied:"Скопійовано",replay:"Зіграти знову"},
+en:{sndOn:"Sound on",sndOff:"Sound off",title:"Clear Field",sub:"Global Mine Action Hub",dog:"Valo",stam:"Stamina",flags:"Flags",time:"Time",mStep:"Step",mFlag:"Sit",
+hint:"Long-press a cell next to the dog to place a flag too.",foot:"Prototype · level 1, chapter “Finland”",
+introT:"Valo’s first exam",intro:"Finland, the GMAH training base. Valo is a young Belgian Malinois. The task: find 6 training objects on a 7×7 field and give the land back to people.",
+r1:"Tap a neighbouring cell — Valo takes a step and sniffs the ground.",r2:"The number shows how many objects are in the 8 cells around. The brighter the glow, the stronger the scent.",r3:"Found one? Switch to “Sit” and mark the cell next to the dog. Valo sits: that is how real dogs indicate a find without touching it.",r4:"Step onto an unmarked object and the handler stops the work. Save your stamina.",
+go:"Start the exam",
+calm:"Clear. Valo is calm.",sniff:"Faint scent — Valo is sniffing.",ears:"Scent is closer — ears up.",alert:"Strong scent! The object is right next to her.",sit:"Valo sits. Spot marked.",
+adj:"The dog only moves to neighbouring cells.",locked:"There’s a flag here — step blocked.",tooFar:"Move closer — flags go only next to the dog.",clear:"Valo already checked this cell — it’s clear.",noFlags:"All flags are placed. Remove one first.",wrong:"All flags are placed, but one is wrong. Check your marks.",
+stopT:"Stop!",stop:"Hazardous object. The dog has been led to a safe distance. The handler restarts the field.",again:"Start again",
+tiredT:"Rest break",tired:"Valo is tired — dogs need rest. Try a shorter route.",retry:"Try again",
+winT:"Field cleared",win:"The land can feed people again.",area:"Cleared",stars:"Rating",
+factT:"Fact",fact:"A mine detection dog never digs or touches a find: it sits next to it and waits for the handler. This is called passive indication.",
+safeT:"Safety rule",safe:"Seen an unfamiliar object? Don’t touch — step away — tell an adult or the emergency service.",
+ctaT:"Training one real dog costs about €20,000. Help prepare the next puppy.",donate:"Support GMAH",share:"Share",copied:"Copied",replay:"Play again"},
+fi:{sndOn:"Ääni päällä",sndOff:"Ääni pois",title:"Puhdas pelto",sub:"Global Mine Action Hub",dog:"Valo",stam:"Voimat",flags:"Liput",time:"Aika",mStep:"Askel",mFlag:"Istu",
+hint:"Pitkä painallus koiran viereiseen ruutuun asettaa myös lipun.",foot:"Prototyyppi · taso 1, luku ”Suomi”",
+introT:"Valon ensimmäinen koe",intro:"Suomi, GMAH:n koulutustukikohta. Valo on nuori belgianpaimenkoira malinois. Tehtävä: löydä 6 harjoituskohdetta 7×7-pellolta ja palauta maa ihmisille.",
+r1:"Napauta viereistä ruutua — Valo ottaa askeleen ja haistelee maata.",r2:"Numero kertoo, montako kohdetta on ympäröivissä 8 ruudussa. Mitä kirkkaampi hehku, sitä vahvempi haju.",r3:"Löysitkö kohteen? Valitse ”Istu” ja merkitse koiran viereinen ruutu. Valo istuu: näin oikeat koirat ilmaisevat löydön koskematta siihen.",r4:"Jos astut merkitsemättömään kohteeseen, ohjaaja pysäyttää työn. Säästä voimia.",
+go:"Aloita koe",
+calm:"Puhdasta. Valo on rauhallinen.",sniff:"Heikko haju — Valo haistelee.",ears:"Haju voimistuu — korvat pystyssä.",alert:"Vahva haju! Kohde on aivan vieressä.",sit:"Valo istuu. Paikka merkitty.",
+adj:"Koira liikkuu vain viereisiin ruutuihin.",locked:"Tässä on lippu — askel estetty.",tooFar:"Mene lähemmäs — lipun voi asettaa vain koiran viereen.",clear:"Valo on jo tarkistanut tämän ruudun — puhdas.",noFlags:"Kaikki liput on käytetty. Poista ensin yksi.",wrong:"Kaikki liput on asetettu, mutta jossain on virhe. Tarkista merkinnät.",
+stopT:"Seis!",stop:"Vaarallinen kohde. Koira on viety turvalliselle etäisyydelle. Ohjaaja aloittaa pellon alusta.",again:"Aloita alusta",
+tiredT:"Tauko",tired:"Valo on väsynyt — koirat tarvitsevat lepoa. Kokeile lyhyempää reittiä.",retry:"Uudestaan",
+winT:"Pelto on puhdas",win:"Maa voi taas ruokkia ihmisiä.",area:"Raivattu",stars:"Arvio",
+factT:"Fakta",fact:"Miinakoira ei kaiva eikä koske löytöön: se istuu viereen ja odottaa ohjaajaa. Tätä kutsutaan passiiviseksi ilmaisuksi.",
+safeT:"Turvallisuussääntö",safe:"Näitkö oudon esineen? Älä koske — mene kauemmas — kerro aikuiselle tai hätäkeskukseen.",
+ctaT:"Yhden oikean koiran koulutus maksaa noin 20 000 €. Auta valmentamaan seuraava pentu.",donate:"Tue GMAH:ta",share:"Jaa",copied:"Kopioitu",replay:"Pelaa uudelleen"}
+};
+const LANGS=["en","uk","fi","ru"];
+const W=7,H=7,N=6,STAM=45,SEED="gmah-fi-1",START=6*W+0,CELL_M2=25;
+
+/* seeded PRNG — same seed, same field for everyone */
+function seedOf(s){let h=1779033703^s.length;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),3432918353);h=h<<13|h>>>19}h=Math.imul(h^h>>>16,2246822507);h=Math.imul(h^h>>>13,3266489909);return (h^h>>>16)>>>0}
+function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const rc=i=>[Math.floor(i/W),i%W];
+const cheb=(a,b)=>{const[r1,c1]=rc(a),[r2,c2]=rc(b);return Math.max(Math.abs(r1-r2),Math.abs(c1-c2))};
+function nb8(i){const[r,c]=rc(i),o=[];for(let dr=-1;dr<=1;dr++)for(let dc=-1;dc<=1;dc++){if(!dr&&!dc)continue;const R=r+dr,C=c+dc;if(R>=0&&R<H&&C>=0&&C<W)o.push(R*W+C)}return o}
+function genField(seed){const rnd=mulberry(seedOf(seed)),m=new Set();while(m.size<N){const i=Math.floor(rnd()*W*H);if(cheb(i,START)<=1)continue;m.add(i)}return m}
+const MINES=genField(SEED);
+const count=i=>nb8(i).filter(j=>MINES.has(j)).length;
+function scent(i){let b=0;const[r,c]=rc(i);for(const m of MINES){const[mr,mc]=rc(m),dr=Math.abs(mr-r),dc=Math.abs(mc-c);if(dr+dc===1)return 3;if(dr===1&&dc===1)b=Math.max(b,2);else if(Math.max(dr,dc)<=2)b=Math.max(b,1)}return b}
+
+let lang=document.documentElement.dataset.preset||"en";
+try{const s=localStorage.getItem("gmah-lang");if(LANGS.includes(s))lang=s;else if(!document.documentElement.dataset.preset){const n=(navigator.language||"").slice(0,2);if(LANGS.includes(n))lang=n}}catch(e){}
+const t=k=>(T[lang]&&T[lang][k])||T.en[k]||"";
+const log=[];const emit=(ev)=>{log.push(ev);window.GMAH_EVENTS=log};
+
+let S;
+function reset(){S={rev:new Set(),vis:new Set([START]),flags:new Set(),dog:START,stam:STAM,t0:0,el:0,over:false,won:false,mode:S?S.mode:"step",dogSt:"calm",hz:-1,msg:null};reveal(START)}
+function reveal(i){const q=[i];while(q.length){const j=q.pop();if(S.rev.has(j))continue;S.rev.add(j);if(count(j)===0)for(const k of nb8(j))if(!S.rev.has(k)&&!MINES.has(k))q.push(k)}}
+
+const $=id=>document.getElementById(id);
+const grid=$("grid");
+function stateKey(){return S.dogSt}
+function startClock(){if(!S.t0)S.t0=Date.now()}
+function secs(){return S.t0?Math.floor(((S.over?S.el:Date.now())-S.t0)/1000):0}
+const fmt=s=>Math.floor(s/60)+":"+String(s%60).padStart(2,"0");
+
+function render(){
+  let h="";
+  for(let i=0;i<W*H;i++){
+    const cls=["c"];let inner="";const d=cheb(i,S.dog);
+    if(S.won){cls.push("bl");const[r,c]=rc(i);const delay=d*90+((r*3+c)%3)*30;
+      h+=`<div class="${cls.join(" ")}" style="--d:${delay}ms" data-i="${i}"><svg class="pl" style="--d:${delay}ms"><use href="#${S.flags.has(i)||(r+c)%3===0?"sun":"wheat"}"/></svg></div>`;continue}
+    if(S.rev.has(i)){cls.push("rv");const s=scent(i);if(s)cls.push("s"+s);const n=count(i);if(n)inner+=n}
+    if(S.vis.has(i)&&i!==S.dog)inner+=`<svg class="pw"><use href="#paw"/></svg>`;
+    if(S.flags.has(i))inner=`<svg class="fl"><use href="#flag"/></svg>`;
+    if(d===1&&!S.over)cls.push("nx");
+    if(i===S.hz)cls.push("hz");
+    h+=`<div class="${cls.join(" ")}" data-i="${i}">${inner}</div>`;
+  }
+  const[r,c]=rc(S.dog);
+  h+=`<div class="dog ${S.dogSt}${S.won?" won":""}" id="dog" style="transform:translate(${c*100}%,${r*100}%)"><svg><use href="#dogHead"/></svg></div>`;
+  grid.innerHTML=h;
+  grid.parentElement.classList.toggle("flagmode",S.mode==="flag");
+  $("vStam").textContent=S.stam+"/"+STAM;
+  $("barI").style.width=(S.stam/STAM*100)+"%";$("bar").classList.toggle("low",S.stam/STAM<.25);
+  $("vFlags").textContent=S.flags.size+"/"+N;
+  $("vTime").textContent=fmt(secs());
+  const st=$("status");
+  if(S.msg){st.classList.add("warn");st.dataset.l="";$("statusT").textContent=t(S.msg)}
+  else{st.classList.remove("warn");st.dataset.l={calm:"0",sniff:"1",ears:"2",alert:"3",sit:"sit"}[S.dogSt];$("statusT").textContent=t(S.dogSt).replace(/Вало|Valo/,t("dog"))}
+  $("mStep").setAttribute("aria-pressed",S.mode==="step");$("mFlag").setAttribute("aria-pressed",S.mode==="flag");
+}
+let msgTimer;
+function say(k){S.msg=k;render();clearTimeout(msgTimer);msgTimer=setTimeout(()=>{S.msg=null;render()},2200)}
+const buzz=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+
+function step(i){
+  if(i===S.dog)return;
+  if(cheb(i,S.dog)>1)return say("adj");
+  if(S.flags.has(i))return say("locked");
+  startClock();S.msg=null;
+  S.stam-=1;
+  if(MINES.has(i)){S.over=true;S.el=Date.now();S.hz=i;S.dogSt="calm";emit("handler_stop");soundEngine.playHandlerStop();buzz([60,80,60]);render();return show("stop")}
+  S.dog=i;S.vis.add(i);reveal(i);
+  S.dogSt=["calm","sniff","ears","alert"][scent(i)];soundEngine.playStep(scent(i));
+  if(S.dogSt==="alert")buzz(30);
+  if(S.stam<=0){S.over=true;S.el=Date.now();emit("dog_tired");render();return show("tired")}
+  render();
+}
+function toggleFlag(i){
+  if(i===S.dog)return;
+  if(S.flags.has(i)){S.flags.delete(i);S.msg=null;render();return}
+  if(cheb(i,S.dog)>1)return say("tooFar");
+  if(S.rev.has(i))return say("clear");
+  if(S.flags.size>=N)return say("noFlags");
+  startClock();S.flags.add(i);S.dogSt="sit";S.msg=null;buzz(20);soundEngine.playFlag();
+  if(S.flags.size===N){
+    if([...S.flags].every(f=>MINES.has(f)))return win();
+    render();return say("wrong");
+  }
+  render();
+}
+function win(){S.over=true;S.won=true;S.el=Date.now();emit("field_cleared");render();setTimeout(()=>soundEngine.playFanfare(),350);setTimeout(()=>show("win"),1500)}
+const stars=()=>1+(S.stam/STAM>=.4?1:0)+(secs()<=120?1:0);
+
+function shareText(){
+  const rows=[];
+  for(let r=0;r<H;r++){let s="";for(let c=0;c<W;c++){const i=r*W+c;s+=S.flags.has(i)?"🚩":S.vis.has(i)?"🐾":S.rev.has(i)?"🟩":"🌻"}rows.push(s)}
+  return `GMAH Field #1 | ${secs()}s | ${(W*H*CELL_M2).toLocaleString("en-US")} m²\n${rows.join("\n")}\nsydanukrainalle.org`;
+}
+async function doShare(){
+  const txt=shareText();let ok=false;
+  try{await navigator.clipboard.writeText(txt);ok=true}catch(e){
+    try{const ta=document.createElement("textarea");ta.value=txt;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");ta.remove()}catch(e2){}
+  }
+  if(ok)toast(t("copied"));
+  try{if(navigator.share)navigator.share({text:txt}).catch(()=>{})}catch(e){}
+}
+let toastT;
+function toast(s){const el=$("toast");el.textContent=s;el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),1800)}
+
+let cur=null;
+const starSvg=n=>[1,2,3].map(k=>`<svg style="fill:${k<=n?"var(--gold2)":"#3a3f46"}"><use href="#star"/></svg>`).join("");
+function show(name){
+  cur=name;const sh=$("sheet");let h="";
+  if(name==="intro"){
+    h=`<div class="hero"><svg aria-hidden="true"><use href="#dogHead"/></svg></div>
+    <h2>${t("introT").replace(/Вало|Valo/,t("dog"))}</h2><p class="lead">${t("intro")}</p>
+    <ul class="rules">
+      <li><svg><use href="#paw"/></svg><span>${t("r1")}</span></li>
+      <li><svg><use href="#num"/></svg><span>${t("r2")}</span></li>
+      <li><svg><use href="#flag"/></svg><span>${t("r3")}</span></li>
+      <li><svg><use href="#hand"/></svg><span>${t("r4")}</span></li>
+    </ul>
+    <button class="btn pri" data-a="close">${t("go")}</button>`;
+  }else if(name==="stop"){
+    h=`<h2>${t("stopT")}</h2><p class="lead">${t("stop")}</p>
+    <div class="card safe"><b>${t("safeT")}</b>${t("safe")}</div>
+    <button class="btn pri" data-a="restart">${t("again")}</button>`;
+  }else if(name==="tired"){
+    h=`<h2>${t("tiredT")}</h2><p class="lead">${t("tired")}</p>
+    <button class="btn pri" data-a="restart">${t("retry")}</button>`;
+  }else if(name==="win"){
+    const n=stars();
+    h=`<h2>${t("winT")}</h2><p class="lead">${t("win")}</p>
+    <div class="figs">
+      <div><span>${t("area")}</span><b>${(W*H*CELL_M2).toLocaleString(lang==="en"?"en-US":lang)} m²</b></div>
+      <div><span>${t("time")}</span><b>${fmt(secs())}</b></div>
+      <div><span>${t("stars")}</span><div class="stars" aria-label="${n}/3">${starSvg(n)}</div></div>
+    </div>
+    <div class="card"><b>${t("factT")}</b>${t("fact")}</div>
+    <div class="card safe"><b>${t("safeT")}</b>${t("safe")}</div>
+    <div class="cta"><p>${t("ctaT")}</p>
+      <a class="btn pri" href="https://sydanukrainalle.org" target="_blank" rel="noopener">${t("donate")}</a>
+      <div class="row2"><button class="btn sec" data-a="share">${t("share")}</button><button class="btn sec" data-a="restart">${t("replay")}</button></div>
+    </div>`;
+  }
+  sh.innerHTML=h;$("ov").classList.add("on");
+  const f=sh.querySelector("button,a");if(f)f.focus({preventScroll:true});
+}
+function hide(){cur=null;$("ov").classList.remove("on")}
+
+$("sheet").addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=b.dataset.a;
+  if(a==="close")hide();else if(a==="restart"){hide();reset();render()}else if(a==="share")doShare()});
+
+/* tap = action by mode; long-press = flag */
+let lpT=null,lpDone=false,downI=-1;
+grid.addEventListener("pointerdown",e=>{const c=e.target.closest(".c");if(!c||S.over)return;downI=+c.dataset.i;lpDone=false;clearTimeout(lpT);lpT=setTimeout(()=>{lpDone=true;toggleFlag(downI)},450)});
+grid.addEventListener("pointerup",e=>{clearTimeout(lpT);if(lpDone||downI<0||S.over){downI=-1;return}const i=downI;downI=-1;S.mode==="flag"?toggleFlag(i):step(i)});
+grid.addEventListener("pointercancel",()=>{clearTimeout(lpT);downI=-1});
+grid.addEventListener("contextmenu",e=>e.preventDefault());
+
+$("mStep").onclick=()=>{S.mode="step";render()};
+$("mFlag").onclick=()=>{S.mode="flag";render()};
+$("restart").onclick=()=>{hide();reset();render()};
+
+function applyLang(){
+  document.documentElement.lang=lang;
+  document.querySelectorAll("[data-i]").forEach(el=>{if(!el.classList.contains("c"))el.textContent=t(el.dataset.i)});
+  $("langs").innerHTML=LANGS.map(l=>`<button data-l="${l}" aria-pressed="${l===lang}">${l.toUpperCase()}</button>`).join("");
+  document.title=t("title")+" · GMAH";
+  render();sndUI();if(cur)show(cur);
+}
+$("langs").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;lang=b.dataset.l;try{localStorage.setItem("gmah-lang",lang)}catch(x){}applyLang()});
+
+document.addEventListener("pointerdown",()=>{if(!soundEngine.isMuted())soundEngine.unlock()},{passive:true});
+function sndUI(){const m=soundEngine.isMuted();$("snd").setAttribute("aria-pressed",m);$("snd").setAttribute("aria-label",t(m?"sndOff":"sndOn"));$("sndUse").setAttribute("href",m?"#sndOff":"#sndOn")}
+$("snd").onclick=()=>{soundEngine.toggleMute();if(!soundEngine.isMuted()){soundEngine.unlock();soundEngine.playFlag()}sndUI()};
+setInterval(()=>{if(S.t0&&!S.over)$("vTime").textContent=fmt(secs())},500);
+
+reset();applyLang();show("intro");
+}
+</script>
+</body>
+</html>
